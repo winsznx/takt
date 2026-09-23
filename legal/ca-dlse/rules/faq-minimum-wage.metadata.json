@@ -1,0 +1,14 @@
+{
+  "id": "dlse-faq-minimum-wage",
+  "title": "Minimum Wage — Frequently Asked Questions",
+  "officialUrl": "https://www.dir.ca.gov/dlse/faq_minimumwage.htm",
+  "retrievedAt": "2026-09-23T10:05:58.140Z",
+  "visibleRevision": null,
+  "httpLastModified": null,
+  "contentType": "text/html",
+  "bytes": 63701,
+  "sha256": "f5f3e1bbc3a99e3a2088141fa6aa6c70c2a076b344a6edeea32300f8a6e9f206",
+  "sourceType": "rule-source",
+  "legalScope": "Official California statewide minimum wage schedule.",
+  "file": "faq-minimum-wage.html"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "dlse-form-55",
+  "title": "DLSE Form 55 — Overtime, Rest Period, Meal Period Computation Form",
+  "officialUrl": "https://www.dir.ca.gov/dlse/DLSE-55-overtime-sheet.xls",
+  "retrievedAt": "2026-09-23T10:05:55.599Z",
+  "visibleRevision": null,
+  "httpLastModified": "Tue, 09 Aug 2011 16:11:02 GMT",
+  "contentType": "application/vnd.ms-excel",
+  "bytes": 20992,
+  "sha256": "a5be16bfa32aebe1b0a089572010d5fa8bb82ec404961efd41b5f1584ca73bb5",
+  "sourceType": "form",
+  "legalScope": "California Labor Commissioner wage claim supplement for claimants whose hours or days varied per week. Per-pay-period computation worksheet.",
+  "file": "source.xls"
+}
