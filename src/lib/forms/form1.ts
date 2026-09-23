@@ -1,5 +1,5 @@
 import fontkit from "@pdf-lib/fontkit";
-import { PDFDocument, TextAlignment, type PDFFont } from "pdf-lib";
+import { PDFCheckBox, PDFDocument, PDFRadioGroup, PDFTextField, TextAlignment, type PDFFont } from "pdf-lib";
 import { z } from "zod";
 import { sha256Hex } from "@/lib/hash";
 
@@ -188,85 +188,69 @@ export async function assertTemplate(bytes: Uint8Array, expectedSha256: string, 
   }
 }
 
-/**
- * Fills the official Form 1. The result stays an editable AcroForm so the
- * worker can review and sign it; Takt never signs or dates on their behalf.
- */
-export async function fillForm1(
-  templateBytes: Uint8Array,
-  fontBytes: Uint8Array,
-  input: Form1Data,
-  generatedAt: Date,
-) {
-  await assertTemplate(templateBytes, FORM1_TEMPLATE_SHA256, "Form 1");
+/** Every Form 1 field Takt sets: text and radio values as strings, checkboxes as `true`. */
+export type Form1FieldValues = Record<string, string | boolean>;
+
+/** Fields that carry money and are right-aligned beside the printed `$`. */
+const AMOUNT_FIELDS = new Set<string>([
+  ...Object.values(FORM1_CLAIM_ROWS).map((r) => r.amount),
+  FORM1_FIELDS.q36Subtotal,
+  FORM1_FIELDS.q36TotalPaid,
+  FORM1_FIELDS.q36GrandTotal,
+]);
+
+export function form1FieldValues(input: Form1Data): Form1FieldValues {
   const data = Form1DataSchema.parse(input);
-
-  const pdf = await PDFDocument.load(templateBytes);
-  pdf.registerFontkit(fontkit);
-  const font: PDFFont = await pdf.embedFont(fontBytes, { subset: false });
-  const form = pdf.getForm();
   const F = FORM1_FIELDS;
-
-  const text = (name: string, value: string | undefined) => {
-    if (value !== undefined && value !== "") form.getTextField(name).setText(value);
-  };
-  const amount = (name: string, value: string | undefined) => {
-    if (value === undefined) return;
-    const field = form.getTextField(name);
-    field.setAlignment(TextAlignment.Right);
-    field.setText(value);
-  };
-  const radio = (name: string, value: string | undefined) => {
-    if (value !== undefined) form.getRadioGroup(name).select(value);
+  const values: Form1FieldValues = {};
+  const set = (name: string, value: string | undefined) => {
+    if (value !== undefined && value !== "") values[name] = value;
   };
 
   const { claimant, employer, employment, pay, schedule, claims, totals } = data;
-  const fullName = `${claimant.firstName} ${claimant.lastName}`;
+  set(F.q7FirstName, claimant.firstName);
+  set(F.q8LastName, claimant.lastName);
+  set(F.q9HomePhone, claimant.homePhone);
+  set(F.q10CellPhone, claimant.cellPhone);
+  set(F.q12Email, claimant.email);
+  set(F.q14MailingAddress, claimant.mailingAddress);
+  set(F.q14City, claimant.city);
+  set(F.q14State, claimant.state);
+  set(F.q14Zip, claimant.zip);
+  set(F.q5Interpreter, claimant.needsInterpreter);
+  if (claimant.needsInterpreter === "YES") set(F.q5aLanguage, claimant.interpreterLanguage);
 
-  text(F.q7FirstName, claimant.firstName);
-  text(F.q8LastName, claimant.lastName);
-  text(F.q9HomePhone, claimant.homePhone);
-  text(F.q10CellPhone, claimant.cellPhone);
-  text(F.q12Email, claimant.email);
-  text(F.q14MailingAddress, claimant.mailingAddress);
-  text(F.q14City, claimant.city);
-  text(F.q14State, claimant.state);
-  text(F.q14Zip, claimant.zip);
-  radio(F.q5Interpreter, claimant.needsInterpreter);
-  if (claimant.needsInterpreter === "YES") text(F.q5aLanguage, claimant.interpreterLanguage);
+  set(F.q15EmployerName, employer.name);
+  set(F.q17EmployerPhone, employer.phone);
+  set(F.q18EmployerEmail, employer.email);
+  set(F.q19EmployerAddress, employer.address);
+  set(F.q19EmployerCity, employer.city);
+  set(F.q19EmployerState, employer.state);
+  set(F.q19EmployerZip, employer.zip);
+  set(F.q20WorksiteAddress, employer.worksiteAddress);
+  set(F.q20WorksiteCity, employer.worksiteCity);
+  set(F.q20WorksiteState, employer.worksiteState);
+  set(F.q20WorksiteZip, employer.worksiteZip);
+  set(F.q21PersonInCharge, employer.personInCharge);
+  set(F.q21aPersonInChargeTitle, employer.personInChargeTitle);
+  set(F.q22BusinessType, employer.businessType);
+  set(F.q23WorkPerformed, employer.workPerformed);
 
-  text(F.q15EmployerName, employer.name);
-  text(F.q17EmployerPhone, employer.phone);
-  text(F.q18EmployerEmail, employer.email);
-  text(F.q19EmployerAddress, employer.address);
-  text(F.q19EmployerCity, employer.city);
-  text(F.q19EmployerState, employer.state);
-  text(F.q19EmployerZip, employer.zip);
-  text(F.q20WorksiteAddress, employer.worksiteAddress);
-  text(F.q20WorksiteCity, employer.worksiteCity);
-  text(F.q20WorksiteState, employer.worksiteState);
-  text(F.q20WorksiteZip, employer.worksiteZip);
-  text(F.q21PersonInCharge, employer.personInCharge);
-  text(F.q21aPersonInChargeTitle, employer.personInChargeTitle);
-  text(F.q22BusinessType, employer.businessType);
-  text(F.q23WorkPerformed, employer.workPerformed);
+  set(F.p2PrintName, `${claimant.firstName} ${claimant.lastName}`);
+  set(F.q27HireDate, employment.hireDate);
+  set(F.q28Status, employment.status);
+  if (employment.status === "QUIT") set(F.q28QuitDate, employment.separationDate);
+  if (employment.status === "DISCHARGED") set(F.q28DischargeDate, employment.separationDate);
+  set(F.q29PaidHow, employment.paidHow);
 
-  text(F.p2PrintName, fullName);
-  text(F.q27HireDate, employment.hireDate);
-  radio(F.q28Status, employment.status);
-  if (employment.status === "QUIT") text(F.q28QuitDate, employment.separationDate);
-  if (employment.status === "DISCHARGED") text(F.q28DischargeDate, employment.separationDate);
-  radio(F.q29PaidHow, employment.paidHow);
-
-  radio(F.q30ScheduleRegularity, FORM1_SCHEDULE_OPTIONS[schedule.regularity]);
+  set(F.q30ScheduleRegularity, FORM1_SCHEDULE_OPTIONS[schedule.regularity]);
   if (schedule.regularity === "regular") {
     schedule.typicalWeek.forEach((day, index) => {
       if (!day) return;
-      const n = index + 1;
       const put = (label: string, value: { time: string; meridiem: "am" | "pm" } | undefined) => {
         if (!value) return;
-        text(dayField(label, n), value.time);
-        radio(dayMeridiem(label, n), value.meridiem);
+        set(dayField(label, index + 1), value.time);
+        set(dayMeridiem(label, index + 1), value.meridiem);
       };
       put("TIME WORK STARTED", day.start);
       put("TIME WORK ENDED", day.end);
@@ -275,26 +259,55 @@ export async function fillForm1(
     });
   }
 
-  radio(F.q32FixedAmount, pay.fixedAmount);
-  radio(F.q33Hourly, pay.hourly);
-  text(F.q33RatePaid, pay.ratePaidPerHour);
-  text(F.q33RatePromised, pay.ratePromisedPerHour);
-  radio(F.q33bMultipleRates, pay.multipleRates);
-  radio(F.q34PieceRate, pay.pieceRate);
-  radio(F.q35Commission, pay.commission);
+  set(F.q32FixedAmount, pay.fixedAmount);
+  set(F.q33Hourly, pay.hourly);
+  set(F.q33RatePaid, pay.ratePaidPerHour);
+  set(F.q33RatePromised, pay.ratePromisedPerHour);
+  set(F.q33bMultipleRates, pay.multipleRates);
+  set(F.q34PieceRate, pay.pieceRate);
+  set(F.q35Commission, pay.commission);
 
   for (const key of Object.keys(FORM1_CLAIM_ROWS) as (keyof typeof FORM1_CLAIM_ROWS)[]) {
     const claim = claims[key];
     if (!claim) continue;
     const row = FORM1_CLAIM_ROWS[key];
-    form.getCheckBox(row.checkbox).check();
-    text(row.start, claim.start);
-    text(row.end, claim.end);
-    amount(row.amount, claim.amountEarned);
+    values[row.checkbox] = true;
+    set(row.start, claim.start);
+    set(row.end, claim.end);
+    set(row.amount, claim.amountEarned);
   }
-  amount(F.q36Subtotal, totals.subtotal);
-  amount(F.q36TotalPaid, totals.totalPaid);
-  amount(F.q36GrandTotal, totals.grandTotalOwed);
+  set(F.q36Subtotal, totals.subtotal);
+  set(F.q36TotalPaid, totals.totalPaid);
+  set(F.q36GrandTotal, totals.grandTotalOwed);
+  return values;
+}
+
+/**
+ * Fills the official Form 1. The result stays an editable AcroForm so the
+ * worker can review and sign it; Takt never signs or dates on their behalf.
+ */
+export async function fillForm1(templateBytes: Uint8Array, fontBytes: Uint8Array, input: Form1Data, generatedAt: Date) {
+  await assertTemplate(templateBytes, FORM1_TEMPLATE_SHA256, "Form 1");
+  const values = form1FieldValues(input);
+
+  const pdf = await PDFDocument.load(templateBytes);
+  pdf.registerFontkit(fontkit);
+  const font: PDFFont = await pdf.embedFont(fontBytes, { subset: false });
+  const form = pdf.getForm();
+
+  for (const [name, value] of Object.entries(values)) {
+    const field = form.getField(name);
+    if (field instanceof PDFCheckBox) {
+      if (value === true) field.check();
+    } else if (field instanceof PDFRadioGroup) {
+      field.select(String(value));
+    } else if (field instanceof PDFTextField) {
+      if (AMOUNT_FIELDS.has(name)) field.setAlignment(TextAlignment.Right);
+      field.setText(String(value));
+    } else {
+      throw new Error(`Form 1 field "${name}" has an unexpected type`);
+    }
+  }
 
   form.updateFieldAppearances(font);
   pdf.setProducer("Takt packet generator");

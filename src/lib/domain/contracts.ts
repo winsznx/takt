@@ -455,6 +455,7 @@ export const ManifestSource = z.object({
   sha256: Sha256,
   bytes: z.number().int().positive(),
   docClass: DocumentClass.nullable(),
+  duplicateOf: Id.nullable(),
   /** Path inside the packet when the worker chose to include a copy, else null. */
   packetPath: z.string().nullable(),
 });
