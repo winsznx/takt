@@ -1,0 +1,400 @@
+{
+  "synthetic": true,
+  "caseId": "TAKT-UNSUPPORTED-001",
+  "summary": "The worker is paid partly by piece rate. Piece-rate overtime uses a different regular-rate method, so Takt must refuse an authoritative amount and point to the Labor Commissioner.",
+  "claimant": {
+    "firstName": "Dana",
+    "lastName": "Rivera",
+    "phone": "(559) 555-0142",
+    "email": "dana.rivera@example.invalid",
+    "mailingAddress": "100 Sample Street Apt 4",
+    "city": "Fresno",
+    "state": "CA",
+    "zip": "93701",
+    "employerName": "Example Bakery Co.",
+    "employerAddress": "200 Example Avenue",
+    "employerCity": "Fresno",
+    "employerState": "CA",
+    "employerZip": "93702",
+    "employerPhone": "(559) 555-0100",
+    "workPerformed": "Delivery driver",
+    "hireDate": "2026-03-02",
+    "employmentStatus": "Still working for employer",
+    "separationDate": null,
+    "paidHow": "BY CHECK",
+    "scheduleRegularity": "irregular"
+  },
+  "scopeAnswers": {
+    "workedInCalifornia": "yes",
+    "paidHourly": "yes",
+    "pieceRateOrCommission": "yes",
+    "salariedOrExempt": "no",
+    "publicWorks": "no",
+    "unionContract": "no",
+    "alternativeWorkweek": "no",
+    "specialIndustry": "none",
+    "classifiedAsContractor": "no",
+    "workweekStartDay": 1
+  },
+  "expectedFacts": [
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_in",
+        "date": "2026-08-31",
+        "time": "08:00"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_out",
+        "date": "2026-08-31",
+        "time": "16:30"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "meal_break",
+        "date": "2026-08-31",
+        "minutes": 30
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_in",
+        "date": "2026-09-01",
+        "time": "08:00"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_out",
+        "date": "2026-09-01",
+        "time": "18:30"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "meal_break",
+        "date": "2026-09-01",
+        "minutes": 30
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_in",
+        "date": "2026-09-02",
+        "time": "08:00"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_out",
+        "date": "2026-09-02",
+        "time": "16:30"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "meal_break",
+        "date": "2026-09-02",
+        "minutes": 30
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_in",
+        "date": "2026-09-03",
+        "time": "08:00"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_out",
+        "date": "2026-09-03",
+        "time": "16:30"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "meal_break",
+        "date": "2026-09-03",
+        "minutes": 30
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_in",
+        "date": "2026-09-04",
+        "time": "08:00"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_out",
+        "date": "2026-09-04",
+        "time": "16:30"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "meal_break",
+        "date": "2026-09-04",
+        "minutes": 30
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_in",
+        "date": "2026-09-07",
+        "time": "08:00"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_out",
+        "date": "2026-09-07",
+        "time": "16:30"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "meal_break",
+        "date": "2026-09-07",
+        "minutes": 30
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_in",
+        "date": "2026-09-08",
+        "time": "08:00"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_out",
+        "date": "2026-09-08",
+        "time": "16:30"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "meal_break",
+        "date": "2026-09-08",
+        "minutes": 30
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_in",
+        "date": "2026-09-09",
+        "time": "08:00"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_out",
+        "date": "2026-09-09",
+        "time": "16:30"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "meal_break",
+        "date": "2026-09-09",
+        "minutes": 30
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_in",
+        "date": "2026-09-10",
+        "time": "08:00"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_out",
+        "date": "2026-09-10",
+        "time": "16:30"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "meal_break",
+        "date": "2026-09-10",
+        "minutes": 30
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_in",
+        "date": "2026-09-11",
+        "time": "08:00"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "time_out",
+        "date": "2026-09-11",
+        "time": "16:30"
+      },
+      "critical": true
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "value": {
+        "kind": "meal_break",
+        "date": "2026-09-11",
+        "minutes": 30
+      },
+      "critical": true
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "value": {
+        "kind": "pay_period",
+        "start": "2026-08-31",
+        "end": "2026-09-13"
+      },
+      "critical": true
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "value": {
+        "kind": "pay_date",
+        "date": "2026-09-18"
+      }
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "value": {
+        "kind": "hourly_rate",
+        "amount": "17.00"
+      },
+      "critical": true
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "value": {
+        "kind": "regular_hours_paid",
+        "hours": "80.00"
+      },
+      "critical": true
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "value": {
+        "kind": "regular_pay",
+        "amount": "1360.00"
+      },
+      "critical": true
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "value": {
+        "kind": "gross_pay",
+        "amount": "1669.00"
+      }
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "value": {
+        "kind": "employee_name",
+        "text": "Dana Rivera"
+      }
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "value": {
+        "kind": "employer_name",
+        "text": "Example Bakery Co."
+      }
+    }
+  ],
+  "workerStatements": [],
+  "expected": {
+    "dayStates": {
+      "2026-08-31": "UNSUPPORTED_RULE",
+      "2026-09-01": "UNSUPPORTED_RULE",
+      "2026-09-02": "UNSUPPORTED_RULE",
+      "2026-09-03": "UNSUPPORTED_RULE",
+      "2026-09-04": "UNSUPPORTED_RULE",
+      "2026-09-07": "UNSUPPORTED_RULE",
+      "2026-09-08": "UNSUPPORTED_RULE",
+      "2026-09-09": "UNSUPPORTED_RULE",
+      "2026-09-10": "UNSUPPORTED_RULE",
+      "2026-09-11": "UNSUPPORTED_RULE"
+    },
+    "discrepancies": [],
+    "owed": null,
+    "outcome": "UNSUPPORTED_CASE"
+  },
+  "documents": [
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "docClass": "time_record"
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "docClass": "paystub"
+    }
+  ]
+}

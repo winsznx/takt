@@ -1,0 +1,30 @@
+{
+  "caseId": "TAKT-DEMO-001",
+  "synthetic": true,
+  "files": [
+    {
+      "file": "Screenshot 2026-09-14 at 9.12.03 PM.png",
+      "docClass": "schedule",
+      "bytes": 168086,
+      "sha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f"
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "docClass": "time_record",
+      "bytes": 41987,
+      "sha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b"
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "docClass": "paystub",
+      "bytes": 45435,
+      "sha256": "6155e6c2d381fc288658e9e715f5dc56220a359b60d3beea9d1afc01efc0897b"
+    },
+    {
+      "file": "IMG_4821.png",
+      "docClass": "manager_message",
+      "bytes": 58615,
+      "sha256": "7f1009bfd252477f56619ad23ff063436d7c49d0388dc454cd29af18244689ce"
+    }
+  ]
+}

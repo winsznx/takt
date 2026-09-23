@@ -1,0 +1,18 @@
+{
+  "caseId": "TAKT-UNSUPPORTED-001",
+  "synthetic": true,
+  "files": [
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "docClass": "time_record",
+      "bytes": 42119,
+      "sha256": "95e725d221e4d9a7b0256906c776f412e8dd5ae4284981bda549a9882abe905f"
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "docClass": "paystub",
+      "bytes": 45496,
+      "sha256": "a86ad8048641c9a6c6a2a9b16214edf885db481ddf193388eafab5316fa9ac19"
+    }
+  ]
+}

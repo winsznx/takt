@@ -1,0 +1,30 @@
+{
+  "caseId": "TAKT-CONTROL-001",
+  "synthetic": true,
+  "files": [
+    {
+      "file": "Screenshot 2026-09-14 at 8.40.51 PM.png",
+      "docClass": "schedule",
+      "bytes": 158107,
+      "sha256": "5b0125892e38b1f28e930c1104c1b98073640e4072d4a0a4abe69f7f290c7cce"
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "docClass": "time_record",
+      "bytes": 41987,
+      "sha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b"
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "docClass": "paystub",
+      "bytes": 45435,
+      "sha256": "6155e6c2d381fc288658e9e715f5dc56220a359b60d3beea9d1afc01efc0897b"
+    },
+    {
+      "file": "IMG_5102.png",
+      "docClass": "manager_message",
+      "bytes": 51917,
+      "sha256": "38a94fef6fc17ce6c1e08063f025f832e0792ce02d9bc8e4741e4cc7ede73b12"
+    }
+  ]
+}

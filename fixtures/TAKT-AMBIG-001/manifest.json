@@ -1,0 +1,24 @@
+{
+  "caseId": "TAKT-AMBIG-001",
+  "synthetic": true,
+  "files": [
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "docClass": "time_record",
+      "bytes": 41987,
+      "sha256": "ace900c5dac94589f3170ce67cd194c2afae775b264994ec4589bed3ab597566"
+    },
+    {
+      "file": "timecard (1).pdf",
+      "docClass": "time_record",
+      "bytes": 42109,
+      "sha256": "e7d11a836d2b320253a65a1cd8b4be3cc51620e907406fddfbd916da364de502"
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "docClass": "paystub",
+      "bytes": 45435,
+      "sha256": "56d4d3b274c099c05ce7619225fe76544cc941261a411af51e23349145f13f27"
+    }
+  ]
+}
