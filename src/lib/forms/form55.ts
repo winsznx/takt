@@ -69,14 +69,14 @@ export const periodLabel = (p: Pick<Form55Period, "periodStart" | "periodEnd">) 
 
 /** Exact decimal-string sum in hundredths, returned as a JS number for the cached formula value. */
 function sumHundredths(values: string[]): number {
-  const total = values.reduce((acc, v) => acc + BigInt(v.replace(".", "")), BigInt(0));
+  const total = values.reduce((acc, v) => acc + BigInt(v.replace(".", "")), 0n);
   return Number(total) / 100;
 }
 
 const multiply = (rate: string, factor: 3 | 4) => {
   // rate * 1.5 or rate * 2, exactly, kept to the precision the form displays.
   const cents = BigInt(rate.replace(".", ""));
-  const scaled = factor === 3 ? cents * BigInt(3) : cents * BigInt(4);
+  const scaled = factor === 3 ? cents * 3n : cents * 4n;
   return Number(scaled) / 200;
 };
 
