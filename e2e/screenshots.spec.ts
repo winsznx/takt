@@ -6,7 +6,12 @@ const OUT = process.env.TAKT_SCREENSHOTS;
 test.skip(!OUT, "set TAKT_SCREENSHOTS to capture");
 
 test("capture canonical screens", async ({ page }, info) => {
-  const shot = (name: string) => page.screenshot({ path: `${OUT}/${info.project.name}-${name}.png`, fullPage: true });
+  const shot = async (name: string) => {
+    await expect(page.locator("[data-sonner-toast]")).toHaveCount(0, { timeout: 15_000 });
+    await page.mouse.move(0, 0);
+    await page.waitForTimeout(500);
+    await page.screenshot({ path: `${OUT}/${info.project.name}-${name}.png`, fullPage: true, animations: "disabled" });
+  };
   await page.goto("/");
   await shot("01-home");
   await page.goto("/cases");
