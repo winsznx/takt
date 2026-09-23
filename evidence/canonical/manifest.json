@@ -1,6 +1,6 @@
 {
   "app": {
-    "commit": "d80513f",
+    "commit": "177e4b5",
     "name": "takt",
     "version": "0.1.0"
   },
@@ -2383,10 +2383,10 @@
       "sha256": "f9de4ba3a2e77806d61c71ecac118f97611c63be13a6cb3162108fedfde2dea2"
     },
     {
-      "bytes": 20903,
+      "bytes": 20901,
       "path": "evidence-index.pdf",
       "role": "evidence-index",
-      "sha256": "9931af20348513001e85cc6cb89053a50b863d4d3ca9f36912362f98af4c87f2"
+      "sha256": "782faad5a7bbaa5a85998ad0465cd5262fd4ed07c61f1c840af26a863038c6d8"
     },
     {
       "bytes": 168086,

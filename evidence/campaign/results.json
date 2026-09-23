@@ -1,0 +1,364 @@
+{
+  "generatedBy": "scripts/proof-campaign.ts",
+  "commit": "177e4b5",
+  "verifierVersion": "takt-verify/1",
+  "extraction": "PDF facts: deterministic native extraction. Image facts: entered from fixture labels (worker_manual); no vision model was run.",
+  "cases": [
+    {
+      "caseId": "TAKT-DEMO-001",
+      "synthetic": true,
+      "summary": "Schedule and a manager message put the Sep 1 start at 7:40 AM; the employer time record starts at 8:00 AM. The worker confirms 7:40. On Sep 10 the schedule also says 7:40, but the worker confirms 8:00, so that day is consistent. One schedule time is partly covered by a notification and needs review.",
+      "expected": {
+        "dayStates": {
+          "2026-08-31": "CONSISTENT",
+          "2026-09-01": "DISCREPANCY_DETECTED",
+          "2026-09-02": "CONSISTENT",
+          "2026-09-03": "CONSISTENT",
+          "2026-09-04": "CONSISTENT",
+          "2026-09-07": "CONSISTENT",
+          "2026-09-08": "CONSISTENT",
+          "2026-09-09": "CONSISTENT",
+          "2026-09-10": "CONSISTENT",
+          "2026-09-11": "CONSISTENT"
+        },
+        "discrepancies": [
+          {
+            "type": "start_time_shaved",
+            "date": "2026-09-01",
+            "deltaMinutes": 20
+          }
+        ],
+        "owed": "9.25",
+        "outcome": "PACKET_VERIFIED"
+      },
+      "observed": {
+        "dayStates": {
+          "2026-08-31": "CONSISTENT",
+          "2026-09-01": "DISCREPANCY_DETECTED",
+          "2026-09-02": "CONSISTENT",
+          "2026-09-03": "CONSISTENT",
+          "2026-09-04": "CONSISTENT",
+          "2026-09-07": "CONSISTENT",
+          "2026-09-08": "CONSISTENT",
+          "2026-09-09": "CONSISTENT",
+          "2026-09-10": "CONSISTENT",
+          "2026-09-11": "CONSISTENT"
+        },
+        "discrepancies": [
+          {
+            "type": "start_time_shaved",
+            "date": "2026-09-01",
+            "deltaMinutes": 20
+          }
+        ],
+        "owed": "9.25",
+        "outcome": "PACKET_VERIFIED",
+        "form1": true,
+        "form55": 1,
+        "verifier": "VERIFIED_PACKET",
+        "verifierChecks": {
+          "pass": 20,
+          "fail": 0
+        }
+      },
+      "dayStatesMatched": {
+        "matched": 10,
+        "of": 10
+      },
+      "discrepanciesMatch": true,
+      "owedMatch": true,
+      "outcomeMatch": true,
+      "packetSha256": "8eb2f0909f3c91d11adb5f73c4086dfcdaa827070fb9c03c02906b7ed421d5ea"
+    },
+    {
+      "caseId": "TAKT-CONTROL-001",
+      "synthetic": true,
+      "summary": "Schedule, time record, wage statement, and messages all agree. Takt should report no discrepancy.",
+      "expected": {
+        "dayStates": {
+          "2026-08-31": "CONSISTENT",
+          "2026-09-01": "CONSISTENT",
+          "2026-09-02": "CONSISTENT",
+          "2026-09-03": "CONSISTENT",
+          "2026-09-04": "CONSISTENT",
+          "2026-09-07": "CONSISTENT",
+          "2026-09-08": "CONSISTENT",
+          "2026-09-09": "CONSISTENT",
+          "2026-09-10": "CONSISTENT",
+          "2026-09-11": "CONSISTENT"
+        },
+        "discrepancies": [],
+        "owed": "0.00",
+        "outcome": "PACKET_VERIFIED"
+      },
+      "observed": {
+        "dayStates": {
+          "2026-08-31": "CONSISTENT",
+          "2026-09-01": "CONSISTENT",
+          "2026-09-02": "CONSISTENT",
+          "2026-09-03": "CONSISTENT",
+          "2026-09-04": "CONSISTENT",
+          "2026-09-07": "CONSISTENT",
+          "2026-09-08": "CONSISTENT",
+          "2026-09-09": "CONSISTENT",
+          "2026-09-10": "CONSISTENT",
+          "2026-09-11": "CONSISTENT"
+        },
+        "discrepancies": [],
+        "owed": "0.00",
+        "outcome": "PACKET_VERIFIED",
+        "form1": false,
+        "form55": 0,
+        "verifier": "VERIFIED_PACKET",
+        "verifierChecks": {
+          "pass": 17,
+          "fail": 0
+        }
+      },
+      "dayStatesMatched": {
+        "matched": 10,
+        "of": 10
+      },
+      "discrepanciesMatch": true,
+      "owedMatch": true,
+      "outcomeMatch": true,
+      "packetSha256": "31b071a0659e9a7728a2bb2c6a1902594f7c504f622ab36ad81503bef0ca7e73"
+    },
+    {
+      "caseId": "TAKT-AMBIG-001",
+      "synthetic": true,
+      "summary": "Two exports of the employer time record disagree about Sep 2 (8:00 vs 8:15 AM), and the Sep 1 early start has no independent support. Takt must not produce a confident amount for the affected pay period.",
+      "expected": {
+        "dayStates": {
+          "2026-08-31": "CONSISTENT",
+          "2026-09-01": "INSUFFICIENT_EVIDENCE",
+          "2026-09-02": "AMBIGUOUS",
+          "2026-09-03": "CONSISTENT",
+          "2026-09-04": "CONSISTENT",
+          "2026-09-07": "CONSISTENT",
+          "2026-09-08": "CONSISTENT",
+          "2026-09-09": "CONSISTENT",
+          "2026-09-10": "CONSISTENT",
+          "2026-09-11": "CONSISTENT"
+        },
+        "discrepancies": [],
+        "owed": null,
+        "outcome": "CALCULATION_BLOCKED"
+      },
+      "observed": {
+        "dayStates": {
+          "2026-08-31": "CONSISTENT",
+          "2026-09-01": "INSUFFICIENT_EVIDENCE",
+          "2026-09-02": "AMBIGUOUS",
+          "2026-09-03": "CONSISTENT",
+          "2026-09-04": "CONSISTENT",
+          "2026-09-07": "CONSISTENT",
+          "2026-09-08": "CONSISTENT",
+          "2026-09-09": "CONSISTENT",
+          "2026-09-10": "CONSISTENT",
+          "2026-09-11": "CONSISTENT"
+        },
+        "discrepancies": [],
+        "owed": null,
+        "outcome": "CALCULATION_BLOCKED",
+        "form1": false,
+        "form55": 0,
+        "verifier": "VERIFIED_PACKET",
+        "verifierChecks": {
+          "pass": 17,
+          "fail": 0
+        }
+      },
+      "dayStatesMatched": {
+        "matched": 10,
+        "of": 10
+      },
+      "discrepanciesMatch": true,
+      "owedMatch": true,
+      "outcomeMatch": true,
+      "packetSha256": "a1a8be81a6e19ebc054f8cd53f9fe070004b95cd897e1e7932b1e5eebbbdd5d6"
+    },
+    {
+      "caseId": "TAKT-UNSUPPORTED-001",
+      "synthetic": true,
+      "summary": "The worker is paid partly by piece rate. Piece-rate overtime uses a different regular-rate method, so Takt must refuse an authoritative amount and point to the Labor Commissioner.",
+      "expected": {
+        "dayStates": {
+          "2026-08-31": "UNSUPPORTED_RULE",
+          "2026-09-01": "UNSUPPORTED_RULE",
+          "2026-09-02": "UNSUPPORTED_RULE",
+          "2026-09-03": "UNSUPPORTED_RULE",
+          "2026-09-04": "UNSUPPORTED_RULE",
+          "2026-09-07": "UNSUPPORTED_RULE",
+          "2026-09-08": "UNSUPPORTED_RULE",
+          "2026-09-09": "UNSUPPORTED_RULE",
+          "2026-09-10": "UNSUPPORTED_RULE",
+          "2026-09-11": "UNSUPPORTED_RULE"
+        },
+        "discrepancies": [],
+        "owed": null,
+        "outcome": "UNSUPPORTED_CASE"
+      },
+      "observed": {
+        "dayStates": {
+          "2026-08-31": "UNSUPPORTED_RULE",
+          "2026-09-01": "UNSUPPORTED_RULE",
+          "2026-09-02": "UNSUPPORTED_RULE",
+          "2026-09-03": "UNSUPPORTED_RULE",
+          "2026-09-04": "UNSUPPORTED_RULE",
+          "2026-09-07": "UNSUPPORTED_RULE",
+          "2026-09-08": "UNSUPPORTED_RULE",
+          "2026-09-09": "UNSUPPORTED_RULE",
+          "2026-09-10": "UNSUPPORTED_RULE",
+          "2026-09-11": "UNSUPPORTED_RULE"
+        },
+        "discrepancies": [],
+        "owed": null,
+        "outcome": "UNSUPPORTED_CASE",
+        "form1": false,
+        "form55": 0,
+        "verifier": "VERIFIED_PACKET",
+        "verifierChecks": {
+          "pass": 17,
+          "fail": 0
+        }
+      },
+      "dayStatesMatched": {
+        "matched": 10,
+        "of": 10
+      },
+      "discrepanciesMatch": true,
+      "owedMatch": true,
+      "outcomeMatch": true,
+      "packetSha256": "4fefa9e9413016a08f92215a166f17803ffbcb887de78df4e8e294930cd8df8b"
+    }
+  ],
+  "tamper": [
+    {
+      "id": "csv-owed-edited",
+      "description": "calculation.csv owed changed from 9.25 to 90.25",
+      "status": "VERIFICATION_FAILED",
+      "rejected": true,
+      "failedChecks": [
+        "file:calculation.csv",
+        "csv.matches"
+      ]
+    },
+    {
+      "id": "csv-owed-edited-hash-updated",
+      "description": "Same CSV edit, with the manifest hash updated to match",
+      "status": "VERIFICATION_FAILED",
+      "rejected": true,
+      "failedChecks": [
+        "csv.matches"
+      ]
+    },
+    {
+      "id": "manifest-total-edited",
+      "description": "Manifest totals and period owed changed to 92.50",
+      "status": "VERIFICATION_FAILED",
+      "rejected": true,
+      "failedChecks": [
+        "replay.calculations",
+        "replay.totals",
+        "arithmetic.independent",
+        "csv.matches",
+        "form1.readback",
+        "form55:dlse-form-55.xls"
+      ]
+    },
+    {
+      "id": "calc-line-minutes-edited",
+      "description": "Overtime line changed from 20 to 200 minutes",
+      "status": "VERIFICATION_FAILED",
+      "rejected": true,
+      "failedChecks": [
+        "replay.calculations",
+        "arithmetic.independent",
+        "csv.matches"
+      ]
+    },
+    {
+      "id": "form1-grand-total-edited",
+      "description": "Form 1 grand total changed to 925.00, manifest hash updated",
+      "status": "VERIFICATION_FAILED",
+      "rejected": true,
+      "failedChecks": [
+        "form1.readback"
+      ]
+    },
+    {
+      "id": "source-byte-flipped",
+      "description": "One byte of an included source PDF changed after generation",
+      "status": "VERIFICATION_FAILED",
+      "rejected": true,
+      "failedChecks": [
+        "file:sources/02-Timecard_Export_0913.pdf",
+        "sources.included"
+      ]
+    },
+    {
+      "id": "file-added",
+      "description": "An unlisted file added to the ZIP",
+      "status": "VERIFICATION_FAILED",
+      "rejected": true,
+      "failedChecks": [
+        "file:extra-proof.pdf"
+      ]
+    },
+    {
+      "id": "fact-marked-unreviewed",
+      "description": "A fact's review status changed to unreviewed",
+      "status": "VERIFICATION_FAILED",
+      "rejected": true,
+      "failedChecks": [
+        "facts.reviewed",
+        "replay.days",
+        "replay.calculations",
+        "replay.totals"
+      ]
+    },
+    {
+      "id": "rule-id-invented",
+      "description": "A discrepancy's rule changed to one not in the pinned ruleset",
+      "status": "VERIFICATION_FAILED",
+      "rejected": true,
+      "failedChecks": [
+        "rules.pinned",
+        "replay.discrepancies"
+      ]
+    },
+    {
+      "id": "manifest-removed",
+      "description": "manifest.json deleted from the packet",
+      "status": "UNVERIFIABLE_PACKET",
+      "rejected": true,
+      "failedChecks": [
+        "manifest.present"
+      ]
+    }
+  ],
+  "summary": {
+    "casesOutcomeCorrect": {
+      "value": 4,
+      "of": 4
+    },
+    "dayStatesCorrect": {
+      "value": 40,
+      "of": 40
+    },
+    "discrepancySetsExact": {
+      "value": 4,
+      "of": 4
+    },
+    "amountsExact": {
+      "value": 4,
+      "of": 4
+    },
+    "falseDiscrepanciesOnControl": 0,
+    "tamperRejected": {
+      "value": 10,
+      "of": 10
+    }
+  }
+}
