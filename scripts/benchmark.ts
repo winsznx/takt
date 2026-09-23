@@ -21,8 +21,9 @@
 import { execFileSync } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, type Part } from "@google/genai";
 import { EXTRACTION_JSON_SCHEMA, SYSTEM_INSTRUCTION, toCandidates, userPrompt, type RawExtraction } from "@/lib/ai/extraction-schema";
+import { withRetry } from "@/lib/ai/retry";
 import { analyzeCase } from "@/lib/domain/analyze";
 import { readNativePdf } from "@/lib/documents/pdf-native";
 import { extractNative } from "@/lib/extraction/native";
@@ -97,7 +98,7 @@ async function main() {
     const truth = await loadTruth(caseId);
 
     // --- generic LLM arm ---------------------------------------------------
-    const parts = [];
+    const parts: Part[] = [];
     for (const d of truth.documents) {
       const bytes = await loadDocument(caseId, d.file);
       parts.push({ text: `File: ${d.file}` });
@@ -111,11 +112,13 @@ async function main() {
     let generic: { discrepancies: { type: string; date: string | null; minutes: number | null }[]; amount_owed: string | null; can_answer: boolean } | null = null;
     let genericError: string | null = null;
     try {
-      const response = await ai.models.generateContent({
-        model: MODEL,
-        contents: [{ role: "user", parts }],
-        config: { responseMimeType: "application/json", temperature: 0 },
-      });
+      const response = await withRetry(() =>
+        ai.models.generateContent({
+          model: MODEL,
+          contents: [{ role: "user", parts }],
+          config: { responseMimeType: "application/json", temperature: 0 },
+        }),
+      );
       generic = JSON.parse(response.text ?? "null");
     } catch (e) {
       genericError = e instanceof Error ? e.message.slice(0, 200) : "request failed";
@@ -145,11 +148,13 @@ async function main() {
       if (d.file.endsWith(".pdf")) {
         extracted.push(...extractNative(await readNativePdf(bytes)).candidates.map((c) => `${d.file}|${key(c.value)}`));
       } else {
-        const response = await ai.models.generateContent({
-          model: MODEL,
-          contents: [{ role: "user", parts: [{ inlineData: { mimeType: "image/png", data: Buffer.from(bytes).toString("base64") } }, { text: userPrompt(null) }] }],
-          config: { systemInstruction: SYSTEM_INSTRUCTION, responseMimeType: "application/json", responseJsonSchema: EXTRACTION_JSON_SCHEMA, temperature: 0 },
-        });
+        const response = await withRetry(() =>
+          ai.models.generateContent({
+            model: MODEL,
+            contents: [{ role: "user", parts: [{ inlineData: { mimeType: "image/png", data: Buffer.from(bytes).toString("base64") } }, { text: userPrompt(null) }] }],
+            config: { systemInstruction: SYSTEM_INSTRUCTION, responseMimeType: "application/json", responseJsonSchema: EXTRACTION_JSON_SCHEMA, temperature: 0 },
+          }),
+        );
         const { candidates } = toCandidates(JSON.parse(response.text ?? "{}") as RawExtraction);
         extracted.push(...candidates.map((c) => `${d.file}|${key(c.value)}`));
       }

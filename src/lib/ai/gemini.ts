@@ -1,5 +1,6 @@
 import "server-only";
 import { GoogleGenAI } from "@google/genai";
+import { withRetry } from "@/lib/ai/retry";
 import type { DocumentClass } from "@/lib/domain/contracts";
 import {
   EXTRACTION_JSON_SCHEMA,
@@ -24,6 +25,8 @@ function getClient(): GoogleGenAI {
   return client;
 }
 
+export { withRetry };
+
 export const extractionAvailable = () => Boolean(process.env.GEMINI_API_KEY);
 
 /** Sends one image to the model and returns its raw JSON. The caller validates it. */
@@ -31,21 +34,23 @@ export async function extractFromImage(
   image: { mimeType: "image/png" | "image/jpeg"; base64: string },
   hint: DocumentClass | null,
 ): Promise<RawExtraction> {
-  const response = await getClient().models.generateContent({
-    model: EXTRACTION_MODEL,
-    contents: [
-      {
-        role: "user",
-        parts: [{ inlineData: { mimeType: image.mimeType, data: image.base64 } }, { text: userPrompt(hint) }],
+  const response = await withRetry(() =>
+    getClient().models.generateContent({
+      model: EXTRACTION_MODEL,
+      contents: [
+        {
+          role: "user",
+          parts: [{ inlineData: { mimeType: image.mimeType, data: image.base64 } }, { text: userPrompt(hint) }],
+        },
+      ],
+      config: {
+        systemInstruction: SYSTEM_INSTRUCTION,
+        responseMimeType: "application/json",
+        responseJsonSchema: EXTRACTION_JSON_SCHEMA,
+        temperature: 0,
       },
-    ],
-    config: {
-      systemInstruction: SYSTEM_INSTRUCTION,
-      responseMimeType: "application/json",
-      responseJsonSchema: EXTRACTION_JSON_SCHEMA,
-      temperature: 0,
-    },
-  });
+    }),
+  );
   const text = response.text;
   if (!text) throw new Error("The model returned no content.");
   return JSON.parse(text) as RawExtraction;
