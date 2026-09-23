@@ -70,3 +70,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/public/generated/
+
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/

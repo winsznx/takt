@@ -6,6 +6,8 @@
  * Values come from widget annotations rather than `getFieldObjects()`, which
  * returns nothing for the official DLSE Form 1.
  */
+import { loadPdfJs } from "@/lib/pdfjs";
+
 export type PdfFieldValue = string | boolean | null;
 
 interface WidgetAnnotation {
@@ -33,16 +35,6 @@ export interface PdfFormReadback {
   pageText: string[];
 }
 
-async function loadPdfJs() {
-  if (typeof window === "undefined") {
-    return import("pdfjs-dist/legacy/build/pdf.mjs");
-  }
-  const pdfjs = await import("pdfjs-dist");
-  if (!pdfjs.GlobalWorkerOptions.workerSrc) {
-    pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
-  }
-  return pdfjs;
-}
 
 export async function readPdfForm(bytes: Uint8Array): Promise<PdfFormReadback> {
   const pdfjs = await loadPdfJs();
