@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteFooter, SiteHeader } from "@/components/takt/site-chrome";
 import "./globals.css";
 
-const sans = Geist({ variable: "--font-sans", subsets: ["latin"] });
+const sans = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Compare your schedule, time records, pay stubs, and messages. Review every source, see where they disagree, and build a California wage-claim evidence packet.",
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#ffffff" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#fcfcfc" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

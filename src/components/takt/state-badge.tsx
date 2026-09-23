@@ -1,17 +1,22 @@
 import type { CaseState, DecisionState } from "@/lib/domain/contracts";
 import { cn } from "@/lib/utils";
 
-const DECISION: Record<DecisionState, { label: string; className: string }> = {
-  CONSISTENT: { label: "Matches", className: "bg-state-consistent/10 text-state-consistent ring-state-consistent/30" },
-  DISCREPANCY_DETECTED: { label: "Records disagree", className: "bg-state-discrepancy/10 text-state-discrepancy ring-state-discrepancy/30" },
-  INSUFFICIENT_EVIDENCE: { label: "Not enough evidence", className: "bg-state-insufficient/10 text-state-insufficient ring-state-insufficient/30" },
-  AMBIGUOUS: { label: "Needs your answer", className: "bg-state-ambiguous/10 text-state-ambiguous ring-state-ambiguous/30" },
-  UNSUPPORTED_RULE: { label: "Outside Takt's rules", className: "bg-state-unsupported/10 text-state-unsupported ring-state-unsupported/30" },
+const DECISION: Record<DecisionState, { label: string; className: string; dot: string }> = {
+  CONSISTENT: { label: "Matches", className: "bg-[#ecfdf5] text-[#065f46]", dot: "bg-state-consistent" },
+  DISCREPANCY_DETECTED: { label: "Records disagree", className: "bg-[#fff1f1] text-[#c4262c]", dot: "bg-state-discrepancy" },
+  INSUFFICIENT_EVIDENCE: { label: "Not enough evidence", className: "bg-[#fefce8] text-[#854d0e]", dot: "bg-state-insufficient" },
+  AMBIGUOUS: { label: "Needs your answer", className: "bg-[#f5f3ff] text-[#5b44c2]", dot: "bg-state-ambiguous" },
+  UNSUPPORTED_RULE: { label: "Outside Takt's rules", className: "bg-[#f1f3f6] text-[#4a5263]", dot: "bg-state-unsupported" },
 };
 
 export function DecisionBadge({ state, className }: { state: DecisionState; className?: string }) {
   const d = DECISION[state];
-  return <span className={cn("inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ring-1 ring-inset", d.className, className)}>{d.label}</span>;
+  return (
+    <span className={cn("inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] font-medium", d.className, className)}>
+      <span className={cn("size-1.5 rounded-full", d.dot)} />
+      {d.label}
+    </span>
+  );
 }
 
 export const CASE_STATE_TEXT: Record<CaseState, string> = {
