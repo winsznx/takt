@@ -401,3 +401,82 @@ export const VerificationReceipt = z.object({
   verifiedAt: z.string(),
 });
 export type VerificationReceipt = z.infer<typeof VerificationReceipt>;
+
+// ---------------------------------------------------------------------------
+// Claimant details the worker types in (never extracted by a model)
+
+export const ClaimantDetails = z.object({
+  firstName: z.string().max(80),
+  lastName: z.string().max(80),
+  phone: z.string().max(40),
+  email: z.string().max(120),
+  mailingAddress: z.string().max(200),
+  city: z.string().max(80),
+  state: z.string().max(2),
+  zip: z.string().max(10),
+  employerName: z.string().max(120),
+  employerAddress: z.string().max(200),
+  employerCity: z.string().max(80),
+  employerState: z.string().max(2),
+  employerZip: z.string().max(10),
+  employerPhone: z.string().max(40),
+  workPerformed: z.string().max(120),
+  hireDate: IsoDate.nullable(),
+  employmentStatus: z.enum(["Still working for employer", "QUIT", "DISCHARGED"]).nullable(),
+  separationDate: IsoDate.nullable(),
+  paidHow: z.enum(["BY CHECK", "BY CASH", "BY BOTH CASH & CHECK", "OTHER"]).nullable(),
+  scheduleRegularity: z.enum(["regular", "irregular"]),
+});
+export type ClaimantDetails = z.infer<typeof ClaimantDetails>;
+
+// ---------------------------------------------------------------------------
+// Claim packet manifest
+
+export const RuleReference = z.object({
+  id: z.string(),
+  version: z.string(),
+  summary: z.string(),
+  sourceId: z.string(),
+  /** Official URL for legal rules; repository path for Takt's own evidence policy. */
+  sourceUrl: z.string().min(1),
+  effective: IsoDate,
+});
+export type RuleReference = z.infer<typeof RuleReference>;
+
+export const ManifestSource = z.object({
+  documentId: Id,
+  filename: z.string(),
+  mimeType: MimeType,
+  sha256: Sha256,
+  bytes: z.number().int().positive(),
+  docClass: DocumentClass.nullable(),
+  /** Path inside the packet when the worker chose to include a copy, else null. */
+  packetPath: z.string().nullable(),
+});
+export type ManifestSource = z.infer<typeof ManifestSource>;
+
+export const ClaimPacketManifest = z.object({
+  schema: z.literal("takt-manifest/1"),
+  caseId: z.string(),
+  generatedAt: z.string(),
+  app: z.object({ name: z.literal("takt"), version: z.string(), commit: z.string() }),
+  contractVersion: z.literal(CONTRACT_VERSION),
+  ruleset: z.object({ id: z.string(), rules: z.array(RuleReference) }),
+  scope: z.object({ answers: ScopeAnswers, decision: ScopeDecision }),
+  extraction: z.object({ model: z.string().nullable(), promptVersion: z.string(), schemaVersion: z.string() }),
+  sources: z.array(ManifestSource),
+  facts: z.array(EvidenceFact),
+  confirmations: z.array(WorkerConfirmation),
+  payroll: z.array(PayrollRecord),
+  days: z.array(DayReconciliation),
+  discrepancies: z.array(Discrepancy),
+  calculations: z.array(PeriodCalculation),
+  totals: z.object({ earned: Decimal, paid: Decimal, owed: Decimal }),
+  forms: z.object({
+    form1: z.object({ file: z.string(), templateSha256: Sha256, revision: z.string(), fields: z.record(z.string(), z.union([z.string(), z.boolean()])) }),
+    form55: z.array(z.object({ file: z.string(), templateSha256: Sha256, hourlyRate: Decimal, periodIds: z.array(Id) })),
+  }),
+  files: z.array(PacketFile),
+  limitations: z.array(z.string()),
+});
+export type ClaimPacketManifest = z.infer<typeof ClaimPacketManifest>;
