@@ -13,10 +13,10 @@ export default function ProofPage() {
   const s = campaign.summary;
   const demo = campaign.cases.find((c) => c.caseId === "TAKT-DEMO-001")!;
   return (
-    <div className="mx-auto max-w-3xl space-y-10 px-4 py-8">
+    <div className="mx-auto max-w-[880px] space-y-12 px-5 py-10 sm:py-14 min-[1320px]:px-0">
       <header>
         <p className="text-xs uppercase tracking-wide text-muted-foreground">Takt Proof</p>
-        <h1 className="mt-1 text-2xl font-semibold tracking-tight">What Takt has shown, and how to check it</h1>
+        <h1 className="mt-1 text-[30px] font-semibold leading-[1.1] tracking-[-1px] sm:text-[40px]">What Takt has shown, and how to check it</h1>
         <p className="mt-2 text-muted-foreground">
           Takt lines up independent work records, finds where they disagree, computes the supported difference in code, and exports a packet anyone
           can re-verify. Every number on this page is read from files committed to the repository, produced at commit <code>{campaign.commit}</code>.
@@ -24,7 +24,7 @@ export default function ProofPage() {
       </header>
 
       <section>
-        <h2 className="text-lg font-semibold">Canonical case · {run.case_id}</h2>
+        <h2 className="text-[20px] font-semibold tracking-[-0.3px]">Canonical case · {run.case_id}</h2>
         <p className="mt-1 text-sm text-muted-foreground">Synthetic fixture: an invented worker, employer, and records.</p>
         <div className="mt-3 rounded-xl border-2 border-state-discrepancy/40 bg-state-discrepancy/5 p-4">
           <p className="text-sm text-muted-foreground">Tue, Sep 1, 2026</p>
@@ -56,7 +56,7 @@ export default function ProofPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-semibold">What can go wrong</h2>
+        <h2 className="text-[20px] font-semibold tracking-[-0.3px]">What can go wrong</h2>
         <table className="mt-3 w-full text-left text-sm">
           <thead className="text-muted-foreground"><tr><th className="py-1">Case</th><th>Expected</th><th>Observed</th><th>Amount</th></tr></thead>
           <tbody>
@@ -76,7 +76,7 @@ export default function ProofPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-semibold">Results with denominators</h2>
+        <h2 className="text-[20px] font-semibold tracking-[-0.3px]">Results with denominators</h2>
         <dl className="mt-3 grid grid-cols-2 gap-3 text-sm sm:grid-cols-3">
           {[
             ["Case outcomes correct", ratio(s.casesOutcomeCorrect)],
@@ -86,7 +86,7 @@ export default function ProofPage() {
             ["False discrepancies on the healthy control", String(s.falseDiscrepanciesOnControl)],
             ["Tampered packets rejected", ratio(s.tamperRejected)],
           ].map(([k, v]) => (
-            <div key={k} className="rounded-lg border p-3"><dt className="text-xs text-muted-foreground">{k}</dt><dd className="text-xl font-semibold">{v}</dd></div>
+            <div key={k} className="panel p-4"><dt className="text-xs text-muted-foreground">{k}</dt><dd className="text-xl font-semibold">{v}</dd></div>
           ))}
         </dl>
         <p className="mt-3 text-sm text-muted-foreground">
@@ -96,7 +96,7 @@ export default function ProofPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-semibold">Try the verifier yourself</h2>
+        <h2 className="text-[20px] font-semibold tracking-[-0.3px]">Try the verifier yourself</h2>
         <p className="mt-2 text-sm">
           Download the <a className="underline" href="/generated/evidence/takt-demo-001.zip" download>canonical packet</a> and{" "}
           <a className="underline" href="/generated/evidence/takt-tamper-001.zip" download>TAKT-TAMPER-001</a> (the same packet with Form 1&apos;s grand
@@ -106,8 +106,8 @@ export default function ProofPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-semibold">Tamper tests on the canonical packet</h2>
-        <ul className="mt-3 divide-y rounded-lg border text-sm">
+        <h2 className="text-[20px] font-semibold tracking-[-0.3px]">Tamper tests on the canonical packet</h2>
+        <ul className="mt-3 panel divide-y divide-[#ececef] overflow-hidden text-sm">
           {campaign.tamper.map((t) => (
             <li key={t.id} className="flex flex-wrap justify-between gap-2 p-3">
               <span>{t.description}</span>
@@ -118,7 +118,7 @@ export default function ProofPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-semibold">Not yet shown</h2>
+        <h2 className="text-[20px] font-semibold tracking-[-0.3px]">Not yet shown</h2>
         <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
           <li>Image and scan extraction by the AI model on these fixtures. It isn&apos;t configured in this build, so image facts above were entered from labels.</li>
           <li>A comparison against a general-purpose AI model reading the same documents.</li>

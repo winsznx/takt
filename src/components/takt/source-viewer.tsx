@@ -65,7 +65,7 @@ export function SourceViewer({
 
   const visible = highlights.filter((h) => h.page === page && !(h.region.w >= 0.999 && h.region.h >= 0.999));
   return (
-    <div ref={container} className="relative w-full overflow-hidden rounded-lg border bg-white">
+    <div ref={container} className="relative w-full overflow-hidden rounded-[20px] border border-[#ececef] bg-white">
       {error && <p className="p-6 text-sm text-muted-foreground">{error}</p>}
       {isPdf ? (
         <canvas ref={canvas} className="block w-full" aria-label={`Page ${page} of ${document.filename}`} />

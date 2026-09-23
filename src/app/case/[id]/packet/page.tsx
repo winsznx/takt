@@ -59,7 +59,7 @@ export default function PacketPage() {
   return (
     <div className="space-y-10">
       <section className="space-y-3">
-        <h1 className="text-2xl font-semibold tracking-tight">Your claim packet</h1>
+        <h1 className="text-[30px] font-semibold leading-[1.1] tracking-[-1px] sm:text-[40px]">Your claim packet</h1>
         {claiming ? (
           <p className="text-muted-foreground">
             Takt found <span className="font-semibold text-foreground">${formatMoney(analysis.totals.owed)}</span> of supported pay that your wage
@@ -79,14 +79,14 @@ export default function PacketPage() {
 
       {claiming && (
         <section className="space-y-3">
-          <h2 className="text-lg font-semibold">Your details for Form 1</h2>
+          <h2 className="text-[20px] font-semibold tracking-[-0.3px]">Your details for Form 1</h2>
           <p className="text-sm text-muted-foreground">These go on the claim form. Takt never signs or dates the form for you.</p>
           <DetailsForm initial={stored.details} onSave={(d) => updateCase(stored.id, () => ({ details: d }))} />
         </section>
       )}
 
       <section className="space-y-3">
-        <h2 className="text-lg font-semibold">Scope answers</h2>
+        <h2 className="text-[20px] font-semibold tracking-[-0.3px]">Scope answers</h2>
         {editingScope ? (
           <ScopeForm
             initial={stored.scopeAnswers}
@@ -97,7 +97,7 @@ export default function PacketPage() {
             }}
           />
         ) : (
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border p-3 text-sm">
+          <div className="flex flex-wrap items-center justify-between gap-3 panel p-4 text-sm">
             <span>{analysis.scope ? (analysis.scope.supported ? "Inside Takt's supported California rules." : "Outside Takt's supported rules.") : "Not answered yet."}</span>
             <Button size="sm" variant="outline" onClick={() => setEditingScope(true)}>
               {analysis.scope ? "Change answers" : "Answer now"}
@@ -107,8 +107,8 @@ export default function PacketPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-semibold">Takt Packet</h2>
-        <label className="flex items-start gap-3 rounded-lg border p-3 text-sm">
+        <h2 className="text-[20px] font-semibold tracking-[-0.3px]">Takt Packet</h2>
+        <label className="flex items-start gap-3 panel p-4 text-sm">
           <Switch checked={includeSources} onCheckedChange={setIncludeSources} aria-label="Include copies of my files" />
           <span>
             <span className="font-medium">Include copies of my original files</span>
@@ -118,7 +118,7 @@ export default function PacketPage() {
           </span>
         </label>
         {blockers.length > 0 && (
-          <ul className="list-disc space-y-1 rounded-lg border border-state-insufficient/40 bg-state-insufficient/5 p-3 pl-8 text-sm">
+          <ul className="list-disc space-y-1 rounded-2xl border border-[#f5e3b3] bg-[#fefce8] text-[#713f12] p-3 pl-8 text-sm">
             {blockers.map((b) => (
               <li key={b}>{b}</li>
             ))}
@@ -133,7 +133,7 @@ export default function PacketPage() {
             <div className="flex flex-wrap gap-2">
               <Button onClick={() => download(current.built.zip, `${stored.reference}-takt-packet.zip`)}>Download packet (.zip)</Button>
             </div>
-            <ul className="divide-y rounded-lg border text-sm">
+            <ul className="panel divide-y divide-[#ececef] overflow-hidden text-sm">
               {Object.entries(current.built.files)
                 .filter(([path]) => !path.startsWith("sources/"))
                 .map(([path, bytes]) => (
@@ -167,7 +167,7 @@ export default function PacketPage() {
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-lg font-semibold">Takt Verify</h2>
+        <h2 className="text-[20px] font-semibold tracking-[-0.3px]">Takt Verify</h2>
         <p className="text-sm text-muted-foreground">
           Check any Takt packet, including one someone sent you. The check runs in this browser from the packet&apos;s bytes. It re-hashes every file,
           replays the comparison, re-does the math, and reads the forms back.

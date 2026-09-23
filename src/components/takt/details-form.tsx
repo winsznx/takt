@@ -59,7 +59,7 @@ export function DetailsForm({ initial, onSave }: { initial: ClaimantDetails; onS
             id="d-status"
             value={d.employmentStatus ?? ""}
             onChange={(e) => set("employmentStatus", (e.target.value || null) as ClaimantDetails["employmentStatus"])}
-            className="min-h-9 w-full rounded-md border bg-background px-2"
+            className="h-10 w-full rounded-xl border border-[#e3e4e8] bg-white px-3"
           >
             <option value="">Choose</option>
             <option value="Still working for employer">Yes, still working there</option>
@@ -73,7 +73,7 @@ export function DetailsForm({ initial, onSave }: { initial: ClaimantDetails; onS
             id="d-paid"
             value={d.paidHow ?? ""}
             onChange={(e) => set("paidHow", (e.target.value || null) as ClaimantDetails["paidHow"])}
-            className="min-h-9 w-full rounded-md border bg-background px-2"
+            className="h-10 w-full rounded-xl border border-[#e3e4e8] bg-white px-3"
           >
             <option value="">Choose</option>
             <option value="BY CHECK">Check or direct deposit</option>
@@ -97,7 +97,7 @@ export function DetailsForm({ initial, onSave }: { initial: ClaimantDetails; onS
                 ["regular", "Yes, mostly the same"],
               ] as const
             ).map(([value, text]) => (
-              <label key={value} className="flex min-h-10 items-center gap-2 rounded-lg border px-3 text-sm has-[:checked]:border-foreground">
+              <label key={value} className="flex min-h-10 items-center gap-2 rounded-full border border-[#e3e4e8] bg-white px-4 text-[15px] has-[:checked]:border-brand has-[:checked]:bg-brand-soft has-[:checked]:text-brand">
                 <input type="radio" name="regularity" checked={d.scheduleRegularity === value} onChange={() => set("scheduleRegularity", value)} />
                 {text}
               </label>

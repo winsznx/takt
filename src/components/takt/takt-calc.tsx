@@ -1,3 +1,4 @@
+import { Calculator } from "lucide-react";
 import type { PeriodCalculation } from "@/lib/domain/contracts";
 import { formatMoney, Rational } from "@/lib/calc/rational";
 import { formatDuration } from "@/lib/domain/time";
@@ -6,15 +7,15 @@ export function TaktCalc({ calculation }: { calculation: PeriodCalculation }) {
   const c = calculation;
   const owed = Rational.fromDecimal(c.owed);
   return (
-    <section className="rounded-lg border p-4">
+    <section className="panel p-5 sm:p-6">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h3 className="font-semibold">
+        <h3 className="text-[17px] font-semibold">
           Pay period {c.periodStart} to {c.periodEnd}
         </h3>
-        <span className="text-xs text-muted-foreground">Takt Calc · no AI in this step</span>
+        <span className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground"><Calculator className="size-3.5" strokeWidth={1.75} />Plain code, no AI</span>
       </div>
       {c.state === "CALCULATION_BLOCKED" ? (
-        <div className="mt-2 rounded-md bg-state-insufficient/10 p-3 text-sm">
+        <div className="mt-3 rounded-2xl border border-[#f5e3b3] bg-[#fefce8] p-4 text-[14px] text-[#713f12]">
           <p className="font-medium">Takt won&apos;t calculate this pay period yet.</p>
           <ul className="mt-1 list-disc space-y-1 pl-5">
             {c.blockedReasons.map((r) => (
@@ -24,18 +25,18 @@ export function TaktCalc({ calculation }: { calculation: PeriodCalculation }) {
         </div>
       ) : (
         <>
-          <dl className="mt-3 grid grid-cols-3 gap-2 text-center">
-            <div className="rounded-md bg-muted p-2">
-              <dt className="text-xs text-muted-foreground">Earned</dt>
-              <dd className="font-semibold tabular-nums">${formatMoney(c.earned.total)}</dd>
+          <dl className="mt-4 grid grid-cols-3 gap-2 text-center">
+            <div className="rounded-xl bg-[#f6f7f9] p-3">
+              <dt className="text-[12px] text-muted-foreground">Earned</dt>
+              <dd className="text-[16px] font-semibold tabular-nums text-ink sm:text-[18px]">${formatMoney(c.earned.total)}</dd>
             </div>
-            <div className="rounded-md bg-muted p-2">
-              <dt className="text-xs text-muted-foreground">Paid</dt>
-              <dd className="font-semibold tabular-nums">${formatMoney(c.paid.total)}</dd>
+            <div className="rounded-xl bg-[#f6f7f9] p-3">
+              <dt className="text-[12px] text-muted-foreground">Paid</dt>
+              <dd className="text-[16px] font-semibold tabular-nums text-ink sm:text-[18px]">${formatMoney(c.paid.total)}</dd>
             </div>
-            <div className={`rounded-md p-2 ${owed.compare(Rational.ZERO) > 0 ? "bg-state-discrepancy/10" : "bg-state-consistent/10"}`}>
-              <dt className="text-xs text-muted-foreground">Difference</dt>
-              <dd className="font-semibold tabular-nums">${formatMoney(c.owed)}</dd>
+            <div className={`rounded-xl p-3 ${owed.compare(Rational.ZERO) > 0 ? "bg-brand-soft" : "bg-[#ecfdf5]"}`}>
+              <dt className="text-[12px] text-muted-foreground">Difference</dt>
+              <dd className="text-[16px] font-semibold tabular-nums text-ink sm:text-[18px]">${formatMoney(c.owed)}</dd>
             </div>
           </dl>
           <p className="mt-2 text-xs text-muted-foreground">

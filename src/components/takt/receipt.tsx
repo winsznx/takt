@@ -15,7 +15,7 @@ export function ReceiptView({ receipt }: { receipt: VerificationReceipt }) {
       aria-live="polite"
     >
       <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Takt Verify · {receipt.verifierVersion}</p>
-      <h3 className={cn("mt-1 text-lg font-semibold", ok ? "text-state-consistent" : "text-destructive")}>{HEADLINE[receipt.status]}</h3>
+      <h3 className={cn("mt-1 text-[20px] font-semibold tracking-[-0.3px]", ok ? "text-state-consistent" : "text-destructive")}>{HEADLINE[receipt.status]}</h3>
       {receipt.manifestSha256 && <p className="mt-1 break-all font-mono text-xs text-muted-foreground">manifest {receipt.manifestSha256}</p>}
       <ul className="mt-3 space-y-1 text-sm">
         {receipt.checks.map((c) => (

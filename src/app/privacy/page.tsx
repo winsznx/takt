@@ -18,12 +18,12 @@ const ROWS: [string, string][] = [
 
 export default function PrivacyPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8">
-      <h1 className="text-2xl font-semibold tracking-tight">Privacy</h1>
+    <div className="mx-auto max-w-[880px] px-5 py-10 sm:py-14 min-[1320px]:px-0">
+      <h1 className="text-[30px] font-semibold leading-[1.1] tracking-[-1px] sm:text-[40px]">Privacy</h1>
       <p className="mt-2 text-muted-foreground">
         You&apos;re trusting Takt with pay records and private messages. This page describes exactly where they go.
       </p>
-      <dl className="mt-6 divide-y rounded-lg border">
+      <dl className="mt-6 panel divide-y divide-[#ececef] overflow-hidden">
         {ROWS.map(([term, detail]) => (
           <div key={term} className="grid gap-1 p-4 sm:grid-cols-[14rem_1fr]">
             <dt className="font-medium">{term}</dt>
@@ -31,12 +31,12 @@ export default function PrivacyPage() {
           </div>
         ))}
       </dl>
-      <h2 className="mt-8 text-lg font-semibold">Deleting your data</h2>
+      <h2 className="mt-8 text-[20px] font-semibold tracking-[-0.3px]">Deleting your data</h2>
       <p className="mt-2 text-sm text-muted-foreground">
         On <Link href="/cases" className="underline">My cases</Link> you can delete one case or everything Takt stored in this browser. In a private
         window, everything is erased when the window closes. Cases don&apos;t move between devices or browsers.
       </p>
-      <h2 className="mt-8 text-lg font-semibold">Fingerprints</h2>
+      <h2 className="mt-8 text-[20px] font-semibold tracking-[-0.3px]">Fingerprints</h2>
       <p className="mt-2 text-sm text-muted-foreground">
         Before anything reads a file, Takt computes its SHA-256 fingerprint. The fingerprint goes into your packet so anyone can later confirm that a file
         you show them is the same one the packet was built from. A fingerprint does not reveal the file&apos;s contents.

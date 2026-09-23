@@ -68,14 +68,14 @@ export function ScopeForm({ initial, onSubmit, submitLabel }: { initial?: ScopeA
           {q.help && <p className="text-sm text-muted-foreground">{q.help}</p>}
           <div className="flex flex-wrap gap-2">
             {q.options.map((o) => (
-              <label key={String(o.value)} className="flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm has-[:checked]:border-foreground has-[:checked]:bg-muted">
+              <label key={String(o.value)} className="flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-[#e3e4e8] bg-white px-4 py-2 text-[15px] has-[:checked]:border-brand has-[:checked]:bg-brand-soft has-[:checked]:text-brand">
                 <input
                   type="radio"
                   name={q.key}
                   value={String(o.value)}
                   checked={answers[q.key] === o.value}
                   onChange={() => setAnswers((a) => ({ ...a, [q.key]: o.value }))}
-                  className="accent-foreground"
+                  className="accent-brand"
                 />
                 {o.label}
               </label>
@@ -86,7 +86,7 @@ export function ScopeForm({ initial, onSubmit, submitLabel }: { initial?: ScopeA
       <fieldset className="space-y-2">
         <legend className="font-medium">What day does your employer&apos;s workweek start?</legend>
         <p className="text-sm text-muted-foreground">It&apos;s often on your pay stub or in the handbook. Weekly overtime depends on it.</p>
-        <select value={weekStart} onChange={(e) => setWeekStart(e.target.value)} className="min-h-11 w-full rounded-lg border bg-background px-3 sm:w-64">
+        <select value={weekStart} onChange={(e) => setWeekStart(e.target.value)} className="h-11 w-full rounded-full border border-[#e3e4e8] bg-white px-4 sm:w-64">
           <option value="" disabled>
             Choose a day
           </option>
@@ -100,7 +100,7 @@ export function ScopeForm({ initial, onSubmit, submitLabel }: { initial?: ScopeA
       </fieldset>
 
       {decision && !decision.supported && (
-        <div role="status" className="rounded-lg border border-state-unsupported/40 bg-state-unsupported/5 p-4 text-sm">
+        <div role="status" className="rounded-2xl border border-[#dde1e8] bg-[#f6f7f9] p-5 text-[15px]">
           <p className="font-medium">Takt can still organize your records, but it won&apos;t calculate an amount for this case.</p>
           <ul className="mt-2 list-disc space-y-1 pl-5">
             {decision.reasons.map((r) => (

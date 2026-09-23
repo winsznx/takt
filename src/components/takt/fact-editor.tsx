@@ -104,7 +104,7 @@ export function FactEditor({
 
   return (
     <form
-      className="space-y-3 rounded-lg border bg-muted/40 p-3"
+      className="panel-quiet space-y-3 p-4"
       onSubmit={(e) => {
         e.preventDefault();
         const parsed = FactValue.safeParse(fromDraft(kind, draft));
@@ -118,7 +118,7 @@ export function FactEditor({
       {allowKindChange && (
         <div className="space-y-1">
           <Label htmlFor="fact-kind">What is it?</Label>
-          <select id="fact-kind" value={kind} onChange={(e) => setKind(e.target.value as FactKind)} className="min-h-10 w-full rounded-md border bg-background px-2">
+          <select id="fact-kind" value={kind} onChange={(e) => setKind(e.target.value as FactKind)} className="h-10 w-full rounded-xl border border-[#e3e4e8] bg-white px-3">
             {Object.entries(KIND_LABEL).map(([k, label]) => (
               <option key={k} value={k}>
                 {label}
@@ -136,7 +136,7 @@ export function FactEditor({
                 id={`fact-${f.key}`}
                 value={draft[f.key] ?? "start"}
                 onChange={(e) => setDraft((d) => ({ ...d, [f.key]: e.target.value }))}
-                className="min-h-10 w-full rounded-md border bg-background px-2"
+                className="h-10 w-full rounded-xl border border-[#e3e4e8] bg-white px-3"
               >
                 <option value="start">When to start</option>
                 <option value="end">When to stop</option>

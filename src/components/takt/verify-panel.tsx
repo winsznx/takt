@@ -15,12 +15,12 @@ export function VerifyPanel() {
   return (
     <div className="space-y-4">
       <div className="grid gap-3 sm:grid-cols-2">
-        <label className="flex min-h-24 cursor-pointer flex-col justify-center rounded-lg border-2 border-dashed p-4 text-sm">
+        <label className="flex min-h-24 cursor-pointer flex-col justify-center rounded-[20px] border-2 border-dashed border-[#c9d7ff] p-5 text-sm">
           <span className="font-medium">Packet ZIP</span>
           <span className="text-muted-foreground">{packet ? packet.name : "Choose a Takt packet"}</span>
           <input type="file" accept=".zip,application/zip" hidden onChange={(e) => setPacket(e.target.files?.[0] ?? null)} />
         </label>
-        <label className="flex min-h-24 cursor-pointer flex-col justify-center rounded-lg border-2 border-dashed p-4 text-sm">
+        <label className="flex min-h-24 cursor-pointer flex-col justify-center rounded-[20px] border-2 border-dashed border-[#c9d7ff] p-5 text-sm">
           <span className="font-medium">Original files (optional)</span>
           <span className="text-muted-foreground">{originals.length ? `${originals.length} files` : "To check they haven't changed"}</span>
           <input type="file" multiple hidden onChange={(e) => setOriginals(Array.from(e.target.files ?? []))} />

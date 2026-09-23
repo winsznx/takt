@@ -64,7 +64,7 @@ test("healthy control shows no discrepancy", async ({ page }) => {
   }
   await expect(page.getByText("Every fact has been reviewed.")).toBeVisible();
   await page.getByRole("link", { name: "Compare my records" }).click();
-  await expect(page.getByText("Takt Line · day by day")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Takt Line" })).toBeVisible();
   await expect(page.getByText("Records disagree")).toHaveCount(0);
   await expect(page.getByText("No supported amount to claim yet.")).toBeVisible();
 });

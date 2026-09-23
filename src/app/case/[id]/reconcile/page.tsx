@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useCase } from "@/components/takt/case-context";
+import { PageHeader, SectionTitle } from "@/components/takt/page-header";
 import { TaktCalc } from "@/components/takt/takt-calc";
 import { TaktDiff } from "@/components/takt/takt-diff";
 import { TaktLine } from "@/components/takt/takt-line";
@@ -27,9 +28,9 @@ export default function ReconcilePage() {
 
   if (rec.unreviewedFactIds.length > 0) {
     return (
-      <div className="rounded-lg border p-6">
-        <h1 className="text-xl font-semibold">Review your facts first</h1>
-        <p className="mt-1 text-muted-foreground">
+      <div className="panel p-6 sm:p-8">
+        <h1 className="text-[24px] font-semibold tracking-[-0.5px]">Review your facts first</h1>
+        <p className="mt-2 text-[16px] text-muted-foreground">
           {rec.unreviewedFactIds.length} facts haven&apos;t been checked. Takt only compares facts you&apos;ve confirmed.
         </p>
         <Button className="mt-4" render={<Link href={`/case/${stored.id}/review`} />}>
@@ -40,17 +41,13 @@ export default function ReconcilePage() {
   }
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Where your records agree and disagree</h1>
-        <p className="mt-1 text-muted-foreground">
-          Each day lines up your schedule, the employer&apos;s clock, any messages, and what you say you worked. A schedule alone never counts as
-          work.
-        </p>
-      </div>
+    <div className="space-y-10">
+      <PageHeader title="Where your records agree and disagree">
+        Each day lines up your schedule, the employer&apos;s clock, any messages, and what you say you worked. A schedule alone never counts as work.
+      </PageHeader>
 
       {analysis.state === "UNSUPPORTED_CASE" && analysis.scope && (
-        <div className="rounded-lg border border-state-unsupported/40 bg-state-unsupported/5 p-4">
+        <div className="rounded-[20px] border border-[#dde1e8] bg-[#f6f7f9] p-5">
           <p className="font-medium">Takt organized your records but won&apos;t calculate an amount for this case.</p>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
             {analysis.scope.reasons.map((r) => (
@@ -64,7 +61,7 @@ export default function ReconcilePage() {
       )}
 
       {needsAnswer > 0 && (
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-state-ambiguous/40 bg-state-ambiguous/5 p-4">
+        <div className="flex flex-col gap-3 rounded-[20px] border border-[#e3dcff] bg-[#f7f5ff] p-5 text-[#3b2d86] sm:flex-row sm:items-center sm:justify-between">
           <p>
             <span className="font-medium">{needsAnswer} {needsAnswer === 1 ? "day needs" : "days need"} your answer.</span> Your records disagree, and
             only you know when you worked.
@@ -88,7 +85,7 @@ export default function ReconcilePage() {
 
       {dayDiscrepancies.length > 0 && (
         <section className="space-y-3">
-          <h2 className="text-lg font-semibold">Takt Diff</h2>
+          <SectionTitle hint="Where your confirmed work and the employer record disagree, with the records behind it.">Takt Diff</SectionTitle>
           {dayDiscrepancies.map((d) => (
             <TaktDiff key={d.id} caseId={stored.id} discrepancy={d} facts={stored.facts} documents={stored.documents} calculations={calculations} />
           ))}
@@ -97,19 +94,19 @@ export default function ReconcilePage() {
 
       {rec.days.length > 0 && (
         <section className="space-y-3">
-          <h2 className="text-lg font-semibold">Takt Line · day by day</h2>
+          <SectionTitle hint="Every day in your records, side by side.">Takt Line</SectionTitle>
           <TaktLine caseId={stored.id} days={rec.days} facts={stored.facts} hasConfirmation={hasConfirmation} />
         </section>
       )}
 
       {(payDiscrepancies.length > 0 || rec.payrollProblems.length > 0) && (
         <section className="space-y-3">
-          <h2 className="text-lg font-semibold">Pay stub checks</h2>
+          <SectionTitle>Pay stub checks</SectionTitle>
           {payDiscrepancies.map((d) => (
             <TaktDiff key={d.id} caseId={stored.id} discrepancy={d} facts={stored.facts} documents={stored.documents} calculations={calculations} />
           ))}
           {rec.payrollProblems.map((p) => (
-            <p key={p.reason + p.documentId} className="rounded-lg border p-3 text-sm">
+            <p key={p.reason + p.documentId} className="panel p-4 text-[14px]">
               {p.reason}
             </p>
           ))}
@@ -118,18 +115,18 @@ export default function ReconcilePage() {
 
       {calculations.length > 0 && (
         <section className="space-y-3">
-          <h2 className="text-lg font-semibold">Takt Calc</h2>
+          <SectionTitle hint="Minutes and cents, counted by code under California overtime rules.">Takt Calc</SectionTitle>
           {calculations.map((c) => (
             <TaktCalc key={c.periodId} calculation={c} />
           ))}
         </section>
       )}
       {calculations.length === 0 && analysis.state === "INSUFFICIENT_EVIDENCE" && (
-        <p className="rounded-lg border p-4 text-sm">{analysis.stateReasons.join(" ")}</p>
+        <p className="panel p-5 text-[15px]">{analysis.stateReasons.join(" ")}</p>
       )}
 
-      <div className="flex flex-wrap items-center justify-between gap-3 border-t pt-4">
-        <p className="text-sm text-muted-foreground">
+      <div className="flex flex-col gap-3 border-t border-[#ececef] pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-[15px] text-muted-foreground">
           {analysis.claimedPeriodIds.length > 0
             ? `Supported difference across claimed pay periods: $${formatMoney(analysis.totals.owed)}`
             : "No supported amount to claim yet. You can still export an evidence packet."}

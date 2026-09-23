@@ -28,13 +28,13 @@ export function axisFor(days: DayReconciliation[]): Axis {
 function Lane({ name, interval, axis, tone, marker }: { name: string; interval: WorkInterval | null; axis: Axis; tone: string; marker?: number[] }) {
   const pct = (m: number) => `${((m - axis.start) / (axis.end - axis.start)) * 100}%`;
   return (
-    <div className="grid grid-cols-[5.5rem_1fr_7.5rem] items-center gap-2 text-xs sm:grid-cols-[7rem_1fr_9rem]">
+    <div className="grid grid-cols-[3.75rem_1fr_7rem] items-center gap-2.5 text-[12px] sm:grid-cols-[6rem_1fr_9.5rem] sm:gap-3 sm:text-[13px]">
       <span className="text-muted-foreground">{name}</span>
-      <div className="relative h-3 rounded-full bg-muted">
+      <div className="relative h-2.5 rounded-full bg-[#f1f2f5]">
         {interval && (
           <div className={cn("absolute inset-y-0 rounded-full", tone)} style={{ left: pct(interval.startMinute), width: `calc(${pct(interval.endMinute)} - ${pct(interval.startMinute)})` }} />
         )}
-        {marker?.map((m) => <div key={m} className="absolute inset-y-[-3px] w-0.5 bg-foreground" style={{ left: pct(m) }} />)}
+        {marker?.map((m) => <div key={m} className="absolute inset-y-[-4px] w-[3px] rounded-full bg-ink" style={{ left: pct(m) }} />)}
       </div>
       <span className="tabular-nums">{span(interval)}</span>
     </div>
@@ -49,14 +49,14 @@ function WorkedEditor({ caseId, day, onDone }: { caseId: string; day: DayReconci
   const valid = /^\d{2}:\d{2}$/.test(start) && /^\d{2}:\d{2}$/.test(end) && clockToMinutes(start) !== clockToMinutes(end) && Number(meal) >= 0;
   return (
     <form
-      className="mt-3 space-y-3 rounded-lg border bg-muted/40 p-3"
+      className="panel-quiet mt-4 space-y-3 p-4"
       onSubmit={async (e) => {
         e.preventDefault();
         await setWorked(caseId, { date: day.date, start, end, mealBreakMinutes: Number(meal), worked: true });
         onDone();
       }}
     >
-      <p className="text-sm font-medium">When did you actually work on {formatDateLong(day.date)}?</p>
+      <p className="text-[15px] font-semibold text-ink">When did you actually work on {formatDateLong(day.date)}?</p>
       <div className="grid grid-cols-3 gap-2">
         <div className="space-y-1">
           <Label htmlFor={`s-${day.date}`}>Started</Label>
@@ -71,7 +71,7 @@ function WorkedEditor({ caseId, day, onDone }: { caseId: string; day: DayReconci
           <Input id={`m-${day.date}`} type="number" min={0} inputMode="numeric" value={meal} onChange={(e) => setMeal(e.target.value)} />
         </div>
       </div>
-      <p className="text-xs text-muted-foreground">
+      <p className="text-[13px] text-muted-foreground">
         Only say what you remember. Takt counts extra time only when a schedule or message backs it up.
       </p>
       <div className="flex flex-wrap gap-2">
@@ -113,27 +113,27 @@ export function TaktLine({
   const factById = new Map(facts.map((f) => [f.id, f]));
 
   return (
-    <ol className="divide-y rounded-lg border">
+    <ol className="panel divide-y divide-[#ececef] overflow-hidden">
       {days.map((day) => {
         const messageMinutes = day.messageFactIds
           .map((id) => factById.get(id))
           .map((f) => f && (f.correctedValue ?? f.extracted))
           .flatMap((v) => (v && v.kind === "message_time_reference" ? [clockToMinutes(v.time)] : []));
         return (
-          <li key={day.date} id={`day-${day.date}`} className="space-y-2 p-3 sm:p-4">
+          <li key={day.date} id={`day-${day.date}`} className="space-y-3 p-4 sm:px-6 sm:py-5">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <p className="font-medium">{formatDateLong(day.date)}</p>
+              <p className="text-[15px] font-semibold text-ink">{formatDateLong(day.date)}</p>
               <DecisionBadge state={day.state} />
             </div>
-            <div className="space-y-1.5">
-              <Lane name="Schedule" interval={day.schedule} axis={axis} tone="bg-sky-400/70" />
-              <Lane name="Employer clock" interval={day.employerRecord} axis={axis} tone="bg-zinc-500/70" />
+            <div className="space-y-2">
+              <Lane name="Schedule" interval={day.schedule} axis={axis} tone="bg-[#7ea6ff]" />
+              <Lane name="Clock" interval={day.employerRecord} axis={axis} tone="bg-[#a3a6b1]" />
               {messageMinutes.length > 0 && (
                 <Lane name="Messages" interval={null} axis={axis} tone="" marker={messageMinutes} />
               )}
-              <Lane name="You" interval={day.confirmedWork} axis={axis} tone="bg-state-discrepancy/80" />
+              <Lane name="You" interval={day.confirmedWork} axis={axis} tone="bg-brand" />
             </div>
-            {day.reasons.length > 0 && <p className="text-sm text-muted-foreground">{day.reasons.join(" ")}</p>}
+            {day.reasons.length > 0 && <p className="text-[14px] text-muted-foreground">{day.reasons.join(" ")}</p>}
             {day.state !== "UNSUPPORTED_RULE" &&
               (editing === day.date ? (
                 <WorkedEditor caseId={caseId} day={day} onDone={() => setEditing(null)} />

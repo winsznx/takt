@@ -4,15 +4,21 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { useCase } from "@/components/takt/case-context";
-import { DOC_CLASS_LABEL } from "@/components/takt/doc-labels";
+import { DOC_CLASS_ICON, DOC_CLASS_LABEL } from "@/components/takt/doc-labels";
+import { PageHeader } from "@/components/takt/page-header";
 import { FactEditor, KIND_LABEL } from "@/components/takt/fact-editor";
 import { SourceViewer, type Highlight } from "@/components/takt/source-viewer";
 import { Button } from "@/components/ui/button";
 import { addManualFact, confirmHighConfidence, reviewFact, setDocumentClass } from "@/lib/client/cases";
 import { getSample, type SampleCase } from "@/lib/client/samples";
-import { LOW_CONFIDENCE_THRESHOLD, type EvidenceFact } from "@/lib/domain/contracts";
+import { LOW_CONFIDENCE_THRESHOLD, type DocumentClass, type EvidenceFact } from "@/lib/domain/contracts";
 import { describeFact } from "@/lib/domain/describe";
 import { cn } from "@/lib/utils";
+
+function TabIcon({ docClass }: { docClass: DocumentClass | null }) {
+  const Icon = DOC_CLASS_ICON[docClass ?? "other"];
+  return <Icon className="size-4" strokeWidth={1.75} />;
+}
 
 const ORDER = (f: EvidenceFact) => (f.review === "unreviewed" ? (f.confidence < LOW_CONFIDENCE_THRESHOLD ? 0 : 1) : 2);
 
@@ -83,13 +89,10 @@ function ReviewBody({ docId }: { docId: string | undefined }) {
   const activeFact = facts.find((f) => f.id === active);
 
   return (
-    <div className="space-y-4">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Check what Takt read</h1>
-        <p className="mt-1 text-muted-foreground">
-          Each value is outlined where it appears in your file. Confirm it, fix it, or remove it. Nothing counts until you do.
-        </p>
-      </div>
+    <div className="space-y-6">
+      <PageHeader title="Check what Takt read">
+        Each value is outlined where it appears in your file. Confirm it, fix it, or remove it. Nothing counts until you do.
+      </PageHeader>
 
       <div className="flex gap-2 overflow-x-auto pb-1" role="tablist" aria-label="Documents">
         {documents.map((d) => {
@@ -100,10 +103,14 @@ function ReviewBody({ docId }: { docId: string | undefined }) {
               role="tab"
               aria-selected={d.id === docId}
               onClick={() => window.history.replaceState(null, "", `?doc=${d.id}`)}
-              className={cn("shrink-0 rounded-full border px-3 py-1.5 text-sm", d.id === docId ? "border-foreground bg-foreground text-background" : "hover:bg-muted")}
+              className={cn(
+                "inline-flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-[14px] font-medium transition-colors",
+                d.id === docId ? "bg-ink text-white" : "bg-white text-[#4a4b55] ring-1 ring-[#ececef] hover:text-brand",
+              )}
             >
+              <TabIcon docClass={d.docClass} />
               {d.docClass ? DOC_CLASS_LABEL[d.docClass] : d.filename}
-              {open > 0 && <span className="ml-1.5 rounded-full bg-state-ambiguous px-1.5 text-xs text-white">{open}</span>}
+              {open > 0 && <span className="rounded-full bg-state-ambiguous px-1.5 text-[11px] leading-5 text-white">{open}</span>}
             </button>
           );
         })}
@@ -112,7 +119,7 @@ function ReviewBody({ docId }: { docId: string | undefined }) {
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         <div className="space-y-2 lg:sticky lg:top-20 lg:self-start">
           <SourceViewer caseId={stored.id} document={document} page={page} onPageCount={setPageCount} highlights={highlights} onSelect={setActive} />
-          <div className="flex items-center justify-between text-sm text-muted-foreground">
+          <div className="flex items-center justify-between text-[14px] text-muted-foreground">
             <span className="truncate">{document.filename}</span>
             {pageCount > 1 && (
               <span className="flex items-center gap-2">
@@ -127,7 +134,7 @@ function ReviewBody({ docId }: { docId: string | undefined }) {
             )}
           </div>
           {activeFact && (
-            <p className="rounded-md bg-muted p-2 text-sm">
+            <p className="panel-quiet p-3 text-[14px]">
               Source text: <span className="font-mono">&ldquo;{activeFact.anchor.quote}&rdquo;</span> · read by{" "}
               {activeFact.method === "pdf_native_text" ? "the PDF's own text" : activeFact.method === "vision_model" ? "an AI model" : "you"}
             </p>
@@ -137,7 +144,7 @@ function ReviewBody({ docId }: { docId: string | undefined }) {
         <div className="space-y-3">
           {document.status === "extracting" && <p className="text-muted-foreground">Reading this file…</p>}
           {document.status === "extraction_failed" && (
-            <div className="rounded-lg border border-state-insufficient/40 bg-state-insufficient/5 p-3 text-sm">
+            <div className="rounded-2xl border border-[#f5e3b3] bg-[#fefce8] p-4 text-[14px] text-[#713f12]">
               <p>{document.extractionError}</p>
               {sampleFill && facts.length === 0 && !document.docClass && (
                 <Button
@@ -155,7 +162,7 @@ function ReviewBody({ docId }: { docId: string | undefined }) {
             </div>
           )}
           {clearOnes > 0 && (
-            <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-3 text-sm">
+            <div className="panel flex flex-wrap items-center justify-between gap-2 p-4 text-[14px]">
               <span>
                 {clearOnes} clearly printed values in this file. {unreviewedHere.length - clearOnes > 0 && `${unreviewedHere.length - clearOnes} need a closer look.`}
               </span>
@@ -165,7 +172,7 @@ function ReviewBody({ docId }: { docId: string | undefined }) {
             </div>
           )}
 
-          <ul className="space-y-2">
+          <ul className="space-y-2.5">
             {facts.map((fact) => {
               const value = fact.correctedValue ?? fact.extracted;
               const low = fact.confidence < LOW_CONFIDENCE_THRESHOLD;
@@ -176,19 +183,19 @@ function ReviewBody({ docId }: { docId: string | undefined }) {
                   onMouseEnter={() => setActive(fact.id)}
                   onFocus={() => setActive(fact.id)}
                   className={cn(
-                    "rounded-lg border p-3",
-                    fact.id === active && "border-amber-500",
+                    "panel p-4 transition-colors",
+                    fact.id === active && "border-amber-400 ring-2 ring-amber-200",
                     fact.review === "rejected" && "opacity-60",
-                    fact.review === "unreviewed" && low && "border-rose-400 bg-rose-50/60",
+                    fact.review === "unreviewed" && low && "border-[#f3c9ca] bg-[#fff6f6]",
                   )}
                 >
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div className="min-w-0">
-                      <p className="text-xs text-muted-foreground">{KIND_LABEL[value.kind]}</p>
-                      <p className={cn("font-medium", fact.review === "rejected" && "line-through")}>{describeFact(value)}</p>
+                      <p className="text-[12px] text-muted-foreground">{KIND_LABEL[value.kind]}</p>
+                      <p className={cn("text-[15px] font-semibold text-ink", fact.review === "rejected" && "line-through")}>{describeFact(value)}</p>
                       {fact.review === "corrected" && <p className="text-xs text-muted-foreground">Takt read: {describeFact(fact.extracted)}</p>}
                       {fact.review === "unreviewed" && low && (
-                        <p className="text-sm text-rose-700">Takt isn&apos;t sure about this one. Compare it with your file.</p>
+                        <p className="text-[14px] text-[#c4262c]">Takt isn&apos;t sure about this one. Compare it with your file.</p>
                       )}
                       {note && <p className="text-xs text-muted-foreground">{note}</p>}
                     </div>
@@ -254,8 +261,8 @@ function ReviewBody({ docId }: { docId: string | undefined }) {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 border-t pt-4">
-        <p className="text-sm text-muted-foreground">
+      <div className="flex flex-col gap-3 border-t border-[#ececef] pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-[15px] text-muted-foreground">
           {analysis.reconciliation.unreviewedFactIds.length > 0
             ? `${analysis.reconciliation.unreviewedFactIds.length} facts across your files still need a decision.`
             : "Every fact has been reviewed."}

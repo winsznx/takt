@@ -38,25 +38,25 @@ function List({ items }: { items: string[] }) {
 
 export default function LimitationsPage() {
   return (
-    <div className="mx-auto max-w-3xl space-y-8 px-4 py-8">
+    <div className="mx-auto max-w-[880px] space-y-12 px-5 py-10 sm:py-14 min-[1320px]:px-0">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">What Takt does and doesn&apos;t do</h1>
+        <h1 className="text-[30px] font-semibold leading-[1.1] tracking-[-1px] sm:text-[40px]">What Takt does and doesn&apos;t do</h1>
         <p className="mt-2 text-muted-foreground">Rules pinned: California DLSE, September 2026 (ruleset ca-dlse-2026-09). Forms: DLSE Form 1 REV. 07/2025 and DLSE Form 55.</p>
       </div>
       <section>
-        <h2 className="text-lg font-semibold">Takt does</h2>
+        <h2 className="text-[20px] font-semibold tracking-[-0.3px]">Takt does</h2>
         <List items={DOES} />
       </section>
       <section>
-        <h2 className="text-lg font-semibold">Takt does not</h2>
+        <h2 className="text-[20px] font-semibold tracking-[-0.3px]">Takt does not</h2>
         <List items={DOES_NOT} />
       </section>
       <section>
-        <h2 className="text-lg font-semibold">What verification means</h2>
+        <h2 className="text-[20px] font-semibold tracking-[-0.3px]">What verification means</h2>
         <List items={VERIFY} />
       </section>
       <section>
-        <h2 className="text-lg font-semibold">Where to get help</h2>
+        <h2 className="text-[20px] font-semibold tracking-[-0.3px]">Where to get help</h2>
         <p className="mt-2 text-sm">
           The{" "}
           <a className="underline" href="https://www.dir.ca.gov/dlse/HowToFileWageClaim.htm" target="_blank" rel="noreferrer">
