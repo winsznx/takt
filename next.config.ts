@@ -3,7 +3,8 @@ import type { NextConfig } from "next";
 import pkg from "./package.json" with { type: "json" };
 
 function commit(): string {
-  if (process.env.VERCEL_GIT_COMMIT_SHA) return process.env.VERCEL_GIT_COMMIT_SHA.slice(0, 7);
+  const provided = process.env.TAKT_COMMIT ?? process.env.VERCEL_GIT_COMMIT_SHA;
+  if (provided) return provided.slice(0, 7);
   try {
     return execSync("git rev-parse --short HEAD", { encoding: "utf8" }).trim();
   } catch {
