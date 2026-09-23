@@ -1,4 +1,4 @@
-import * as XLSX from "xlsx";
+import * as CFB from "cfb";
 
 /**
  * Minimal in-place BIFF8 cell patcher.
@@ -341,15 +341,17 @@ function fixOffsets(records: BiffRecord[], oldToNew: Map<BiffRecord, BiffRecord>
   });
 }
 
-function workbookEntry(container: XLSX.CFB$Container) {
-  const entry = XLSX.CFB.find(container, "Workbook") ?? XLSX.CFB.find(container, "Book");
+function workbookEntry(container: CFB.CFB$Container): CFB.CFB$Entry {
+  const entry = CFB.find(container, "Workbook") ?? CFB.find(container, "Book");
   if (!entry?.content) throw new Biff8Error("no Workbook stream");
   return entry;
 }
 
+const readContainer = (fileBytes: Uint8Array) => CFB.read(fileBytes, { type: "buffer" });
+const entryBytes = (entry: CFB.CFB$Entry) => Uint8Array.from(entry.content as ArrayLike<number>);
+
 export function readWorkbookStream(fileBytes: Uint8Array): Uint8Array {
-  const container = XLSX.CFB.read(fileBytes, { type: "buffer" });
-  return new Uint8Array(workbookEntry(container).content as ArrayLike<number>);
+  return entryBytes(workbookEntry(readContainer(fileBytes)));
 }
 
 /**
@@ -374,9 +376,9 @@ export function patchWorkbook(
   edits: CellEdit[],
   formulaEdits: FormulaCacheEdit[] = [],
 ): Uint8Array {
-  const container = XLSX.CFB.read(fileBytes, { type: "buffer" });
+  const container = readContainer(fileBytes);
   const entry = workbookEntry(container);
-  const original = parseRecords(new Uint8Array(entry.content as ArrayLike<number>));
+  const original = parseRecords(entryBytes(entry));
   assertDbcellUnderstanding(original);
 
   const sheet = locateSheets(original).find((s) => s.name === sheetName);
@@ -391,9 +393,11 @@ export function patchWorkbook(
   const records = [...cloned.slice(0, sheet.bofIndex), ...patchedSlice, ...cloned.slice(sheet.eofIndex + 1)];
   fixOffsets(records, oldToNew, original);
 
-  entry.content = serialize(records) as unknown as typeof entry.content;
-  entry.size = (entry.content as Uint8Array).length;
-  return new Uint8Array(XLSX.CFB.write(container, { type: "buffer" }) as ArrayLike<number>);
+  const stream = serialize(records);
+  entry.content = stream;
+  entry.size = stream.length;
+  const written: ArrayLike<number> = CFB.write(container, { type: "buffer" });
+  return Uint8Array.from(written);
 }
 
 export interface CellSnapshot {

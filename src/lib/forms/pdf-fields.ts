@@ -46,7 +46,7 @@ async function loadPdfJs() {
 
 export async function readPdfForm(bytes: Uint8Array): Promise<PdfFormReadback> {
   const pdfjs = await loadPdfJs();
-  const task = pdfjs.getDocument({ data: bytes.slice(), isEvalSupported: false, verbosity: 0 });
+  const task = pdfjs.getDocument({ data: bytes.slice(), verbosity: 0 });
   const doc = await task.promise;
   try {
     const fields: Record<string, PdfFieldValue> = {};
