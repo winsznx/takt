@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { useCase } from "@/components/takt/case-context";
@@ -29,7 +29,6 @@ export default function ReviewPage() {
 
 function ReviewBody({ docId }: { docId: string | undefined }) {
   const { stored, analysis } = useCase();
-  const router = useRouter();
   const documents = stored.documents.filter((d) => !d.duplicateOf);
   const document = documents.find((d) => d.id === docId);
   const [page, setPage] = useState(1);
@@ -100,7 +99,7 @@ function ReviewBody({ docId }: { docId: string | undefined }) {
               key={d.id}
               role="tab"
               aria-selected={d.id === docId}
-              onClick={() => router.replace(`/case/${stored.id}/review?doc=${d.id}`)}
+              onClick={() => window.history.replaceState(null, "", `?doc=${d.id}`)}
               className={cn("shrink-0 rounded-full border px-3 py-1.5 text-sm", d.id === docId ? "border-foreground bg-foreground text-background" : "hover:bg-muted")}
             >
               {d.docClass ? DOC_CLASS_LABEL[d.docClass] : d.filename}

@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { selectTab } from "./helpers";
 import { readFile } from "node:fs/promises";
 
 /**
@@ -17,11 +18,11 @@ test("canonical case from records to a verified packet", async ({ page }) => {
 
   await page.getByRole("link", { name: "Review what Takt read" }).click();
   for (const tab of ["Time record / timecard", "Pay stub / wage statement"]) {
-    await page.getByRole("tab", { name: new RegExp(tab.replace("/", "\\/")) }).click();
+    await selectTab(page, new RegExp(tab.replace("/", "\\/")));
     await page.getByRole("button", { name: "Confirm the clear ones" }).click();
   }
   for (const file of ["Screenshot 2026-09-14 at 9.12.03 PM.png", "IMG_4821.png"]) {
-    await page.getByRole("tab", { name: file }).click();
+    await selectTab(page, file);
     await page.getByRole("button", { name: "Enter what this sample image shows" }).click();
     await expect(page.getByRole("button", { name: "Enter what this sample image shows" })).toHaveCount(0);
   }
@@ -53,11 +54,11 @@ test("healthy control shows no discrepancy", async ({ page }) => {
   await expect(page.getByText(/facts found/).first()).toBeVisible();
   await page.getByRole("link", { name: "Review what Takt read" }).click();
   for (const tab of ["Time record / timecard", "Pay stub / wage statement"]) {
-    await page.getByRole("tab", { name: new RegExp(tab.replace("/", "\\/")) }).click();
+    await selectTab(page, new RegExp(tab.replace("/", "\\/")));
     await page.getByRole("button", { name: "Confirm the clear ones" }).click();
   }
   for (const file of ["Screenshot 2026-09-14 at 8.40.51 PM.png", "IMG_5102.png"]) {
-    await page.getByRole("tab", { name: file }).click();
+    await selectTab(page, file);
     await page.getByRole("button", { name: "Enter what this sample image shows" }).click();
     await expect(page.getByRole("button", { name: "Enter what this sample image shows" })).toHaveCount(0);
   }

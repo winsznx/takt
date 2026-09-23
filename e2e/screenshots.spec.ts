@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { selectTab } from "./helpers";
 
 /** Captures the product screens for review. Opt-in: TAKT_SCREENSHOTS=dir npx playwright test screenshots */
 const OUT = process.env.TAKT_SCREENSHOTS;
@@ -14,16 +15,16 @@ test("capture canonical screens", async ({ page }, info) => {
   await expect(page.getByText("Couldn't read automatically").first()).toBeVisible();
   await shot("02-evidence");
   await page.getByRole("link", { name: "Review what Takt read" }).click();
-  await page.getByRole("tab", { name: /Time record/ }).click();
+  await selectTab(page, /Time record/);
   await page.locator("canvas").first().waitFor();
   await page.waitForTimeout(800);
   await shot("03-review");
   for (const tab of [/Time record/, /Pay stub/]) {
-    await page.getByRole("tab", { name: tab }).click();
+    await selectTab(page, tab);
     await page.getByRole("button", { name: "Confirm the clear ones" }).click();
   }
   for (const file of ["Screenshot 2026-09-14 at 9.12.03 PM.png", "IMG_4821.png"]) {
-    await page.getByRole("tab", { name: file }).click();
+    await selectTab(page, file);
     await page.getByRole("button", { name: "Enter what this sample image shows" }).click();
   }
   await page.getByRole("link", { name: "Compare my records" }).click();
