@@ -1,0 +1,54 @@
+{
+  "name": "takt",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "benchmark": "tsx scripts/benchmark.ts",
+    "verify:packet": "tsx scripts/verify-packet.ts",
+    "pin:legal": "tsx scripts/pin-legal-sources.ts",
+    "pin:legal:check": "tsx scripts/pin-legal-sources.ts --check"
+  },
+  "dependencies": {
+    "@google/genai": "^2.24.0",
+    "@react-pdf/renderer": "^4.9.0",
+    "date-fns": "^4.4.0",
+    "dexie": "^4.4.6",
+    "fflate": "^0.8.3",
+    "next": "16.3.6",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.3.289",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-pdf": "^11.0.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
+    "zod": "^4.6.5",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^24.13.6",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "^5.0.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
+    "fast-check": "^4.10.2",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5",
+    "vitest": "^5.0.1"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  }
+}
