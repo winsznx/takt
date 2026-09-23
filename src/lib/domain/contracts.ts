@@ -114,6 +114,8 @@ const FactValue = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("overtime_pay"), amount: Decimal }),
   z.object({ kind: z.literal("double_time_pay"), amount: Decimal }),
   z.object({ kind: z.literal("gross_pay"), amount: Decimal }),
+  /** Any earnings line that is not hourly regular/overtime/double time (piece rate, commission, bonus, differential). */
+  z.object({ kind: z.literal("other_earnings"), label: z.string().max(120), amount: Decimal }),
   z.object({ kind: z.literal("employee_name"), text: z.string().max(200) }),
   z.object({ kind: z.literal("employer_name"), text: z.string().max(200) }),
   z.object({ kind: z.literal("employer_address"), text: z.string().max(300) }),
@@ -139,6 +141,7 @@ export const CONSEQUENTIAL_KINDS: ReadonlySet<FactKind> = new Set<FactKind>([
   "overtime_pay",
   "double_time_pay",
   "gross_pay",
+  "other_earnings",
 ]);
 
 export const ReviewStatus = z.enum(["unreviewed", "confirmed", "corrected", "rejected"]);
@@ -262,6 +265,8 @@ export const PayrollRecord = z.object({
   overtimePay: Decimal,
   doubleTimePay: Decimal,
   grossPay: Decimal.nullable(),
+  /** Earnings that are not straight hourly pay; California counts them in the overtime regular rate. */
+  otherEarnings: z.array(z.object({ label: z.string(), amount: Decimal })),
   factIds: z.array(Id),
 });
 export type PayrollRecord = z.infer<typeof PayrollRecord>;

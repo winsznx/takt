@@ -536,6 +536,10 @@ function buildPayroll(
     const dtPay = pick("double_time_pay");
     const gross = pick("gross_pay");
     const payDate = pick("pay_date");
+    const otherEarnings = list
+      .filter((u) => u.value.kind === "other_earnings")
+      .map((u) => u.value as Extract<FactValue, { kind: "other_earnings" }>)
+      .map(({ label, amount }) => ({ label, amount }));
 
     const conflicts = [period, rate, regHours, otHours, dtHours, regPay, otPay, dtPay].filter((p) => p.conflict);
     if (conflicts.length > 0) {
@@ -573,6 +577,7 @@ function buildPayroll(
       overtimePay: otPay.value?.amount ?? "0",
       doubleTimePay: dtPay.value?.amount ?? "0",
       grossPay: gross.value?.amount ?? null,
+      otherEarnings,
       factIds: list.map((u) => u.fact.id),
     });
   }

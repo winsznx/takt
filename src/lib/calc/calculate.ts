@@ -159,6 +159,14 @@ export function calculatePeriod(input: CalculateInput): PeriodCalculation {
     return blocked();
   }
 
+  if (period.otherEarnings.length > 0) {
+    const labels = period.otherEarnings.map((e) => e.label).join(", ");
+    blockedReasons.push(
+      `This pay period includes other earnings (${labels}). California counts those in the overtime regular rate, which Takt does not calculate.`,
+    );
+    return blocked();
+  }
+
   const weekStarts = new Set<string>();
   for (let date = period.periodStart; compareDates(date, period.periodEnd) <= 0; date = addDays(date, 1)) {
     weekStarts.add(workweekStart(date, startDay));

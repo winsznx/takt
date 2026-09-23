@@ -69,6 +69,7 @@ const period: PayrollRecord = {
   overtimePay: "0",
   doubleTimePay: "0",
   grossPay: "1480.00",
+  otherEarnings: [],
   factIds: ["p1"],
 };
 
@@ -120,6 +121,18 @@ describe("Takt Calc per pay period", () => {
     const result = calculatePeriod({ period, calculable, days, scope: supportedScope() });
     expect(result.state).toBe("CALCULATION_BLOCKED");
     expect(result.owed).toBe("0.00");
+  });
+
+  it("blocks when the period has earnings that change the regular rate", () => {
+    const calculable = workdays(20);
+    const result = calculatePeriod({
+      period: { ...period, otherEarnings: [{ label: "Piece Rate (412 units)", amount: "309.00" }] },
+      calculable,
+      days: calculable.map((d) => consistentDay(d.date)),
+      scope: supportedScope(),
+    });
+    expect(result.state).toBe("CALCULATION_BLOCKED");
+    expect(result.blockedReasons[0]).toMatch(/regular rate/);
   });
 
   it("refuses rates below the state minimum wage", () => {
