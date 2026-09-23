@@ -17,7 +17,8 @@
     "pin:legal:check": "tsx scripts/pin-legal-sources.ts --check",
     "sync:assets": "tsx scripts/sync-public-assets.ts",
     "predev": "npm run sync:assets",
-    "prebuild": "npm run sync:assets"
+    "prebuild": "npm run sync:assets",
+    "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
