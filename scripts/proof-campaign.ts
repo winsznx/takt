@@ -176,8 +176,13 @@ async function main() {
 
   const files = unzipSync(demoZip!);
   const tamper = [];
+  await mkdir(path.join(ROOT, "evidence", "tamper"), { recursive: true });
   for (const m of MUTATIONS) {
-    const receipt = await verifyPacket(rezip(await m.apply(files)), { form55Template: artifacts.form55Template });
+    const mutated = rezip(await m.apply(files));
+    if (m.id === "form1-grand-total-edited") {
+      await writeFile(path.join(ROOT, "evidence", "tamper", "takt-tamper-001.zip"), mutated);
+    }
+    const receipt = await verifyPacket(mutated, { form55Template: artifacts.form55Template });
     tamper.push({
       id: m.id,
       description: m.description,

@@ -27,6 +27,10 @@ async function main() {
   await copyFile(path.join(ROOT, "assets/fonts/NotoSans-Regular.ttf"), path.join(OUT, "NotoSans-Regular.ttf"));
   await copyFile(path.join(ROOT, "node_modules/pdfjs-dist/build/pdf.worker.min.mjs"), path.join(OUT, "pdf.worker.min.mjs"));
 
+  await mkdir(path.join(OUT, "evidence"), { recursive: true });
+  await copyFile(path.join(ROOT, "evidence/canonical/takt-demo.zip"), path.join(OUT, "evidence", "takt-demo-001.zip"));
+  await copyFile(path.join(ROOT, "evidence/tamper/takt-tamper-001.zip"), path.join(OUT, "evidence", "takt-tamper-001.zip"));
+
   const index = [];
   for (const caseId of SAMPLE_CASES) {
     const dir = path.join(ROOT, "fixtures", caseId);

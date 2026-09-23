@@ -9,5 +9,5 @@
 | 1:30 | Compare, Thursday | "Thursday the schedule also says 7:40, but the worker says they started at 8. A schedule isn't work, so no discrepancy." |
 | 1:45 | TAKT-AMBIG-001 or TAKT-UNSUPPORTED-001 | "When two timecards disagree, or the job is piece-rate, Takt refuses to give an amount and says why." |
 | 2:00 | Packet | Build and verify. Show the files: official Form 1 and Form 55 filled in, evidence index, CSV, manifest, and every check passing. |
-| 2:30 | Verify | Drop in a tampered packet (from the tamper cohort). "Change one number and verification fails." |
+| 2:30 | Verify | Drop in TAKT-TAMPER-001 (download link on /proof). "Change one number and verification fails." |
 | 2:50 | Close | "Takt turns conflicting work records into a claim packet you can inspect, correct, and prove." |

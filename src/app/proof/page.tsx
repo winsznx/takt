@@ -96,6 +96,16 @@ export default function ProofPage() {
       </section>
 
       <section>
+        <h2 className="text-lg font-semibold">Try the verifier yourself</h2>
+        <p className="mt-2 text-sm">
+          Download the <a className="underline" href="/generated/evidence/takt-demo-001.zip" download>canonical packet</a> and{" "}
+          <a className="underline" href="/generated/evidence/takt-tamper-001.zip" download>TAKT-TAMPER-001</a> (the same packet with Form 1&apos;s grand
+          total changed to $925.00 and its hash updated), then drop each on <Link href="/verify" className="underline">Takt Verify</Link>. The first
+          passes. The second fails.
+        </p>
+      </section>
+
+      <section>
         <h2 className="text-lg font-semibold">Tamper tests on the canonical packet</h2>
         <ul className="mt-3 divide-y rounded-lg border text-sm">
           {campaign.tamper.map((t) => (
