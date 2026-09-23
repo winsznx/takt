@@ -33,6 +33,7 @@ export const extractionAvailable = () => Boolean(process.env.GEMINI_API_KEY);
 export async function extractFromImage(
   image: { mimeType: "image/png" | "image/jpeg"; base64: string },
   hint: DocumentClass | null,
+  datedAround: string | null = null,
 ): Promise<RawExtraction> {
   const response = await withRetry(() =>
     getClient().models.generateContent({
@@ -40,7 +41,7 @@ export async function extractFromImage(
       contents: [
         {
           role: "user",
-          parts: [{ inlineData: { mimeType: image.mimeType, data: image.base64 } }, { text: userPrompt(hint) }],
+          parts: [{ inlineData: { mimeType: image.mimeType, data: image.base64 } }, { text: userPrompt(hint, datedAround) }],
         },
       ],
       config: {

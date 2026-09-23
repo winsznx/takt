@@ -1,5 +1,5 @@
 import { DocumentClass } from "@/lib/domain/contracts";
-import { EXTRACTION_PROMPT_VERSION, EXTRACTION_SCHEMA_VERSION, toCandidates } from "@/lib/ai/extraction-schema";
+import { DATED_AROUND, EXTRACTION_PROMPT_VERSION, EXTRACTION_SCHEMA_VERSION, toCandidates } from "@/lib/ai/extraction-schema";
 import { EXTRACTION_MODEL, extractFromImage, MissingCredentialError } from "@/lib/ai/gemini";
 import { sniffMime } from "@/lib/documents/ingest";
 
@@ -8,7 +8,7 @@ import { sniffMime } from "@/lib/documents/ingest";
  * for one model call and discarded: nothing is written to disk, a database, or
  * logs. Only structured candidate facts come back.
  */
-export const maxDuration = 60;
+export const maxDuration = 180;
 export const MAX_EXTRACTION_BYTES = 4 * 1024 * 1024;
 
 const error = (status: number, code: string, message: string) => Response.json({ code, message }, { status });
@@ -31,11 +31,13 @@ export async function POST(request: Request) {
   }
   const hintValue = form.get("hint");
   const hint = typeof hintValue === "string" && hintValue ? DocumentClass.safeParse(hintValue).data ?? null : null;
+  const datedValue = form.get("datedAround");
+  const datedAround = typeof datedValue === "string" && DATED_AROUND.test(datedValue) ? datedValue : null;
 
   try {
-    const raw = await extractFromImage({ mimeType, base64: Buffer.from(bytes).toString("base64") }, hint);
+    const raw = await extractFromImage({ mimeType, base64: Buffer.from(bytes).toString("base64") }, hint, datedAround);
     const docClass = DocumentClass.safeParse(raw.document_class);
-    const { candidates, rejected } = toCandidates(raw);
+    const { candidates, rejected } = toCandidates(raw, datedAround);
     return Response.json(
       {
         docClass: docClass.success ? docClass.data : "other",

@@ -1,6 +1,6 @@
 import { FactValue, type DocumentClass } from "@/lib/domain/contracts";
 import type { AnchoredCandidate } from "@/lib/extraction/facts";
-import { findTimes, parseMoney } from "@/lib/extraction/parse";
+import { parseMoney } from "@/lib/extraction/parse";
 
 /**
  * Contract between Takt and the vision model. The model proposes candidate
@@ -8,7 +8,7 @@ import { findTimes, parseMoney } from "@/lib/extraction/parse";
  * the domain contract and checks that the quote actually contains the value.
  */
 export const EXTRACTION_SCHEMA_VERSION = "vision-extraction/1";
-export const EXTRACTION_PROMPT_VERSION = "vision-prompt/1";
+export const EXTRACTION_PROMPT_VERSION = "vision-prompt/2";
 
 const FACT_KINDS = [
   "time_in",
@@ -94,10 +94,26 @@ Rules:
 - manager_message: message_time_reference only when a message names a specific clock time for a specific work day. boundary is start if it is about when to arrive or begin, end if it is about when to leave or stop. date is the work day the message refers to, resolved from phrases like "tomorrow" using the message timestamp.
 - Do not report personal identifiers other than employee_name and employer_name.`;
 
-export function userPrompt(hint: DocumentClass | null): string {
-  return hint
-    ? `The worker says this is a ${hint.replace("_", " ")}. Extract the facts.`
-    : "Classify this document and extract the facts.";
+const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+export const DATED_AROUND = /^\d{4}-(0[1-9]|1[0-2])$/;
+
+/** `datedAround` is the `YYYY-MM` the case's other records point to. It carries no document content. */
+export function userPrompt(hint: DocumentClass | null, datedAround: string | null = null): string {
+  const base = hint ? `The worker says this is a ${hint.replace("_", " ")}. Extract the facts.` : "Classify this document and extract the facts.";
+  if (!datedAround || !DATED_AROUND.test(datedAround)) return base;
+  const [year, month] = datedAround.split("-").map(Number);
+  return `${base} The worker's other records in this case are dated around ${MONTH_NAMES[month - 1]} ${year}. If a date in this image shows no year, use the year that places it closest to that month.`;
+}
+
+const monthIndex = (iso: string) => Number(iso.slice(0, 4)) * 12 + Number(iso.slice(5, 7)) - 1;
+
+/** True when every date in the value is within 13 months of the case's dates. */
+function nearCase(value: FactValue, datedAround: string): boolean {
+  const center = monthIndex(`${datedAround}-01`);
+  const dates = [("date" in value ? value.date : null), ("start" in value ? value.start : null), ("end" in value ? value.end : null)].filter(
+    (d): d is string => typeof d === "string",
+  );
+  return dates.every((d) => Math.abs(monthIndex(d) - center) <= 13);
 }
 
 interface RawFact {
@@ -156,19 +172,35 @@ function toValue(raw: RawFact): unknown {
   }
 }
 
+/** Every 24-hour reading a quote's clock times allow; a time without AM/PM allows both. */
+function quotedTimes(quote: string): Set<string> {
+  const out = new Set<string>();
+  const pad = (h: number, m: string) => `${String(h).padStart(2, "0")}:${m}`;
+  for (const m of quote.matchAll(/(\d{1,2}):([0-5]\d)\s*([ap])?\.?\s*m?\.?/gi)) {
+    const hour = Number(m[1]);
+    if (hour > 23) continue;
+    const meridiem = m[3]?.toLowerCase();
+    if (meridiem && hour >= 1 && hour <= 12) out.add(pad((hour % 12) + (meridiem === "p" ? 12 : 0), m[2]));
+    else {
+      out.add(pad(hour, m[2]));
+      if (hour >= 1 && hour < 12) out.add(pad(hour + 12, m[2]));
+      if (hour === 12) out.add(pad(0, m[2]));
+    }
+  }
+  return out;
+}
+
 /** Does the verbatim quote plausibly contain the claimed value? A cheap check against invented values. */
 function quoteSupports(value: FactValue, quote: string): boolean {
   const q = quote.replace(/\s+/g, " ");
-  if ("time" in value) {
-    return findTimes(q).some((t) => t.parsed.value === value.time) || q.includes(value.time);
-  }
+  if ("time" in value) return quotedTimes(q).has(value.time);
   if ("amount" in value) return q.replace(/[$,\s]/g, "").includes(value.amount.replace(/^-/, ""));
   if ("hours" in value) return q.replace(/[,\s]/g, "").includes(value.hours);
   if ("minutes" in value) return q.includes(String(value.minutes));
   return true;
 }
 
-export function toCandidates(raw: RawExtraction): { candidates: AnchoredCandidate[]; rejected: string[] } {
+export function toCandidates(raw: RawExtraction, datedAround: string | null = null): { candidates: AnchoredCandidate[]; rejected: string[] } {
   const candidates: AnchoredCandidate[] = [];
   const rejected: string[] = [];
   for (const fact of raw.facts ?? []) {
@@ -190,6 +222,10 @@ export function toCandidates(raw: RawExtraction): { candidates: AnchoredCandidat
     if (!quoteSupports(parsed.data, fact.quote ?? "")) {
       confidence = Math.min(confidence, 0.4);
       note = "The text the model quoted does not contain this value. Check it against the image.";
+    }
+    if (datedAround && DATED_AROUND.test(datedAround) && !nearCase(parsed.data, datedAround)) {
+      confidence = Math.min(confidence, 0.4);
+      note = "This date is far from the dates on your other records. Check the year.";
     }
     candidates.push({
       value: parsed.data,
