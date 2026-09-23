@@ -1,6 +1,6 @@
 {
   "app": {
-    "commit": "177e4b5",
+    "commit": "66fbc0e",
     "name": "takt",
     "version": "0.1.0"
   },
@@ -2383,10 +2383,10 @@
       "sha256": "f9de4ba3a2e77806d61c71ecac118f97611c63be13a6cb3162108fedfde2dea2"
     },
     {
-      "bytes": 20901,
+      "bytes": 20900,
       "path": "evidence-index.pdf",
       "role": "evidence-index",
-      "sha256": "782faad5a7bbaa5a85998ad0465cd5262fd4ed07c61f1c840af26a863038c6d8"
+      "sha256": "6c36121a72748aad7308c00380d66cffd8fd5804a0503163471223f7593d19b1"
     },
     {
       "bytes": 168086,
@@ -2566,7 +2566,7 @@
         "effective": "2026-09-01",
         "id": "TAKT-DIFF-START",
         "sourceId": "takt-evidence-policy",
-        "sourceUrl": "docs/evidence-policy.md",
+        "sourceUrl": "README.md#evidence-policy",
         "summary": "Takt policy: a start earlier than the employer record counts only when the worker confirms it and an independent record (schedule or message) supports it. The supported start is the later of the two.",
         "version": "1"
       },
@@ -2574,7 +2574,7 @@
         "effective": "2026-09-01",
         "id": "TAKT-DIFF-END",
         "sourceId": "takt-evidence-policy",
-        "sourceUrl": "docs/evidence-policy.md",
+        "sourceUrl": "README.md#evidence-policy",
         "summary": "Takt policy: an end later than the employer record counts only when the worker confirms it and an independent record supports it. The supported end is the earlier of the two.",
         "version": "1"
       },
@@ -2582,7 +2582,7 @@
         "effective": "2026-09-01",
         "id": "TAKT-DIFF-MISSING",
         "sourceId": "takt-evidence-policy",
-        "sourceUrl": "docs/evidence-policy.md",
+        "sourceUrl": "README.md#evidence-policy",
         "summary": "Takt policy: a worked day with no employer time record counts only when the worker confirms it and independent records support both its start and its end.",
         "version": "1"
       },
@@ -2590,7 +2590,7 @@
         "effective": "2026-09-01",
         "id": "TAKT-DIFF-PAID-HOURS",
         "sourceId": "takt-evidence-policy",
-        "sourceUrl": "docs/evidence-policy.md",
+        "sourceUrl": "README.md#evidence-policy",
         "summary": "Takt policy: hours on the employer's own time record are compared with hours paid on the wage statement for the same period.",
         "version": "1"
       },
@@ -2598,7 +2598,7 @@
         "effective": "2026-09-01",
         "id": "TAKT-DIFF-PAYSTUB-MATH",
         "sourceId": "takt-evidence-policy",
-        "sourceUrl": "docs/evidence-policy.md",
+        "sourceUrl": "README.md#evidence-policy",
         "summary": "Takt policy: each wage-statement line is checked as hours times rate (times the premium multiplier).",
         "version": "1"
       },
@@ -2606,7 +2606,7 @@
         "effective": "2026-09-01",
         "id": "TAKT-ROUND-CENTS",
         "sourceId": "takt-evidence-policy",
-        "sourceUrl": "docs/evidence-policy.md",
+        "sourceUrl": "README.md#evidence-policy",
         "summary": "Takt policy: exact amounts are rounded half away from zero to cents once per pay period and pay component.",
         "version": "1"
       }

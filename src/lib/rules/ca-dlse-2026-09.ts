@@ -10,7 +10,7 @@ export const RULESET_ID = "ca-dlse-2026-09";
 
 const OVERTIME_SOURCE = { sourceId: "dlse-faq-overtime", sourceUrl: "https://www.dir.ca.gov/dlse/faq_overtime.htm" };
 const MIN_WAGE_SOURCE = { sourceId: "dlse-faq-minimum-wage", sourceUrl: "https://www.dir.ca.gov/dlse/faq_minimumwage.htm" };
-const TAKT_POLICY = { sourceId: "takt-evidence-policy", sourceUrl: "docs/evidence-policy.md" };
+const TAKT_POLICY = { sourceId: "takt-evidence-policy", sourceUrl: "README.md#evidence-policy" };
 
 export const RULES = {
   regularHourly: {

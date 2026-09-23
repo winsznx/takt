@@ -10,7 +10,7 @@ import { sha256Hex } from "@/lib/hash";
  * relative to the printed question they sit beside (the radio named
  * "IS THIS CLAIM RELATED TO COVID-19?" is next to the independent-contractor
  * question on this revision), so every entry is mapped by widget position and
- * printed text, not by name. See legal/ca-dlse/form-1/FIELD_MAP.md.
+ * printed text, not by name. See README.md, "Official forms".
  */
 export const FORM1_TEMPLATE_SHA256 = "a782525be4e01fa358012c6f797c4866c07c781841fdeaddca7c41b00433267b";
 export const FORM1_REVISION = "REV. 07/2025";

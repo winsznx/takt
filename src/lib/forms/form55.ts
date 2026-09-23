@@ -7,7 +7,7 @@ import { patchWorkbook, type CellEdit, type FormulaCacheEdit } from "@/lib/forms
  *
  * The official workbook is a per-pay-period sheet (18 rows), one sheet per pay
  * rate. It has no daily start/end cells; daily times live in the evidence index
- * and calculation.csv. See legal/ca-dlse/form-55/CELL_MAP.md.
+ * and calculation.csv. See README.md, "Official forms".
  */
 export const FORM55_TEMPLATE_SHA256 = "a5be16bfa32aebe1b0a089572010d5fa8bb82ec404961efd41b5f1584ca73bb5";
 export const FORM55_SHEET = "Sheet1";
