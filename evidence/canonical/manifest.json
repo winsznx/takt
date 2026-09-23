@@ -1,0 +1,2688 @@
+{
+  "app": {
+    "commit": "d80513f",
+    "name": "takt",
+    "version": "0.1.0"
+  },
+  "calculations": [
+    {
+      "blockedReasons": [],
+      "earned": {
+        "doubleTime": "0.00",
+        "overtime": "9.25",
+        "regular": "1480.00",
+        "total": "1489.25"
+      },
+      "lines": [
+        {
+          "date": "2026-08-31",
+          "exactAmount": "148/1",
+          "label": "Regular hours",
+          "minutes": 480,
+          "multiplier": "1",
+          "rate": "18.50",
+          "ruleId": "CA-REG-HOURLY"
+        },
+        {
+          "date": "2026-09-01",
+          "exactAmount": "148/1",
+          "label": "Regular hours",
+          "minutes": 480,
+          "multiplier": "1",
+          "rate": "18.50",
+          "ruleId": "CA-REG-HOURLY"
+        },
+        {
+          "date": "2026-09-01",
+          "exactAmount": "37/4",
+          "label": "Daily overtime (over 8 hours)",
+          "minutes": 20,
+          "multiplier": "1.5",
+          "rate": "18.50",
+          "ruleId": "CA-OT-DAILY-8"
+        },
+        {
+          "date": "2026-09-02",
+          "exactAmount": "148/1",
+          "label": "Regular hours",
+          "minutes": 480,
+          "multiplier": "1",
+          "rate": "18.50",
+          "ruleId": "CA-REG-HOURLY"
+        },
+        {
+          "date": "2026-09-03",
+          "exactAmount": "148/1",
+          "label": "Regular hours",
+          "minutes": 480,
+          "multiplier": "1",
+          "rate": "18.50",
+          "ruleId": "CA-REG-HOURLY"
+        },
+        {
+          "date": "2026-09-04",
+          "exactAmount": "148/1",
+          "label": "Regular hours",
+          "minutes": 480,
+          "multiplier": "1",
+          "rate": "18.50",
+          "ruleId": "CA-REG-HOURLY"
+        },
+        {
+          "date": "2026-09-07",
+          "exactAmount": "148/1",
+          "label": "Regular hours",
+          "minutes": 480,
+          "multiplier": "1",
+          "rate": "18.50",
+          "ruleId": "CA-REG-HOURLY"
+        },
+        {
+          "date": "2026-09-08",
+          "exactAmount": "148/1",
+          "label": "Regular hours",
+          "minutes": 480,
+          "multiplier": "1",
+          "rate": "18.50",
+          "ruleId": "CA-REG-HOURLY"
+        },
+        {
+          "date": "2026-09-09",
+          "exactAmount": "148/1",
+          "label": "Regular hours",
+          "minutes": 480,
+          "multiplier": "1",
+          "rate": "18.50",
+          "ruleId": "CA-REG-HOURLY"
+        },
+        {
+          "date": "2026-09-10",
+          "exactAmount": "148/1",
+          "label": "Regular hours",
+          "minutes": 480,
+          "multiplier": "1",
+          "rate": "18.50",
+          "ruleId": "CA-REG-HOURLY"
+        },
+        {
+          "date": "2026-09-11",
+          "exactAmount": "148/1",
+          "label": "Regular hours",
+          "minutes": 480,
+          "multiplier": "1",
+          "rate": "18.50",
+          "ruleId": "CA-REG-HOURLY"
+        }
+      ],
+      "owed": "9.25",
+      "paid": {
+        "doubleTime": "0.00",
+        "overtime": "0.00",
+        "regular": "1480.00",
+        "total": "1480.00"
+      },
+      "periodEnd": "2026-09-13",
+      "periodId": "period-2026-08-31",
+      "periodStart": "2026-08-31",
+      "rounding": "half-up-to-cent-per-period-component",
+      "ruleIds": [
+        "CA-OT-DAILY-8",
+        "CA-REG-HOURLY",
+        "TAKT-ROUND-CENTS"
+      ],
+      "state": "CALCULATED",
+      "workedMinutes": {
+        "doubleTime": 0,
+        "overtime": 20,
+        "regular": 4800
+      }
+    }
+  ],
+  "caseId": "TAKT-DEMO-001",
+  "confirmations": [
+    {
+      "at": "2026-09-20T18:00:00Z",
+      "date": "2026-08-31",
+      "end": "16:30",
+      "id": "confirm-2026-08-31",
+      "mealBreakMinutes": 30,
+      "start": "08:00",
+      "type": "worked_interval",
+      "worked": true
+    },
+    {
+      "at": "2026-09-20T18:00:00Z",
+      "date": "2026-09-01",
+      "end": "16:30",
+      "id": "confirm-2026-09-01",
+      "mealBreakMinutes": 30,
+      "start": "07:40",
+      "type": "worked_interval",
+      "worked": true
+    },
+    {
+      "at": "2026-09-20T18:00:00Z",
+      "date": "2026-09-02",
+      "end": "16:30",
+      "id": "confirm-2026-09-02",
+      "mealBreakMinutes": 30,
+      "start": "08:00",
+      "type": "worked_interval",
+      "worked": true
+    },
+    {
+      "at": "2026-09-20T18:00:00Z",
+      "date": "2026-09-03",
+      "end": "16:30",
+      "id": "confirm-2026-09-03",
+      "mealBreakMinutes": 30,
+      "start": "08:00",
+      "type": "worked_interval",
+      "worked": true
+    },
+    {
+      "at": "2026-09-20T18:00:00Z",
+      "date": "2026-09-04",
+      "end": "16:30",
+      "id": "confirm-2026-09-04",
+      "mealBreakMinutes": 30,
+      "start": "08:00",
+      "type": "worked_interval",
+      "worked": true
+    },
+    {
+      "at": "2026-09-20T18:00:00Z",
+      "date": "2026-09-07",
+      "end": "16:30",
+      "id": "confirm-2026-09-07",
+      "mealBreakMinutes": 30,
+      "start": "08:00",
+      "type": "worked_interval",
+      "worked": true
+    },
+    {
+      "at": "2026-09-20T18:00:00Z",
+      "date": "2026-09-08",
+      "end": "16:30",
+      "id": "confirm-2026-09-08",
+      "mealBreakMinutes": 30,
+      "start": "08:00",
+      "type": "worked_interval",
+      "worked": true
+    },
+    {
+      "at": "2026-09-20T18:00:00Z",
+      "date": "2026-09-09",
+      "end": "16:30",
+      "id": "confirm-2026-09-09",
+      "mealBreakMinutes": 30,
+      "start": "08:00",
+      "type": "worked_interval",
+      "worked": true
+    },
+    {
+      "at": "2026-09-20T18:00:00Z",
+      "date": "2026-09-10",
+      "end": "16:30",
+      "id": "confirm-2026-09-10",
+      "mealBreakMinutes": 30,
+      "start": "08:00",
+      "type": "worked_interval",
+      "worked": true
+    },
+    {
+      "at": "2026-09-20T18:00:00Z",
+      "date": "2026-09-11",
+      "end": "16:30",
+      "id": "confirm-2026-09-11",
+      "mealBreakMinutes": 30,
+      "start": "08:00",
+      "type": "worked_interval",
+      "worked": true
+    }
+  ],
+  "contractVersion": "takt-domain/1",
+  "days": [
+    {
+      "confirmedWork": {
+        "confirmationId": "confirm-2026-08-31",
+        "date": "2026-08-31",
+        "endMinute": 990,
+        "factIds": [],
+        "mealBreakMinutes": 30,
+        "source": "worker_confirmed",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "date": "2026-08-31",
+      "discrepancyIds": [],
+      "employerRecord": {
+        "confirmationId": null,
+        "date": "2026-08-31",
+        "endMinute": 990,
+        "factIds": [
+          "doc-2-f1",
+          "doc-2-f2",
+          "doc-2-f3"
+        ],
+        "mealBreakMinutes": 30,
+        "source": "employer_record",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "messageFactIds": [],
+      "reasons": [
+        "Your confirmed hours match the employer time record."
+      ],
+      "schedule": {
+        "confirmationId": null,
+        "date": "2026-08-31",
+        "endMinute": 990,
+        "factIds": [
+          "doc-1-f1",
+          "doc-1-f2"
+        ],
+        "mealBreakMinutes": 0,
+        "source": "schedule",
+        "startMinute": 480,
+        "workedMinutes": 510
+      },
+      "state": "CONSISTENT"
+    },
+    {
+      "confirmedWork": {
+        "confirmationId": "confirm-2026-09-01",
+        "date": "2026-09-01",
+        "endMinute": 990,
+        "factIds": [],
+        "mealBreakMinutes": 30,
+        "source": "worker_confirmed",
+        "startMinute": 460,
+        "workedMinutes": 500
+      },
+      "date": "2026-09-01",
+      "discrepancyIds": [
+        "disc-2026-09-01-start"
+      ],
+      "employerRecord": {
+        "confirmationId": null,
+        "date": "2026-09-01",
+        "endMinute": 990,
+        "factIds": [
+          "doc-2-f4",
+          "doc-2-f5",
+          "doc-2-f6"
+        ],
+        "mealBreakMinutes": 30,
+        "source": "employer_record",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "messageFactIds": [
+        "doc-4-f1"
+      ],
+      "reasons": [],
+      "schedule": {
+        "confirmationId": null,
+        "date": "2026-09-01",
+        "endMinute": 990,
+        "factIds": [
+          "doc-1-f3",
+          "doc-1-f4"
+        ],
+        "mealBreakMinutes": 0,
+        "source": "schedule",
+        "startMinute": 460,
+        "workedMinutes": 530
+      },
+      "state": "DISCREPANCY_DETECTED"
+    },
+    {
+      "confirmedWork": {
+        "confirmationId": "confirm-2026-09-02",
+        "date": "2026-09-02",
+        "endMinute": 990,
+        "factIds": [],
+        "mealBreakMinutes": 30,
+        "source": "worker_confirmed",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "date": "2026-09-02",
+      "discrepancyIds": [],
+      "employerRecord": {
+        "confirmationId": null,
+        "date": "2026-09-02",
+        "endMinute": 990,
+        "factIds": [
+          "doc-2-f7",
+          "doc-2-f8",
+          "doc-2-f9"
+        ],
+        "mealBreakMinutes": 30,
+        "source": "employer_record",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "messageFactIds": [],
+      "reasons": [
+        "Your confirmed hours match the employer time record."
+      ],
+      "schedule": {
+        "confirmationId": null,
+        "date": "2026-09-02",
+        "endMinute": 990,
+        "factIds": [
+          "doc-1-f5",
+          "doc-1-f6"
+        ],
+        "mealBreakMinutes": 0,
+        "source": "schedule",
+        "startMinute": 480,
+        "workedMinutes": 510
+      },
+      "state": "CONSISTENT"
+    },
+    {
+      "confirmedWork": {
+        "confirmationId": "confirm-2026-09-03",
+        "date": "2026-09-03",
+        "endMinute": 990,
+        "factIds": [],
+        "mealBreakMinutes": 30,
+        "source": "worker_confirmed",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "date": "2026-09-03",
+      "discrepancyIds": [],
+      "employerRecord": {
+        "confirmationId": null,
+        "date": "2026-09-03",
+        "endMinute": 990,
+        "factIds": [
+          "doc-2-f10",
+          "doc-2-f11",
+          "doc-2-f12"
+        ],
+        "mealBreakMinutes": 30,
+        "source": "employer_record",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "messageFactIds": [],
+      "reasons": [
+        "Your confirmed hours match the employer time record."
+      ],
+      "schedule": {
+        "confirmationId": null,
+        "date": "2026-09-03",
+        "endMinute": 990,
+        "factIds": [
+          "doc-1-f7",
+          "doc-1-f8"
+        ],
+        "mealBreakMinutes": 0,
+        "source": "schedule",
+        "startMinute": 480,
+        "workedMinutes": 510
+      },
+      "state": "CONSISTENT"
+    },
+    {
+      "confirmedWork": {
+        "confirmationId": "confirm-2026-09-04",
+        "date": "2026-09-04",
+        "endMinute": 990,
+        "factIds": [],
+        "mealBreakMinutes": 30,
+        "source": "worker_confirmed",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "date": "2026-09-04",
+      "discrepancyIds": [],
+      "employerRecord": {
+        "confirmationId": null,
+        "date": "2026-09-04",
+        "endMinute": 990,
+        "factIds": [
+          "doc-2-f13",
+          "doc-2-f14",
+          "doc-2-f15"
+        ],
+        "mealBreakMinutes": 30,
+        "source": "employer_record",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "messageFactIds": [],
+      "reasons": [
+        "Your confirmed hours match the employer time record."
+      ],
+      "schedule": {
+        "confirmationId": null,
+        "date": "2026-09-04",
+        "endMinute": 990,
+        "factIds": [
+          "doc-1-f9",
+          "doc-1-f10"
+        ],
+        "mealBreakMinutes": 0,
+        "source": "schedule",
+        "startMinute": 480,
+        "workedMinutes": 510
+      },
+      "state": "CONSISTENT"
+    },
+    {
+      "confirmedWork": {
+        "confirmationId": "confirm-2026-09-07",
+        "date": "2026-09-07",
+        "endMinute": 990,
+        "factIds": [],
+        "mealBreakMinutes": 30,
+        "source": "worker_confirmed",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "date": "2026-09-07",
+      "discrepancyIds": [],
+      "employerRecord": {
+        "confirmationId": null,
+        "date": "2026-09-07",
+        "endMinute": 990,
+        "factIds": [
+          "doc-2-f16",
+          "doc-2-f17",
+          "doc-2-f18"
+        ],
+        "mealBreakMinutes": 30,
+        "source": "employer_record",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "messageFactIds": [],
+      "reasons": [
+        "Your confirmed hours match the employer time record."
+      ],
+      "schedule": {
+        "confirmationId": null,
+        "date": "2026-09-07",
+        "endMinute": 990,
+        "factIds": [
+          "doc-1-f11",
+          "doc-1-f12"
+        ],
+        "mealBreakMinutes": 0,
+        "source": "schedule",
+        "startMinute": 480,
+        "workedMinutes": 510
+      },
+      "state": "CONSISTENT"
+    },
+    {
+      "confirmedWork": {
+        "confirmationId": "confirm-2026-09-08",
+        "date": "2026-09-08",
+        "endMinute": 990,
+        "factIds": [],
+        "mealBreakMinutes": 30,
+        "source": "worker_confirmed",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "date": "2026-09-08",
+      "discrepancyIds": [],
+      "employerRecord": {
+        "confirmationId": null,
+        "date": "2026-09-08",
+        "endMinute": 990,
+        "factIds": [
+          "doc-2-f19",
+          "doc-2-f20",
+          "doc-2-f21"
+        ],
+        "mealBreakMinutes": 30,
+        "source": "employer_record",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "messageFactIds": [],
+      "reasons": [
+        "Your confirmed hours match the employer time record."
+      ],
+      "schedule": {
+        "confirmationId": null,
+        "date": "2026-09-08",
+        "endMinute": 990,
+        "factIds": [
+          "doc-1-f13",
+          "doc-1-f14"
+        ],
+        "mealBreakMinutes": 0,
+        "source": "schedule",
+        "startMinute": 480,
+        "workedMinutes": 510
+      },
+      "state": "CONSISTENT"
+    },
+    {
+      "confirmedWork": {
+        "confirmationId": "confirm-2026-09-09",
+        "date": "2026-09-09",
+        "endMinute": 990,
+        "factIds": [],
+        "mealBreakMinutes": 30,
+        "source": "worker_confirmed",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "date": "2026-09-09",
+      "discrepancyIds": [],
+      "employerRecord": {
+        "confirmationId": null,
+        "date": "2026-09-09",
+        "endMinute": 990,
+        "factIds": [
+          "doc-2-f22",
+          "doc-2-f23",
+          "doc-2-f24"
+        ],
+        "mealBreakMinutes": 30,
+        "source": "employer_record",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "messageFactIds": [],
+      "reasons": [
+        "Your confirmed hours match the employer time record."
+      ],
+      "schedule": {
+        "confirmationId": null,
+        "date": "2026-09-09",
+        "endMinute": 990,
+        "factIds": [
+          "doc-1-f15",
+          "doc-1-f16"
+        ],
+        "mealBreakMinutes": 0,
+        "source": "schedule",
+        "startMinute": 480,
+        "workedMinutes": 510
+      },
+      "state": "CONSISTENT"
+    },
+    {
+      "confirmedWork": {
+        "confirmationId": "confirm-2026-09-10",
+        "date": "2026-09-10",
+        "endMinute": 990,
+        "factIds": [],
+        "mealBreakMinutes": 30,
+        "source": "worker_confirmed",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "date": "2026-09-10",
+      "discrepancyIds": [],
+      "employerRecord": {
+        "confirmationId": null,
+        "date": "2026-09-10",
+        "endMinute": 990,
+        "factIds": [
+          "doc-2-f25",
+          "doc-2-f26",
+          "doc-2-f27"
+        ],
+        "mealBreakMinutes": 30,
+        "source": "employer_record",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "messageFactIds": [],
+      "reasons": [
+        "Your confirmed hours match the employer time record."
+      ],
+      "schedule": {
+        "confirmationId": null,
+        "date": "2026-09-10",
+        "endMinute": 990,
+        "factIds": [
+          "doc-1-f17",
+          "doc-1-f18"
+        ],
+        "mealBreakMinutes": 0,
+        "source": "schedule",
+        "startMinute": 460,
+        "workedMinutes": 530
+      },
+      "state": "CONSISTENT"
+    },
+    {
+      "confirmedWork": {
+        "confirmationId": "confirm-2026-09-11",
+        "date": "2026-09-11",
+        "endMinute": 990,
+        "factIds": [],
+        "mealBreakMinutes": 30,
+        "source": "worker_confirmed",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "date": "2026-09-11",
+      "discrepancyIds": [],
+      "employerRecord": {
+        "confirmationId": null,
+        "date": "2026-09-11",
+        "endMinute": 990,
+        "factIds": [
+          "doc-2-f28",
+          "doc-2-f29",
+          "doc-2-f30"
+        ],
+        "mealBreakMinutes": 30,
+        "source": "employer_record",
+        "startMinute": 480,
+        "workedMinutes": 480
+      },
+      "messageFactIds": [],
+      "reasons": [
+        "Your confirmed hours match the employer time record."
+      ],
+      "schedule": {
+        "confirmationId": null,
+        "date": "2026-09-11",
+        "endMinute": 990,
+        "factIds": [
+          "doc-1-f19",
+          "doc-1-f20"
+        ],
+        "mealBreakMinutes": 0,
+        "source": "schedule",
+        "startMinute": 480,
+        "workedMinutes": 510
+      },
+      "state": "CONSISTENT"
+    }
+  ],
+  "discrepancies": [
+    {
+      "confirmationIds": [
+        "confirm-2026-09-01"
+      ],
+      "deltaAmount": null,
+      "deltaMinutes": 20,
+      "expected": "7:40 AM",
+      "explanation": "You started at 7:40 AM. The employer time record starts at 8:00 AM. 20 min is not on the employer record.",
+      "id": "disc-2026-09-01-start",
+      "observed": "8:00 AM",
+      "ruleId": "TAKT-DIFF-START",
+      "scope": {
+        "date": "2026-09-01",
+        "periodId": null
+      },
+      "supportingFactIds": [
+        "doc-1-f3",
+        "doc-4-f1",
+        "doc-2-f4"
+      ],
+      "type": "start_time_shaved"
+    }
+  ],
+  "extraction": {
+    "model": null,
+    "promptVersion": "vision-prompt/1",
+    "schemaVersion": "vision-extraction/1"
+  },
+  "facts": [
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-08-31",
+        "kind": "scheduled_start",
+        "time": "08:00"
+      },
+      "id": "doc-1-f1",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-08-31",
+        "kind": "scheduled_end",
+        "time": "16:30"
+      },
+      "id": "doc-1-f2",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-01",
+        "kind": "scheduled_start",
+        "time": "07:40"
+      },
+      "id": "doc-1-f3",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-01",
+        "kind": "scheduled_end",
+        "time": "16:30"
+      },
+      "id": "doc-1-f4",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-02",
+        "kind": "scheduled_start",
+        "time": "08:00"
+      },
+      "id": "doc-1-f5",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-02",
+        "kind": "scheduled_end",
+        "time": "16:30"
+      },
+      "id": "doc-1-f6",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-03",
+        "kind": "scheduled_start",
+        "time": "08:00"
+      },
+      "id": "doc-1-f7",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-03",
+        "kind": "scheduled_end",
+        "time": "16:30"
+      },
+      "id": "doc-1-f8",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-04",
+        "kind": "scheduled_start",
+        "time": "08:00"
+      },
+      "id": "doc-1-f9",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-04",
+        "kind": "scheduled_end",
+        "time": "16:30"
+      },
+      "id": "doc-1-f10",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-07",
+        "kind": "scheduled_start",
+        "time": "08:00"
+      },
+      "id": "doc-1-f11",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-07",
+        "kind": "scheduled_end",
+        "time": "16:30"
+      },
+      "id": "doc-1-f12",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-08",
+        "kind": "scheduled_start",
+        "time": "08:00"
+      },
+      "id": "doc-1-f13",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-08",
+        "kind": "scheduled_end",
+        "time": "16:30"
+      },
+      "id": "doc-1-f14",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-09",
+        "kind": "scheduled_start",
+        "time": "08:00"
+      },
+      "id": "doc-1-f15",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-09",
+        "kind": "scheduled_end",
+        "time": "16:30"
+      },
+      "id": "doc-1-f16",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-10",
+        "kind": "scheduled_start",
+        "time": "07:40"
+      },
+      "id": "doc-1-f17",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-10",
+        "kind": "scheduled_end",
+        "time": "16:30"
+      },
+      "id": "doc-1-f18",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-11",
+        "kind": "scheduled_start",
+        "time": "08:00"
+      },
+      "id": "doc-1-f19",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-1",
+        "documentSha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-1",
+      "extracted": {
+        "date": "2026-09-11",
+        "kind": "scheduled_end",
+        "time": "16:30"
+      },
+      "id": "doc-1-f20",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "8:00 AM",
+        "region": {
+          "h": 0.011363635890151519,
+          "w": 0.0539622563300039,
+          "x": 0.3349992262377767,
+          "y": 0.17992423492739903
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-08-31",
+        "kind": "time_in",
+        "time": "08:00"
+      },
+      "id": "doc-2-f1",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "4:30 PM",
+        "region": {
+          "h": 0.011363635890151519,
+          "w": 0.05476648418865121,
+          "x": 0.4722541224796068,
+          "y": 0.17992423492739903
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-08-31",
+        "kind": "time_out",
+        "time": "16:30"
+      },
+      "id": "doc-2-f2",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "30",
+        "region": {
+          "h": 0.011363635890151514,
+          "w": 0.01635742108314664,
+          "x": 0.7837966952829795,
+          "y": 0.17992423492739903
+        }
+      },
+      "confidence": 0.95,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-08-31",
+        "kind": "meal_break",
+        "minutes": 30
+      },
+      "id": "doc-2-f3",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "8:00 AM",
+        "region": {
+          "h": 0.011363635890151519,
+          "w": 0.0539622563300039,
+          "x": 0.3349992262377767,
+          "y": 0.20549241568023988
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-01",
+        "kind": "time_in",
+        "time": "08:00"
+      },
+      "id": "doc-2-f4",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "4:30 PM",
+        "region": {
+          "h": 0.011363635890151519,
+          "w": 0.05476648418865121,
+          "x": 0.4722541224796068,
+          "y": 0.20549241568023988
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-01",
+        "kind": "time_out",
+        "time": "16:30"
+      },
+      "id": "doc-2-f5",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "30",
+        "region": {
+          "h": 0.011363635890151514,
+          "w": 0.01635742108314664,
+          "x": 0.7837966952829795,
+          "y": 0.20549241568023988
+        }
+      },
+      "confidence": 0.95,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-01",
+        "kind": "meal_break",
+        "minutes": 30
+      },
+      "id": "doc-2-f6",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "8:00 AM",
+        "region": {
+          "h": 0.011363635890151519,
+          "w": 0.0539622563300039,
+          "x": 0.3349992262377767,
+          "y": 0.23106059643308086
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-02",
+        "kind": "time_in",
+        "time": "08:00"
+      },
+      "id": "doc-2-f7",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "4:30 PM",
+        "region": {
+          "h": 0.011363635890151519,
+          "w": 0.05476648418865121,
+          "x": 0.4722541224796068,
+          "y": 0.23106059643308086
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-02",
+        "kind": "time_out",
+        "time": "16:30"
+      },
+      "id": "doc-2-f8",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "30",
+        "region": {
+          "h": 0.011363635890151514,
+          "w": 0.01635742108314664,
+          "x": 0.7837966952829795,
+          "y": 0.23106059643308086
+        }
+      },
+      "confidence": 0.95,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-02",
+        "kind": "meal_break",
+        "minutes": 30
+      },
+      "id": "doc-2-f9",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "8:00 AM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.0539622563300039,
+          "x": 0.3349992262377767,
+          "y": 0.2566287771859217
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-03",
+        "kind": "time_in",
+        "time": "08:00"
+      },
+      "id": "doc-2-f10",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "4:30 PM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.05476648418865121,
+          "x": 0.4722541224796068,
+          "y": 0.2566287771859217
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-03",
+        "kind": "time_out",
+        "time": "16:30"
+      },
+      "id": "doc-2-f11",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "30",
+        "region": {
+          "h": 0.011363635890151514,
+          "w": 0.01635742108314664,
+          "x": 0.7837966952829795,
+          "y": 0.2566287771859217
+        }
+      },
+      "confidence": 0.95,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-03",
+        "kind": "meal_break",
+        "minutes": 30
+      },
+      "id": "doc-2-f12",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "8:00 AM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.0539622563300039,
+          "x": 0.3349992262377767,
+          "y": 0.28219695793876265
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-04",
+        "kind": "time_in",
+        "time": "08:00"
+      },
+      "id": "doc-2-f13",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "4:30 PM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.05476648418865121,
+          "x": 0.4722541224796068,
+          "y": 0.28219695793876265
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-04",
+        "kind": "time_out",
+        "time": "16:30"
+      },
+      "id": "doc-2-f14",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "30",
+        "region": {
+          "h": 0.011363635890151514,
+          "w": 0.01635742108314664,
+          "x": 0.7837966952829795,
+          "y": 0.28219695793876265
+        }
+      },
+      "confidence": 0.95,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-04",
+        "kind": "meal_break",
+        "minutes": 30
+      },
+      "id": "doc-2-f15",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "8:00 AM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.0539622563300039,
+          "x": 0.3349992262377767,
+          "y": 0.3077651386916035
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-07",
+        "kind": "time_in",
+        "time": "08:00"
+      },
+      "id": "doc-2-f16",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "4:30 PM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.05476648418865121,
+          "x": 0.4722541224796068,
+          "y": 0.3077651386916035
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-07",
+        "kind": "time_out",
+        "time": "16:30"
+      },
+      "id": "doc-2-f17",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "30",
+        "region": {
+          "h": 0.011363635890151514,
+          "w": 0.01635742108314664,
+          "x": 0.7837966952829795,
+          "y": 0.3077651386916035
+        }
+      },
+      "confidence": 0.95,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-07",
+        "kind": "meal_break",
+        "minutes": 30
+      },
+      "id": "doc-2-f18",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "8:00 AM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.0539622563300039,
+          "x": 0.3349992262377767,
+          "y": 0.3333333194444445
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-08",
+        "kind": "time_in",
+        "time": "08:00"
+      },
+      "id": "doc-2-f19",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "4:30 PM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.05476648418865121,
+          "x": 0.4722541224796068,
+          "y": 0.3333333194444445
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-08",
+        "kind": "time_out",
+        "time": "16:30"
+      },
+      "id": "doc-2-f20",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "30",
+        "region": {
+          "h": 0.011363635890151514,
+          "w": 0.01635742108314664,
+          "x": 0.7837966952829795,
+          "y": 0.3333333194444445
+        }
+      },
+      "confidence": 0.95,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-08",
+        "kind": "meal_break",
+        "minutes": 30
+      },
+      "id": "doc-2-f21",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "8:00 AM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.0539622563300039,
+          "x": 0.3349992262377767,
+          "y": 0.3589015001972854
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-09",
+        "kind": "time_in",
+        "time": "08:00"
+      },
+      "id": "doc-2-f22",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "4:30 PM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.05476648418865121,
+          "x": 0.4722541224796068,
+          "y": 0.3589015001972854
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-09",
+        "kind": "time_out",
+        "time": "16:30"
+      },
+      "id": "doc-2-f23",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "30",
+        "region": {
+          "h": 0.011363635890151514,
+          "w": 0.01635742108314664,
+          "x": 0.7837966952829795,
+          "y": 0.3589015001972854
+        }
+      },
+      "confidence": 0.95,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-09",
+        "kind": "meal_break",
+        "minutes": 30
+      },
+      "id": "doc-2-f24",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "8:00 AM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.0539622563300039,
+          "x": 0.3349992262377767,
+          "y": 0.3844696809501263
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-10",
+        "kind": "time_in",
+        "time": "08:00"
+      },
+      "id": "doc-2-f25",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "4:30 PM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.05476648418865121,
+          "x": 0.4722541224796068,
+          "y": 0.3844696809501263
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-10",
+        "kind": "time_out",
+        "time": "16:30"
+      },
+      "id": "doc-2-f26",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "30",
+        "region": {
+          "h": 0.011363635890151514,
+          "w": 0.01635742108314664,
+          "x": 0.7837966952829795,
+          "y": 0.3844696809501263
+        }
+      },
+      "confidence": 0.95,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-10",
+        "kind": "meal_break",
+        "minutes": 30
+      },
+      "id": "doc-2-f27",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "8:00 AM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.0539622563300039,
+          "x": 0.3349992262377767,
+          "y": 0.4100378617029672
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-11",
+        "kind": "time_in",
+        "time": "08:00"
+      },
+      "id": "doc-2-f28",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "4:30 PM",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.05476648418865121,
+          "x": 0.4722541224796068,
+          "y": 0.4100378617029672
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-11",
+        "kind": "time_out",
+        "time": "16:30"
+      },
+      "id": "doc-2-f29",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-2",
+        "documentSha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "30",
+        "region": {
+          "h": 0.011363635890151514,
+          "w": 0.01635742108314664,
+          "x": 0.7837966952829795,
+          "y": 0.4100378617029672
+        }
+      },
+      "confidence": 0.95,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-2",
+      "extracted": {
+        "date": "2026-09-11",
+        "kind": "meal_break",
+        "minutes": 30
+      },
+      "id": "doc-2-f30",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-3",
+        "documentSha256": "6155e6c2d381fc288658e9e715f5dc56220a359b60d3beea9d1afc01efc0897b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "08/31/2026 - 09/13/2026",
+        "region": {
+          "h": 0.011363635890151512,
+          "w": 0.2403779758666036,
+          "x": 0.7007888801141875,
+          "y": 0.061553027738320686
+        }
+      },
+      "confidence": 0.99,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-3",
+      "extracted": {
+        "end": "2026-09-13",
+        "kind": "pay_period",
+        "start": "2026-08-31"
+      },
+      "id": "doc-3-f1",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-3",
+        "documentSha256": "6155e6c2d381fc288658e9e715f5dc56220a359b60d3beea9d1afc01efc0897b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "Pay Date: 09/18/2026",
+        "region": {
+          "h": 0.011363635890151519,
+          "w": 0.1422621717194682,
+          "x": 0.7989046848495583,
+          "y": 0.07481060294349741
+        }
+      },
+      "confidence": 0.99,
+      "consequential": false,
+      "correctedValue": null,
+      "documentId": "doc-3",
+      "extracted": {
+        "date": "2026-09-18",
+        "kind": "pay_date"
+      },
+      "id": "doc-3-f2",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-3",
+        "documentSha256": "6155e6c2d381fc288658e9e715f5dc56220a359b60d3beea9d1afc01efc0897b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "18.50",
+        "region": {
+          "h": 0.011363635890151519,
+          "w": 0.03680060714311184,
+          "x": 0.47719437962670397,
+          "y": 0.2499999895833334
+        }
+      },
+      "confidence": 0.97,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-3",
+      "extracted": {
+        "amount": "18.50",
+        "kind": "hourly_rate"
+      },
+      "id": "doc-3-f3",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-3",
+        "documentSha256": "6155e6c2d381fc288658e9e715f5dc56220a359b60d3beea9d1afc01efc0897b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "80.00",
+        "region": {
+          "h": 0.011363635890151519,
+          "w": 0.03680060714311184,
+          "x": 0.6631050581549351,
+          "y": 0.2499999895833334
+        }
+      },
+      "confidence": 0.97,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-3",
+      "extracted": {
+        "hours": "80.00",
+        "kind": "regular_hours_paid"
+      },
+      "id": "doc-3-f4",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-3",
+        "documentSha256": "6155e6c2d381fc288658e9e715f5dc56220a359b60d3beea9d1afc01efc0897b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "1,480.00",
+        "region": {
+          "h": 0.011363635890151519,
+          "w": 0.05724379320307715,
+          "x": 0.8741191424999362,
+          "y": 0.2499999895833334
+        }
+      },
+      "confidence": 0.97,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-3",
+      "extracted": {
+        "amount": "1480.00",
+        "kind": "regular_pay"
+      },
+      "id": "doc-3-f5",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-3",
+        "documentSha256": "6155e6c2d381fc288658e9e715f5dc56220a359b60d3beea9d1afc01efc0897b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "1,480.00",
+        "region": {
+          "h": 0.011363635890151491,
+          "w": 0.05724379320307715,
+          "x": 0.8741191424999362,
+          "y": 0.27462120067866164
+        }
+      },
+      "confidence": 0.97,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-3",
+      "extracted": {
+        "amount": "1480.00",
+        "kind": "gross_pay"
+      },
+      "id": "doc-3-f6",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-3",
+        "documentSha256": "6155e6c2d381fc288658e9e715f5dc56220a359b60d3beea9d1afc01efc0897b",
+        "method": "pdf_native_text",
+        "page": 1,
+        "quote": "Example Bakery Co.",
+        "region": {
+          "h": 0.015151514520202018,
+          "w": 0.1885435731244096,
+          "x": 0.05882352696078431,
+          "y": 0.043560604245580836
+        }
+      },
+      "confidence": 0.7,
+      "consequential": false,
+      "correctedValue": null,
+      "documentId": "doc-3",
+      "extracted": {
+        "kind": "employer_name",
+        "text": "Example Bakery Co."
+      },
+      "id": "doc-3-f7",
+      "method": "pdf_native_text",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    },
+    {
+      "anchor": {
+        "documentId": "doc-4",
+        "documentSha256": "7f1009bfd252477f56619ad23ff063436d7c49d0388dc454cd29af18244689ce",
+        "method": "worker_manual",
+        "page": 1,
+        "quote": "Entered by the worker from this image",
+        "region": {
+          "h": 1,
+          "w": 1,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "confidence": 1,
+      "consequential": true,
+      "correctedValue": null,
+      "documentId": "doc-4",
+      "extracted": {
+        "boundary": "start",
+        "date": "2026-09-01",
+        "kind": "message_time_reference",
+        "sentAt": "2026-08-31T17:02",
+        "time": "07:40"
+      },
+      "id": "doc-4-f1",
+      "method": "worker_manual",
+      "review": "confirmed",
+      "reviewedAt": "2026-09-20T18:00:00Z"
+    }
+  ],
+  "files": [
+    {
+      "bytes": 1256,
+      "path": "README.txt",
+      "role": "readme",
+      "sha256": "39fe9cb5cb74144e7a0a901cdfaee95fe710a6acd594c5b91427a9806c3fea07"
+    },
+    {
+      "bytes": 1770,
+      "path": "calculation.csv",
+      "role": "calculation-csv",
+      "sha256": "9208e549dddfda8eb77442181aa9a3855d118647970bf7fe80bf439af12c8540"
+    },
+    {
+      "bytes": 1416665,
+      "path": "claim-form-1.pdf",
+      "role": "form-1",
+      "sha256": "49b22362ed82f31c1e34aee844dd03e80fa6ca3f1bd0333fa1a034cc80f6742f"
+    },
+    {
+      "bytes": 22528,
+      "path": "dlse-form-55.xls",
+      "role": "form-55",
+      "sha256": "f9de4ba3a2e77806d61c71ecac118f97611c63be13a6cb3162108fedfde2dea2"
+    },
+    {
+      "bytes": 20903,
+      "path": "evidence-index.pdf",
+      "role": "evidence-index",
+      "sha256": "9931af20348513001e85cc6cb89053a50b863d4d3ca9f36912362f98af4c87f2"
+    },
+    {
+      "bytes": 168086,
+      "path": "sources/01-Screenshot_2026-09-14_at_9.12.03_PM.png",
+      "role": "source",
+      "sha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f"
+    },
+    {
+      "bytes": 41987,
+      "path": "sources/02-Timecard_Export_0913.pdf",
+      "role": "source",
+      "sha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b"
+    },
+    {
+      "bytes": 45435,
+      "path": "sources/03-EarningsStatement_0918.pdf",
+      "role": "source",
+      "sha256": "6155e6c2d381fc288658e9e715f5dc56220a359b60d3beea9d1afc01efc0897b"
+    },
+    {
+      "bytes": 58615,
+      "path": "sources/04-IMG_4821.png",
+      "role": "source",
+      "sha256": "7f1009bfd252477f56619ad23ff063436d7c49d0388dc454cd29af18244689ce"
+    }
+  ],
+  "forms": {
+    "form1": {
+      "fields": {
+        "ADDRESS of EMPLOYER / BUSINESS (Street Number, Street Name, Floor, Suite):": "200 Example Avenue",
+        "AMOUNT EARNED/Claimed overtime wages": "9.25",
+        "AMOUNT EARNED/Claimed regular wages": "1,480.00",
+        "Amount paid per hour": "18.50",
+        "CITY": "Fresno",
+        "CLAIM PERIOD END DATE OVERTIME WAGES  (mm/dd/yyyy)": "09/13/2026",
+        "CLAIM PERIOD END DATE REGULAR WAGES  (mm/dd/yyyy)": "09/13/2026",
+        "CLAIM PERIOD START DATE OVERTIME WAGES (mm/dd/yyyy)": "08/31/2026",
+        "CLAIM PERIOD START DATE REGULAR WAGES (mm/dd/yyyy)": "08/31/2026",
+        "Check which box applies to you:": "Still working for employer",
+        "Check which box applies:": "My work hours and/or days of work varied per week or were irregular. If you checked this box and you are claiming unpaid wages or meal and rest period violations, you should also fill out and submit the DLSE FORM55.",
+        "Claiming OVERTIME WAGES including double time": true,
+        "DATE OF HIRE (mm/dd/yyyy)": "03/02/2026",
+        "EMPLOYER / BUSINESS NAME(S)": "Example Bakery Co.",
+        "EMPLOYER PHONE": "(559) 555-0100",
+        "ENTER SUBTOTAL (add all Amounts Earned/Claimed):": "1,489.25",
+        "ENTER TOTAL AMOUNT PAID:": "1,480.00",
+        "Employer/Business CITY": "Fresno",
+        "Employer/Business STATE": "CA",
+        "Employer/Business ZIP CODE": "93702",
+        "GRAND TOTAL OWED [Subtotal minus Total Amount Paid]:": "9.25",
+        "How were your wages paid?": "BY CHECK",
+        "If you were an HOURLY employee, were you paid or promised more than one hourly rate (based on the hours you worked or different job tasks)?": "NO",
+        "OTHER PHONE": "(559) 555-0142",
+        "PRINT YOUR NAME": "Dana Rivera",
+        "REGULAR WAGES Claimed": true,
+        "STATE": "CA",
+        "TYPE OF WORK PERFORMED": "Baker",
+        "Were you an HOURLY employee?": "YES",
+        "Were you paid by COMMISSION?": "NO",
+        "Were you paid by PIECE RATE?": "NO",
+        "Were you paid or promised a FIXED amount of wages per pay period, no matter how many hours you worked (for example, $400 per week, regardless of how many hours you worked)?": "NO",
+        "Your EMAIL ADDRESS": "dana.rivera@example.invalid",
+        "Your FIRST NAME": "Dana",
+        "Your LAST NAME": "Rivera",
+        "Your MAILING ADDRESS including Street Number, Street Name, Apartment Number (if applicable)": "100 Sample Street Apt 4",
+        "ZIP CODE": "93701"
+      },
+      "file": "claim-form-1.pdf",
+      "revision": "REV. 07/2025",
+      "templateSha256": "a782525be4e01fa358012c6f797c4866c07c781841fdeaddca7c41b00433267b"
+    },
+    "form55": [
+      {
+        "file": "dlse-form-55.xls",
+        "hourlyRate": "18.50",
+        "periodIds": [
+          "period-2026-08-31"
+        ],
+        "templateSha256": "a5be16bfa32aebe1b0a089572010d5fa8bb82ec404961efd41b5f1584ca73bb5"
+      }
+    ]
+  },
+  "generatedAt": "2026-09-20T18:30:00.000Z",
+  "limitations": [
+    "Takt supports California hourly, non-exempt work under the standard daily and weekly overtime rules only.",
+    "Takt does not calculate meal or rest period premiums, split-shift or reporting-time pay, waiting-time or other penalties, minimum wage claims, or local minimum wages.",
+    "A start or end earlier or later than the employer's time record is counted only when the worker confirmed it and a schedule or message supports it.",
+    "Amounts are for the pay periods and records provided. Records the worker did not provide are not considered.",
+    "This packet is not legal advice and has not been filed with any agency. The worker reviews, signs, and files the forms."
+  ],
+  "payroll": [
+    {
+      "doubleTimeHours": "0",
+      "doubleTimePay": "0",
+      "factIds": [
+        "doc-3-f1",
+        "doc-3-f2",
+        "doc-3-f3",
+        "doc-3-f4",
+        "doc-3-f5",
+        "doc-3-f6",
+        "doc-3-f7"
+      ],
+      "grossPay": "1480.00",
+      "hourlyRate": "18.50",
+      "id": "period-2026-08-31",
+      "otherEarnings": [],
+      "overtimeHours": "0",
+      "overtimePay": "0",
+      "payDate": "2026-09-18",
+      "periodEnd": "2026-09-13",
+      "periodStart": "2026-08-31",
+      "regularHours": "80.00",
+      "regularPay": "1480.00"
+    }
+  ],
+  "ruleset": {
+    "id": "ca-dlse-2026-09",
+    "rules": [
+      {
+        "effective": "2026-01-01",
+        "id": "CA-REG-HOURLY",
+        "sourceId": "dlse-faq-overtime",
+        "sourceUrl": "https://www.dir.ca.gov/dlse/faq_overtime.htm",
+        "summary": "Non-overtime hours are paid at the worker's confirmed hourly rate.",
+        "version": "1"
+      },
+      {
+        "effective": "2026-01-01",
+        "id": "CA-OT-DAILY-8",
+        "sourceId": "dlse-faq-overtime",
+        "sourceUrl": "https://www.dir.ca.gov/dlse/faq_overtime.htm",
+        "summary": "Hours over 8 and up to 12 in a workday are paid at 1.5 times the regular rate.",
+        "version": "1"
+      },
+      {
+        "effective": "2026-01-01",
+        "id": "CA-DT-DAILY-12",
+        "sourceId": "dlse-faq-overtime",
+        "sourceUrl": "https://www.dir.ca.gov/dlse/faq_overtime.htm",
+        "summary": "Hours over 12 in a workday are paid at 2 times the regular rate.",
+        "version": "1"
+      },
+      {
+        "effective": "2026-01-01",
+        "id": "CA-OT-WEEKLY-40",
+        "sourceId": "dlse-faq-overtime",
+        "sourceUrl": "https://www.dir.ca.gov/dlse/faq_overtime.htm",
+        "summary": "Regular hours over 40 in a workweek are paid at 1.5 times the regular rate. Daily overtime hours are not counted twice.",
+        "version": "1"
+      },
+      {
+        "effective": "2026-01-01",
+        "id": "CA-OT-7TH-DAY",
+        "sourceId": "dlse-faq-overtime",
+        "sourceUrl": "https://www.dir.ca.gov/dlse/faq_overtime.htm",
+        "summary": "The first 8 hours on the seventh consecutive day of work in a workweek are paid at 1.5 times the regular rate.",
+        "version": "1"
+      },
+      {
+        "effective": "2026-01-01",
+        "id": "CA-DT-7TH-DAY",
+        "sourceId": "dlse-faq-overtime",
+        "sourceUrl": "https://www.dir.ca.gov/dlse/faq_overtime.htm",
+        "summary": "Hours over 8 on the seventh consecutive day of work in a workweek are paid at 2 times the regular rate.",
+        "version": "1"
+      },
+      {
+        "effective": "2026-01-01",
+        "id": "CA-MIN-WAGE-2026",
+        "sourceId": "dlse-faq-minimum-wage",
+        "sourceUrl": "https://www.dir.ca.gov/dlse/faq_minimumwage.htm",
+        "summary": "California statewide minimum wage is $16.90 per hour from January 1, 2026. Local and industry minimums can be higher.",
+        "version": "1"
+      },
+      {
+        "effective": "2026-09-01",
+        "id": "TAKT-DIFF-START",
+        "sourceId": "takt-evidence-policy",
+        "sourceUrl": "docs/evidence-policy.md",
+        "summary": "Takt policy: a start earlier than the employer record counts only when the worker confirms it and an independent record (schedule or message) supports it. The supported start is the later of the two.",
+        "version": "1"
+      },
+      {
+        "effective": "2026-09-01",
+        "id": "TAKT-DIFF-END",
+        "sourceId": "takt-evidence-policy",
+        "sourceUrl": "docs/evidence-policy.md",
+        "summary": "Takt policy: an end later than the employer record counts only when the worker confirms it and an independent record supports it. The supported end is the earlier of the two.",
+        "version": "1"
+      },
+      {
+        "effective": "2026-09-01",
+        "id": "TAKT-DIFF-MISSING",
+        "sourceId": "takt-evidence-policy",
+        "sourceUrl": "docs/evidence-policy.md",
+        "summary": "Takt policy: a worked day with no employer time record counts only when the worker confirms it and independent records support both its start and its end.",
+        "version": "1"
+      },
+      {
+        "effective": "2026-09-01",
+        "id": "TAKT-DIFF-PAID-HOURS",
+        "sourceId": "takt-evidence-policy",
+        "sourceUrl": "docs/evidence-policy.md",
+        "summary": "Takt policy: hours on the employer's own time record are compared with hours paid on the wage statement for the same period.",
+        "version": "1"
+      },
+      {
+        "effective": "2026-09-01",
+        "id": "TAKT-DIFF-PAYSTUB-MATH",
+        "sourceId": "takt-evidence-policy",
+        "sourceUrl": "docs/evidence-policy.md",
+        "summary": "Takt policy: each wage-statement line is checked as hours times rate (times the premium multiplier).",
+        "version": "1"
+      },
+      {
+        "effective": "2026-09-01",
+        "id": "TAKT-ROUND-CENTS",
+        "sourceId": "takt-evidence-policy",
+        "sourceUrl": "docs/evidence-policy.md",
+        "summary": "Takt policy: exact amounts are rounded half away from zero to cents once per pay period and pay component.",
+        "version": "1"
+      }
+    ]
+  },
+  "schema": "takt-manifest/1",
+  "scope": {
+    "answers": {
+      "alternativeWorkweek": "no",
+      "classifiedAsContractor": "no",
+      "paidHourly": "yes",
+      "pieceRateOrCommission": "no",
+      "publicWorks": "no",
+      "salariedOrExempt": "no",
+      "specialIndustry": "none",
+      "unionContract": "no",
+      "workedInCalifornia": "yes",
+      "workweekStartDay": 1
+    },
+    "decision": {
+      "assumptions": [
+        {
+          "code": "MIDNIGHT_WORKDAY",
+          "message": "Workdays are counted midnight to midnight. A shift that crosses midnight is split between the two days."
+        }
+      ],
+      "reasons": [],
+      "rulesetId": "ca-dlse-2026-09",
+      "supported": true
+    }
+  },
+  "sources": [
+    {
+      "bytes": 168086,
+      "docClass": "schedule",
+      "documentId": "doc-1",
+      "duplicateOf": null,
+      "filename": "Screenshot 2026-09-14 at 9.12.03 PM.png",
+      "mimeType": "image/png",
+      "packetPath": "sources/01-Screenshot_2026-09-14_at_9.12.03_PM.png",
+      "sha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f"
+    },
+    {
+      "bytes": 41987,
+      "docClass": "time_record",
+      "documentId": "doc-2",
+      "duplicateOf": null,
+      "filename": "Timecard_Export_0913.pdf",
+      "mimeType": "application/pdf",
+      "packetPath": "sources/02-Timecard_Export_0913.pdf",
+      "sha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b"
+    },
+    {
+      "bytes": 45435,
+      "docClass": "paystub",
+      "documentId": "doc-3",
+      "duplicateOf": null,
+      "filename": "EarningsStatement_0918.pdf",
+      "mimeType": "application/pdf",
+      "packetPath": "sources/03-EarningsStatement_0918.pdf",
+      "sha256": "6155e6c2d381fc288658e9e715f5dc56220a359b60d3beea9d1afc01efc0897b"
+    },
+    {
+      "bytes": 58615,
+      "docClass": "manager_message",
+      "documentId": "doc-4",
+      "duplicateOf": null,
+      "filename": "IMG_4821.png",
+      "mimeType": "image/png",
+      "packetPath": "sources/04-IMG_4821.png",
+      "sha256": "7f1009bfd252477f56619ad23ff063436d7c49d0388dc454cd29af18244689ce"
+    }
+  ],
+  "totals": {
+    "earned": "1489.25",
+    "owed": "9.25",
+    "paid": "1480.00"
+  }
+}

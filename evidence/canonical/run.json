@@ -1,0 +1,168 @@
+{
+  "case_id": "TAKT-DEMO-001",
+  "synthetic_fixture": true,
+  "commit": "d80513f",
+  "app_version": "0.1.0",
+  "deployment": null,
+  "model": null,
+  "extraction_paths": {
+    "pdf": "pdf_native_text (deterministic, pdf.js coordinates)",
+    "images": "worker_manual — image facts were entered from the fixture labels because no vision model was run for this receipt"
+  },
+  "form_versions": [
+    "DLSE WCA Form 1 REV. 07/2025",
+    "DLSE Form 55 (dir.ca.gov, last saved 2011-08-09)"
+  ],
+  "source_hashes": [
+    {
+      "file": "Screenshot 2026-09-14 at 9.12.03 PM.png",
+      "sha256": "0273598350fe4ce4e6ef869ddc1ab2ce6e99825793085539255c79caaf629d1f"
+    },
+    {
+      "file": "Timecard_Export_0913.pdf",
+      "sha256": "01411cbf8da96a2df50aeb7e5ea47fa2da11ee03c80cb19af88f8482bcf8875b"
+    },
+    {
+      "file": "EarningsStatement_0918.pdf",
+      "sha256": "6155e6c2d381fc288658e9e715f5dc56220a359b60d3beea9d1afc01efc0897b"
+    },
+    {
+      "file": "IMG_4821.png",
+      "sha256": "7f1009bfd252477f56619ad23ff063436d7c49d0388dc454cd29af18244689ce"
+    }
+  ],
+  "fact_count": 58,
+  "confirmed_fact_count": 58,
+  "rejected_fact_count": 0,
+  "discrepancies": [
+    {
+      "type": "start_time_shaved",
+      "date": "2026-09-01",
+      "delta_minutes": 20,
+      "rule": "TAKT-DIFF-START"
+    }
+  ],
+  "calculation_rule_ids": [
+    "CA-OT-DAILY-8",
+    "CA-REG-HOURLY",
+    "TAKT-ROUND-CENTS"
+  ],
+  "totals": {
+    "earned": "1489.25",
+    "paid": "1480.00",
+    "owed": "9.25"
+  },
+  "packet_sha256": "95aa2d4f148f0ac5ece24f12b741a8cd6a1ca225beb97aee1712d0d1541a7d39",
+  "manifest_sha256": "4ba240296ea416e9577e93032f5556288c5681810b091857ad0a0ba4df00e11a",
+  "verifier_version": "takt-verify/1",
+  "verifier_status": "VERIFIED_PACKET",
+  "verifier_checks": [
+    {
+      "id": "packet.readable",
+      "status": "pass",
+      "detail": "10 files in the packet."
+    },
+    {
+      "id": "manifest.schema",
+      "status": "pass",
+      "detail": "manifest.json matches takt-manifest/1."
+    },
+    {
+      "id": "manifest.canonical",
+      "status": "pass",
+      "detail": "manifest.json is in canonical form."
+    },
+    {
+      "id": "files.hashes",
+      "status": "pass",
+      "detail": "All 9 listed files match their SHA-256."
+    },
+    {
+      "id": "sources.included",
+      "status": "pass",
+      "detail": "4 included source copies match their recorded SHA-256."
+    },
+    {
+      "id": "sources.originals",
+      "status": "pass",
+      "detail": "4 provided originals match recorded sources."
+    },
+    {
+      "id": "facts.provenance",
+      "status": "pass",
+      "detail": "All 58 facts are anchored to a recorded source hash."
+    },
+    {
+      "id": "facts.reviewed",
+      "status": "pass",
+      "detail": "Every consequential fact was confirmed, corrected, or rejected by the worker."
+    },
+    {
+      "id": "rules.pinned",
+      "status": "pass",
+      "detail": "4 rules used, all match the pinned ca-dlse-2026-09 ruleset."
+    },
+    {
+      "id": "replay.scope",
+      "status": "pass",
+      "detail": "Recomputed scope decision match the manifest."
+    },
+    {
+      "id": "replay.days",
+      "status": "pass",
+      "detail": "Recomputed day-by-day reconciliation match the manifest."
+    },
+    {
+      "id": "replay.discrepancies",
+      "status": "pass",
+      "detail": "Recomputed discrepancies match the manifest."
+    },
+    {
+      "id": "replay.payroll",
+      "status": "pass",
+      "detail": "Recomputed payroll records match the manifest."
+    },
+    {
+      "id": "replay.calculations",
+      "status": "pass",
+      "detail": "Recomputed calculations match the manifest."
+    },
+    {
+      "id": "replay.totals",
+      "status": "pass",
+      "detail": "Recomputed totals match the manifest."
+    },
+    {
+      "id": "arithmetic.independent",
+      "status": "pass",
+      "detail": "Every calculation line and total recomputes exactly (11 lines)."
+    },
+    {
+      "id": "csv.matches",
+      "status": "pass",
+      "detail": "calculation.csv matches the manifest (11 lines)."
+    },
+    {
+      "id": "form1.readback",
+      "status": "pass",
+      "detail": "Form 1 (REV. 07/2025) reads back 37 fields that match the manifest and recomputed totals."
+    },
+    {
+      "id": "form55:dlse-form-55.xls",
+      "status": "pass",
+      "detail": "Form 55 dlse-form-55.xls: 1 pay periods match the calculation; only mapped cells differ from the official workbook."
+    },
+    {
+      "id": "index.readable",
+      "status": "pass",
+      "detail": "evidence-index.pdf opens (4 pages) and names TAKT-DEMO-001."
+    }
+  ],
+  "limitations": [
+    "Takt supports California hourly, non-exempt work under the standard daily and weekly overtime rules only.",
+    "Takt does not calculate meal or rest period premiums, split-shift or reporting-time pay, waiting-time or other penalties, minimum wage claims, or local minimum wages.",
+    "A start or end earlier or later than the employer's time record is counted only when the worker confirmed it and a schedule or message supports it.",
+    "Amounts are for the pay periods and records provided. Records the worker did not provide are not considered.",
+    "This packet is not legal advice and has not been filed with any agency. The worker reviews, signs, and files the forms."
+  ]
+}
