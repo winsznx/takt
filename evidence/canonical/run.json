@@ -1,7 +1,7 @@
 {
   "case_id": "TAKT-DEMO-001",
   "synthetic_fixture": true,
-  "commit": "66fbc0e",
+  "commit": "e8a7363",
   "app_version": "0.1.0",
   "deployment": null,
   "model": null,
@@ -52,8 +52,8 @@
     "paid": "1480.00",
     "owed": "9.25"
   },
-  "packet_sha256": "49386e4eb670e4d257a560f986e19ab022eec706f9cef036b178fbb0d13a5c66",
-  "manifest_sha256": "63303d355d789d5af9bf97b74959f3759b10752a6c51a81e9960e83d56bdeefe",
+  "packet_sha256": "5e226d9f42a92c3cff75cce75d180d81f7c326ae6cbfbd5fed0aff4fe79ec876",
+  "manifest_sha256": "7bf1a4cc3d237d3f08a3bc935348f97cca76923f7db2e863e180e3482a2f8dc5",
   "verifier_version": "takt-verify/1",
   "verifier_status": "VERIFIED_PACKET",
   "verifier_checks": [

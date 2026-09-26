@@ -1,6 +1,6 @@
 {
   "generatedBy": "scripts/proof-campaign.ts",
-  "commit": "66fbc0e",
+  "commit": "e8a7363",
   "verifierVersion": "takt-verify/1",
   "extraction": "PDF facts: deterministic native extraction. Image facts: entered from fixture labels (worker_manual); no vision model was run.",
   "cases": [
@@ -68,7 +68,7 @@
       "discrepanciesMatch": true,
       "owedMatch": true,
       "outcomeMatch": true,
-      "packetSha256": "49386e4eb670e4d257a560f986e19ab022eec706f9cef036b178fbb0d13a5c66"
+      "packetSha256": "5e226d9f42a92c3cff75cce75d180d81f7c326ae6cbfbd5fed0aff4fe79ec876"
     },
     {
       "caseId": "TAKT-CONTROL-001",
@@ -122,7 +122,7 @@
       "discrepanciesMatch": true,
       "owedMatch": true,
       "outcomeMatch": true,
-      "packetSha256": "fd64a555f0344283e8487f5099fb1b5e43f7e07466fed52bac9d497d9aa2ef81"
+      "packetSha256": "a9ab8c3f48ac1f0afb7a7645a4646142819d0ba528ec440096aab895bdc3d945"
     },
     {
       "caseId": "TAKT-AMBIG-001",
@@ -176,7 +176,7 @@
       "discrepanciesMatch": true,
       "owedMatch": true,
       "outcomeMatch": true,
-      "packetSha256": "d006ee9d8a04c22c8a48b4d5b1571fea6d3005bf8b6ff29581172237e8bb5bcc"
+      "packetSha256": "15854391a3739d0e73b5f4ded54a6b0cde2379e75beb3da9a5f17f88ad7bfc6c"
     },
     {
       "caseId": "TAKT-UNSUPPORTED-001",
@@ -230,7 +230,7 @@
       "discrepanciesMatch": true,
       "owedMatch": true,
       "outcomeMatch": true,
-      "packetSha256": "447b0a18aa206d35c8da408c6888156cd324165646d1b3166cc05d9db176b3f5"
+      "packetSha256": "d1cb38ede2b4114ed10ee934dc76b051e4192ca0953c8e7aabf207492c96474c"
     }
   ],
   "tamper": [
