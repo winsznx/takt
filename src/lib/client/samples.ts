@@ -37,7 +37,7 @@ export async function startSample(sample: SampleCase): Promise<string> {
       await updateCase(id, (c) => ({
         documents: c.documents.map((d) =>
           d.id === doc.id
-            ? { ...d, status: "extraction_failed" as const, extractionError: "Sample images are filled from their labels to save the free AI reading allowance for real uploads." }
+            ? { ...d, status: "extraction_failed" as const, extractionError: "Synthetic sample image. Fill it from its labels, or read it with AI (limited free daily allowance)." }
             : d,
         ),
       }));

@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { addFiles, removeDocument, updateCase } from "@/lib/client/cases";
 import { Switch } from "@/components/ui/switch";
 import { processDocument } from "@/lib/client/process";
+import { useAiStatus } from "@/lib/client/ai-status";
 import { DocumentClass, type EvidenceDocument } from "@/lib/domain/contracts";
 import { cn } from "@/lib/utils";
 
@@ -23,6 +24,7 @@ const STATUS: Record<EvidenceDocument["status"], { text: string; className: stri
 
 export default function EvidencePage() {
   const { stored, analysis } = useCase();
+  const ai = useAiStatus();
   const fileInput = useRef<HTMLInputElement>(null);
   const cameraInput = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
@@ -90,27 +92,33 @@ export default function EvidencePage() {
         <input ref={cameraInput} type="file" accept="image/*" capture="environment" hidden onChange={(e) => e.target.files && ingest(e.target.files)} />
       </div>
 
-      <p className="flex items-start gap-2 text-[14px] text-muted-foreground">
-        <Fingerprint className="mt-0.5 size-4 shrink-0" strokeWidth={1.75} />
-        Files are fingerprinted (SHA-256) and stored in this browser. PDFs with real text are read on your device. Photos and scans are sent once to
-        Google&apos;s free Gemini service to be read. Takt&apos;s server keeps nothing, but Google may use free-tier images to improve its products.{" "}
-        <Link href="/privacy" className="underline">
-          Details
-        </Link>
-        .
-      </p>
-
-      <label className="flex items-start gap-3 text-[14px]">
-        <Switch
-          checked={stored.sendImagesToAi !== false}
-          onCheckedChange={(on) => updateCase(stored.id, () => ({ sendImagesToAi: on }))}
-          aria-label="Send photos and scans to Google to be read"
-        />
-        <span>
-          <span className="font-medium text-ink">Send photos and scans to Google to be read</span>
-          <span className="block text-muted-foreground">Off means nothing leaves your browser, and you type in what each image shows.</span>
-        </span>
-      </label>
+      <div className="panel-quiet flex items-start gap-3 p-4 text-[14px]">
+        <Fingerprint className="mt-0.5 size-4 shrink-0 text-muted-foreground" strokeWidth={1.75} />
+        {ai?.mode === "full" ? (
+          <label className="flex flex-1 items-start justify-between gap-4">
+            <span>
+              <span className="font-medium text-ink">Send photos and scans to be read by AI</span>
+              <span className="block text-muted-foreground">
+                Off by default. When on, each image is sent once to {ai.model} and Takt keeps nothing. PDFs with real text are always read on your device.
+              </span>
+            </span>
+            <Switch
+              checked={stored.sendImagesToAi === true}
+              onCheckedChange={(on) => updateCase(stored.id, () => ({ sendImagesToAi: on }))}
+              aria-label="Send photos and scans to be read by AI"
+            />
+          </label>
+        ) : (
+          <p className="text-muted-foreground">
+            <span className="font-medium text-ink">Your files stay on this device.</span> Files are fingerprinted (SHA-256) and stored in this browser.
+            PDFs with real text are read on your device. Photos and scans of your records are never sent to an AI service on this public demo; you type
+            in what they show. Only Takt&apos;s synthetic sample images can be read by AI here.{" "}
+            <Link href="/privacy" className="underline">
+              Why
+            </Link>
+          </p>
+        )}
+      </div>
 
       {stored.documents.length === 0 ? (
         <div className="panel flex flex-col items-center gap-2 p-10 text-center">

@@ -2,10 +2,14 @@ import { DocumentClass } from "@/lib/domain/contracts";
 import { ApiError } from "@google/genai";
 import { DATED_AROUND, EXTRACTION_PROMPT_VERSION, EXTRACTION_SCHEMA_VERSION, toCandidates } from "@/lib/ai/extraction-schema";
 import { EXTRACTION_MODEL, extractFromImage, MissingCredentialError } from "@/lib/ai/gemini";
+import { aiMode, isSyntheticFixture } from "@/lib/ai/mode";
 import { sniffMime } from "@/lib/documents/ingest";
+import { sha256Hex } from "@/lib/hash";
 
 /**
- * Vision extraction for images and scanned pages. The request body is used
+ * Vision extraction for images and scanned pages. In synthetic-only mode
+ * (the default) the image is hashed first and anything that is not a committed
+ * synthetic fixture is refused without a model call. The request body is used
  * for one model call and discarded: nothing is written to disk, a database, or
  * logs. Only structured candidate facts come back.
  */
@@ -29,6 +33,13 @@ export async function POST(request: Request) {
   const mimeType = sniffMime(bytes);
   if (mimeType !== "image/png" && mimeType !== "image/jpeg") {
     return error(415, "UNSUPPORTED_TYPE", "Only PNG and JPEG images are sent for extraction.");
+  }
+  if (aiMode() === "synthetic-only" && !isSyntheticFixture(await sha256Hex(bytes))) {
+    return error(
+      403,
+      "REAL_RECORDS_NOT_SENT",
+      "This public demo only sends Takt's synthetic sample images to the AI service. Your image was not sent. Type in what it shows instead.",
+    );
   }
   const hintValue = form.get("hint");
   const hint = typeof hintValue === "string" && hintValue ? DocumentClass.safeParse(hintValue).data ?? null : null;

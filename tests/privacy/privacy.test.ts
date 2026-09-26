@@ -32,6 +32,25 @@ describe("privacy acceptance", () => {
     vi.unstubAllEnvs();
   });
 
+  it("synthetic-only mode refuses any image that is not a committed synthetic fixture, before any model call", async () => {
+    vi.stubEnv("GEMINI_API_KEY", "test-key-never-used");
+    vi.stubEnv("TAKT_AI_MODE", "");
+    const real = (await loadDocument("TAKT-DEMO-001", "IMG_4821.png")).slice();
+    real[real.length - 1] ^= 0xff;
+    const form = new FormData();
+    form.append("file", new Blob([real], { type: "image/png" }));
+    const response = await POST(new Request("http://localhost/api/extract", { method: "POST", body: form }));
+    expect(response.status).toBe(403);
+    expect((await response.json()).code).toBe("REAL_RECORDS_NOT_SENT");
+    vi.unstubAllEnvs();
+  });
+
+  it("the synthetic allowlist matches the committed fixture images", async () => {
+    const { fixtureImageHashes } = await import("../../scripts/fixture-hashes");
+    const committed = JSON.parse(await readFile(path.join(ROOT, "src/lib/ai/synthetic-allowlist.json"), "utf8"));
+    expect(committed).toEqual(await fixtureImageHashes());
+  });
+
   it("the extraction route rejects non-images by content, not by filename", async () => {
     const form = new FormData();
     form.append("file", new Blob([new TextEncoder().encode("%PDF-1.7 not an image")], { type: "image/png" }), "photo.png");

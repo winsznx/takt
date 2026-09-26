@@ -30,7 +30,7 @@ async function visionExtract(image: Blob, hint: DocumentClass | null, datedAroun
   if (datedAround) form.append("datedAround", datedAround);
   const response = await fetch("/api/extract", { method: "POST", body: form });
   const body = await response.json().catch(() => null);
-  if (response.status === 503 || response.status === 429) {
+  if (response.status === 503 || response.status === 429 || response.status === 403) {
     throw new ExtractionUnavailableError(body?.message ?? "Image reading isn't available right now. You can type in what this document shows.");
   }
   if (!response.ok) throw new Error(body?.message ?? "Takt could not read this file.");
@@ -55,7 +55,12 @@ async function caseMonth(caseId: string, excludeDocumentId: string): Promise<str
  * photos, screenshots, and scanned pages. Results are candidate facts waiting
  * for worker review; nothing is treated as confirmed here.
  */
-export async function processDocument(caseId: string, document: EvidenceDocument, hint: DocumentClass | null = null): Promise<void> {
+export async function processDocument(
+  caseId: string,
+  document: EvidenceDocument,
+  hint: DocumentClass | null = null,
+  options: { sendToAi?: boolean } = {},
+): Promise<void> {
   if (document.duplicateOf) return;
   const bytes = await readOriginal(caseId, document.id);
   if (!bytes) throw new Error("The original file is no longer stored on this device.");
@@ -84,12 +89,14 @@ export async function processDocument(caseId: string, document: EvidenceDocument
       };
     } else {
       const stored = await db.cases.get(caseId);
-      if (stored?.sendImagesToAi === false) {
+      // Real cases default to local-only; synthetic samples may be read by the model.
+      const send = options.sendToAi ?? stored?.sendImagesToAi ?? false;
+      if (!send) {
         await setDoc({
           status: "extraction_failed",
           pageCount: native?.pageCount ?? 1,
           docClass: hint ?? document.docClass,
-          extractionError: "Not sent for AI reading, as you chose. Type in what this document shows.",
+          extractionError: "Kept on your device. Type in what this document shows.",
         });
         return;
       }

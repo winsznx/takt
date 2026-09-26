@@ -8,8 +8,13 @@ const ROWS: [string, string][] = [
   ["Digital PDFs", "Read on your device with pdf.js. Their contents are not sent anywhere."],
   [
     "Photos, screenshots, and scanned PDFs",
-    "Sent once, over HTTPS, to Takt's server, which forwards the image to Google's Gemini API and returns only the facts it found. Takt's server does not save the image, the facts, or any document text, and does not log them. This deployment uses Google's free Gemini API tier. Under Google's terms for the free tier, Google may use what it receives, including your image, to improve its products, and people at Google may review it. If that's not acceptable, type the facts in yourself instead: nothing leaves your browser that way.",
+    "On this public demo, photos and scans of your records never leave your browser. You type in what they show. The server refuses to forward any image to an AI service unless its SHA-256 fingerprint matches one of Takt's own synthetic sample images, so this is enforced by code, not only by the page.",
   ],
+  [
+    "Why the AI is limited to samples",
+    "This deployment uses Google's unpaid Gemini API. Google's terms for unpaid use say Google may use what it receives to improve its products, that human reviewers may read it, and: \"Do not submit sensitive, confidential, or personal information to the Unpaid Services.\" Pay stubs and manager messages are exactly that, so Takt only sends its synthetic sample images. A deployment on a paid tier whose terms fit personal records could turn image reading on for real uploads.",
+  ],
+
   ["What you type", "Your name, employer, and answers are stored only in this browser and only written into the packet you choose to build."],
   ["The packet", "Built entirely in your browser. It is not uploaded. You decide who gets it."],
   ["Accounts, cookies, analytics", "None. Takt has no sign-in, sets no tracking cookies, and runs no analytics or session recording."],

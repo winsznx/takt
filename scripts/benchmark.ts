@@ -21,7 +21,7 @@
 import { execFileSync } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { GoogleGenAI, type Part } from "@google/genai";
+import { ApiError, GoogleGenAI, type Part } from "@google/genai";
 import { EXTRACTION_JSON_SCHEMA, SYSTEM_INSTRUCTION, toCandidates, userPrompt, type RawExtraction } from "@/lib/ai/extraction-schema";
 import { withRetry } from "@/lib/ai/retry";
 import { analyzeCase } from "@/lib/domain/analyze";
@@ -84,13 +84,24 @@ function score(
   };
 }
 
+let requestCount = 0;
+
 async function main() {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     console.error("BLOCKED_ON_HUMAN_CREDENTIAL: GEMINI_API_KEY. The benchmark compares against a live model; it will not fabricate results.");
     process.exit(2);
   }
-  const ai = new GoogleGenAI({ apiKey });
+  const client = new GoogleGenAI({ apiKey });
+  // Counts every attempt that reaches the provider, including retries.
+  const ai = {
+    models: {
+      generateContent: (req: Parameters<typeof client.models.generateContent>[0]) => {
+        requestCount++;
+        return client.models.generateContent(req);
+      },
+    },
+  };
   const commit = execFileSync("git", ["rev-parse", "--short", "HEAD"], { cwd: ROOT, encoding: "utf8" }).trim();
   const rows: Record<string, unknown>[] = [];
 
@@ -121,6 +132,7 @@ async function main() {
       );
       generic = JSON.parse(response.text ?? "null");
     } catch (e) {
+      if (e instanceof ApiError && e.status === 429) throw e;
       genericError = e instanceof Error ? e.message.slice(0, 200) : "request failed";
     }
     const genericObserved = {
@@ -212,6 +224,9 @@ async function main() {
   };
   const extractionRows = rows.filter((x) => x.arm === "takt_extraction") as { critical_facts: { found: number; of: number } }[];
   const summary = {
+    status: "COMPLETED",
+    ranAt: new Date().toISOString(),
+    modelRequests: requestCount,
     model: MODEL,
     commit,
     fixtures: CASES,
@@ -231,4 +246,21 @@ async function main() {
   console.log(JSON.stringify(summary, null, 2));
 }
 
-await main();
+try {
+  await main();
+} catch (error) {
+  if (error instanceof ApiError && error.status === 429) {
+    const summary = {
+      status: "NOT_COMPLETED_QUOTA",
+      ranAt: new Date().toISOString(),
+      modelRequests: requestCount,
+      model: MODEL,
+      note: "The provider's free daily quota ran out before the benchmark finished. No partial results are published and no comparison is claimed.",
+    };
+    await mkdir(OUT, { recursive: true });
+    await writeFile(path.join(OUT, "summary.json"), `${JSON.stringify(summary, null, 2)}\n`);
+    console.error("NOT_COMPLETED_QUOTA");
+    process.exit(3);
+  }
+  throw error;
+}

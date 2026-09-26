@@ -1,4 +1,5 @@
 "use client";
+import { Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -9,6 +10,8 @@ import { PageHeader } from "@/components/takt/page-header";
 import { FactEditor, KIND_LABEL } from "@/components/takt/fact-editor";
 import { SourceViewer, type Highlight } from "@/components/takt/source-viewer";
 import { Button } from "@/components/ui/button";
+import { useAiStatus } from "@/lib/client/ai-status";
+import { processDocument } from "@/lib/client/process";
 import { addManualFact, confirmHighConfidence, reviewFact, setDocumentClass } from "@/lib/client/cases";
 import { getSample, type SampleCase } from "@/lib/client/samples";
 import { LOW_CONFIDENCE_THRESHOLD, type DocumentClass, type EvidenceFact } from "@/lib/domain/contracts";
@@ -43,6 +46,7 @@ function ReviewBody({ docId }: { docId: string | undefined }) {
   const [editing, setEditing] = useState<string | null>(null);
   const [adding, setAdding] = useState(false);
   const [sample, setSample] = useState<SampleCase | null>(null);
+  const aiReady = useAiStatus()?.imageExtraction === true;
 
   const facts = useMemo(
     () => stored.facts.filter((f) => f.documentId === docId).sort((a, b) => ORDER(a) - ORDER(b)),
@@ -147,17 +151,24 @@ function ReviewBody({ docId }: { docId: string | undefined }) {
             <div className="rounded-2xl border border-[#f5e3b3] bg-[#fefce8] p-4 text-[14px] text-[#713f12]">
               <p>{document.extractionError}</p>
               {sampleFill && facts.length === 0 && !document.docClass && (
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="mt-2"
-                  onClick={async () => {
-                    await sampleFill();
-                    toast.success("Entered the values this synthetic sample shows");
-                  }}
-                >
-                  Enter what this sample image shows
-                </Button>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={async () => {
+                      await sampleFill();
+                      toast.success("Entered the values this synthetic sample shows");
+                    }}
+                  >
+                    Enter what this sample image shows
+                  </Button>
+                  {aiReady && (
+                    <Button size="sm" variant="outline" onClick={() => processDocument(stored.id, document, null, { sendToAi: true })}>
+                      <Sparkles />
+                      Read this sample with AI
+                    </Button>
+                  )}
+                </div>
               )}
             </div>
           )}
