@@ -68,7 +68,7 @@ export function ScopeForm({ initial, onSubmit, submitLabel }: { initial?: ScopeA
           {q.help && <p className="text-sm text-muted-foreground">{q.help}</p>}
           <div className="flex flex-wrap gap-2">
             {q.options.map((o) => (
-              <label key={String(o.value)} className="flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-[#e3e4e8] bg-white px-4 py-2 text-[15px] has-[:checked]:border-brand has-[:checked]:bg-brand-soft has-[:checked]:text-brand">
+              <label key={String(o.value)} className="flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-[#e3e4e8] bg-white px-4 py-2 text-[15px] has-[:checked]:border-brand has-[:checked]:bg-brand-soft has-[:checked]:text-brand-strong">
                 <input
                   type="radio"
                   name={q.key}
@@ -86,7 +86,7 @@ export function ScopeForm({ initial, onSubmit, submitLabel }: { initial?: ScopeA
       <fieldset className="space-y-2">
         <legend className="font-medium">What day does your employer&apos;s workweek start?</legend>
         <p className="text-sm text-muted-foreground">It&apos;s often on your pay stub or in the handbook. Weekly overtime depends on it.</p>
-        <select value={weekStart} onChange={(e) => setWeekStart(e.target.value)} className="h-11 w-full rounded-full border border-[#e3e4e8] bg-white px-4 sm:w-64">
+        <select aria-label="Workweek start day" value={weekStart} onChange={(e) => setWeekStart(e.target.value)} className="h-11 w-full rounded-full border border-[#e3e4e8] bg-white px-4 sm:w-64">
           <option value="" disabled>
             Choose a day
           </option>

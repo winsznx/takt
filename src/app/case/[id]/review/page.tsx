@@ -70,7 +70,7 @@ function ReviewBody({ docId }: { docId: string | undefined }) {
     };
   }, [stored.sample]);
 
-  // Synthetic samples only: when image reading isn't configured, the viewer can enter what the sample image shows.
+  // Synthetic samples only: fill an unread sample image from its labels, or read it with AI.
   const sampleFile = sample && document?.status === "extraction_failed" ? sample.files.find((f) => f.file === document.filename) : undefined;
   const sampleFill =
     sampleFile && document

@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 
 const STATUS: Record<EvidenceDocument["status"], { text: string; className: string }> = {
   hashed: { text: "Waiting to be read", className: "bg-[#f1f3f6] text-[#4a5263]" },
-  extracting: { text: "Reading…", className: "bg-brand-soft text-brand" },
+  extracting: { text: "Reading…", className: "bg-brand-soft text-brand-strong" },
   extracted: { text: "Read", className: "bg-[#ecfdf5] text-[#065f46]" },
   extraction_failed: { text: "Couldn't read automatically", className: "bg-[#fefce8] text-[#854d0e]" },
   duplicate: { text: "Duplicate, not used", className: "bg-[#f1f3f6] text-[#4a5263]" },

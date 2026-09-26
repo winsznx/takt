@@ -18,6 +18,7 @@ const DOES_NOT = [
   "Calculate meal or rest period premiums, split-shift or reporting-time pay, waiting-time or other penalties, minimum wage claims, or city and county minimum wages.",
   "Count time based only on your memory. Your own statement matters in a real claim, but Takt only adds time that another record supports; the rest is noted, not counted.",
   "Know about records you didn't upload, or tell you whether a claim will succeed.",
+  "Send photos or scans of your own records to an AI service on this public demo. Only Takt's synthetic sample images are read by AI here; you type in what your images show.",
 ];
 
 const VERIFY = [

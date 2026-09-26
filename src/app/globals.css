@@ -73,8 +73,8 @@
   --radius: 0.75rem;
 
   /* Takt decision states */
-  --state-consistent: #0f8a5f;
-  --state-discrepancy: #e5484d;
+  --state-consistent: #08734d;
+  --state-discrepancy: #c4262c;
   --state-insufficient: #b7791f;
   --state-ambiguous: #6e56cf;
   --state-unsupported: #5b6475;

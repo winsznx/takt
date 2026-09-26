@@ -97,7 +97,7 @@ export function DetailsForm({ initial, onSave }: { initial: ClaimantDetails; onS
                 ["regular", "Yes, mostly the same"],
               ] as const
             ).map(([value, text]) => (
-              <label key={value} className="flex min-h-10 items-center gap-2 rounded-full border border-[#e3e4e8] bg-white px-4 text-[15px] has-[:checked]:border-brand has-[:checked]:bg-brand-soft has-[:checked]:text-brand">
+              <label key={value} className="flex min-h-10 items-center gap-2 rounded-full border border-[#e3e4e8] bg-white px-4 text-[15px] has-[:checked]:border-brand has-[:checked]:bg-brand-soft has-[:checked]:text-brand-strong">
                 <input type="radio" name="regularity" checked={d.scheduleRegularity === value} onChange={() => set("scheduleRegularity", value)} />
                 {text}
               </label>
