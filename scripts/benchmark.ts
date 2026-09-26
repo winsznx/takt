@@ -85,6 +85,8 @@ function score(
 }
 
 let requestCount = 0;
+/** Busy-provider backoff: 10 s, 30 s, 60 s, 120 s, same model throughout. */
+const BENCH_DELAYS = [10_000, 30_000, 60_000, 120_000];
 
 async function main() {
   const apiKey = process.env.GEMINI_API_KEY;
@@ -129,10 +131,12 @@ async function main() {
           contents: [{ role: "user", parts }],
           config: { responseMimeType: "application/json", temperature: 0 },
         }),
+        BENCH_DELAYS,
       );
       generic = JSON.parse(response.text ?? "null");
     } catch (e) {
-      if (e instanceof ApiError && e.status === 429) throw e;
+      // A provider failure is not a wrong answer; abort rather than score the baseline for it.
+      if (e instanceof ApiError) throw e;
       genericError = e instanceof Error ? e.message.slice(0, 200) : "request failed";
     }
     const genericObserved = {
@@ -166,6 +170,7 @@ async function main() {
             contents: [{ role: "user", parts: [{ inlineData: { mimeType: "image/png", data: Buffer.from(bytes).toString("base64") } }, { text: userPrompt(null) }] }],
             config: { systemInstruction: SYSTEM_INSTRUCTION, responseMimeType: "application/json", responseJsonSchema: EXTRACTION_JSON_SCHEMA, temperature: 0 },
           }),
+          BENCH_DELAYS,
         );
         const { candidates } = toCandidates(JSON.parse(response.text ?? "{}") as RawExtraction);
         extracted.push(...candidates.map((c) => `${d.file}|${key(c.value)}`));
@@ -249,17 +254,18 @@ async function main() {
 try {
   await main();
 } catch (error) {
-  if (error instanceof ApiError && error.status === 429) {
+  if (error instanceof ApiError) {
     const summary = {
-      status: "NOT_COMPLETED_QUOTA",
+      status: error.status === 429 ? "NOT_COMPLETED_QUOTA" : "NOT_COMPLETED_PROVIDER_UNAVAILABLE",
+      providerStatus: error.status,
       ranAt: new Date().toISOString(),
       modelRequests: requestCount,
       model: MODEL,
-      note: "The provider's free daily quota ran out before the benchmark finished. No partial results are published and no comparison is claimed.",
+      note: "The model provider refused or failed a request before the benchmark finished. No partial results are published and no comparison is claimed.",
     };
     await mkdir(OUT, { recursive: true });
     await writeFile(path.join(OUT, "summary.json"), `${JSON.stringify(summary, null, 2)}\n`);
-    console.error("NOT_COMPLETED_QUOTA");
+    console.error(summary.status);
     process.exit(3);
   }
   throw error;
