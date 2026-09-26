@@ -28,7 +28,20 @@ export async function startSample(sample: SampleCase): Promise<string> {
   );
   const { added } = await addFiles(id, files);
   void (async () => {
-    for (const doc of added) await processDocument(id, doc);
+    for (const doc of added) {
+      if (doc.mimeType === "application/pdf") {
+        await processDocument(id, doc);
+        continue;
+      }
+      // Sample images are synthetic and already labeled; don't spend the shared free AI allowance on them.
+      await updateCase(id, (c) => ({
+        documents: c.documents.map((d) =>
+          d.id === doc.id
+            ? { ...d, status: "extraction_failed" as const, extractionError: "Sample images are filled from their labels to save the free AI reading allowance for real uploads." }
+            : d,
+        ),
+      }));
+    }
   })();
   return id;
 }

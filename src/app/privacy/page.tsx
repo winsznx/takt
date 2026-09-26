@@ -8,7 +8,7 @@ const ROWS: [string, string][] = [
   ["Digital PDFs", "Read on your device with pdf.js. Their contents are not sent anywhere."],
   [
     "Photos, screenshots, and scanned PDFs",
-    "Sent once, over HTTPS, to Takt's server, which forwards the image to Google's Gemini API and returns only the facts it found. Takt's server does not save the image, the facts, or any document text, and does not log them. Google processes the image under the Gemini API terms; whether Google may use it to improve its products depends on the API tier this deployment uses.",
+    "Sent once, over HTTPS, to Takt's server, which forwards the image to Google's Gemini API and returns only the facts it found. Takt's server does not save the image, the facts, or any document text, and does not log them. This deployment uses Google's free Gemini API tier. Under Google's terms for the free tier, Google may use what it receives, including your image, to improve its products, and people at Google may review it. If that's not acceptable, type the facts in yourself instead: nothing leaves your browser that way.",
   ],
   ["What you type", "Your name, employer, and answers are stored only in this browser and only written into the packet you choose to build."],
   ["The packet", "Built entirely in your browser. It is not uploaded. You decide who gets it."],

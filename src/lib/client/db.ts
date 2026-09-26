@@ -38,6 +38,8 @@ export interface StoredCase {
   injectionWarnings: string[];
   confirmations: WorkerConfirmation[];
   extractionModel: string | null;
+  /** When false, photos and scans are never sent for AI reading; the worker types the facts. */
+  sendImagesToAi?: boolean;
   lastPacket: PacketRecord | null;
 }
 

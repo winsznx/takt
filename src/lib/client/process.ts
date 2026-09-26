@@ -30,7 +30,9 @@ async function visionExtract(image: Blob, hint: DocumentClass | null, datedAroun
   if (datedAround) form.append("datedAround", datedAround);
   const response = await fetch("/api/extract", { method: "POST", body: form });
   const body = await response.json().catch(() => null);
-  if (response.status === 503) throw new ExtractionUnavailableError(body?.message ?? "Image reading is not available.");
+  if (response.status === 503 || response.status === 429) {
+    throw new ExtractionUnavailableError(body?.message ?? "Image reading isn't available right now. You can type in what this document shows.");
+  }
   if (!response.ok) throw new Error(body?.message ?? "Takt could not read this file.");
   return body as VisionResponse;
 }
@@ -81,6 +83,16 @@ export async function processDocument(caseId: string, document: EvidenceDocument
         extractionError: result.warnings.join(" ") || null,
       };
     } else {
+      const stored = await db.cases.get(caseId);
+      if (stored?.sendImagesToAi === false) {
+        await setDoc({
+          status: "extraction_failed",
+          pageCount: native?.pageCount ?? 1,
+          docClass: hint ?? document.docClass,
+          extractionError: "Not sent for AI reading, as you chose. Type in what this document shows.",
+        });
+        return;
+      }
       method = "vision_model";
       const pages = native ? Math.min(native.pageCount, MAX_SCANNED_PAGES) : 1;
       let docClass: DocumentClass = "other";
@@ -120,7 +132,7 @@ export async function processDocument(caseId: string, document: EvidenceDocument
     await setDoc({
       status: "extraction_failed",
       extractionError: unavailable
-        ? "Image reading isn't available right now. You can type in what this document shows."
+        ? error.message
         : error instanceof Error
           ? error.message
           : "Takt could not read this file.",

@@ -1,4 +1,5 @@
 import { DocumentClass } from "@/lib/domain/contracts";
+import { ApiError } from "@google/genai";
 import { DATED_AROUND, EXTRACTION_PROMPT_VERSION, EXTRACTION_SCHEMA_VERSION, toCandidates } from "@/lib/ai/extraction-schema";
 import { EXTRACTION_MODEL, extractFromImage, MissingCredentialError } from "@/lib/ai/gemini";
 import { sniffMime } from "@/lib/documents/ingest";
@@ -54,6 +55,12 @@ export async function POST(request: Request) {
   } catch (cause) {
     if (cause instanceof MissingCredentialError) {
       return error(503, "EXTRACTION_UNAVAILABLE", "Image reading is not configured on this deployment. You can enter the facts yourself.");
+    }
+    if (cause instanceof ApiError && cause.status === 429) {
+      return error(429, "QUOTA_EXHAUSTED", "Takt's free image-reading allowance is used up for now. Type in what this document shows, or try again later.");
+    }
+    if (cause instanceof ApiError && cause.status >= 500) {
+      return error(503, "PROVIDER_BUSY", "The image-reading service is busy right now. Try again in a few minutes, or type in what this document shows.");
     }
     const kind = cause instanceof SyntaxError ? "the model returned malformed JSON" : "the model request failed";
     console.error(`extract: ${kind}`);

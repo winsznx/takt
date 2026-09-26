@@ -7,7 +7,8 @@ import { useCase } from "@/components/takt/case-context";
 import { DOC_CLASS_ICON, DOC_CLASS_LABEL } from "@/components/takt/doc-labels";
 import { PageHeader } from "@/components/takt/page-header";
 import { Button } from "@/components/ui/button";
-import { addFiles, removeDocument } from "@/lib/client/cases";
+import { addFiles, removeDocument, updateCase } from "@/lib/client/cases";
+import { Switch } from "@/components/ui/switch";
 import { processDocument } from "@/lib/client/process";
 import { DocumentClass, type EvidenceDocument } from "@/lib/domain/contracts";
 import { cn } from "@/lib/utils";
@@ -92,8 +93,24 @@ export default function EvidencePage() {
       <p className="flex items-start gap-2 text-[14px] text-muted-foreground">
         <Fingerprint className="mt-0.5 size-4 shrink-0" strokeWidth={1.75} />
         Files are fingerprinted (SHA-256) and stored in this browser. PDFs with real text are read on your device. Photos and scans are sent once to
-        Takt&apos;s server to be read by an AI model, and the server keeps nothing.
+        Google&apos;s free Gemini service to be read. Takt&apos;s server keeps nothing, but Google may use free-tier images to improve its products.{" "}
+        <Link href="/privacy" className="underline">
+          Details
+        </Link>
+        .
       </p>
+
+      <label className="flex items-start gap-3 text-[14px]">
+        <Switch
+          checked={stored.sendImagesToAi !== false}
+          onCheckedChange={(on) => updateCase(stored.id, () => ({ sendImagesToAi: on }))}
+          aria-label="Send photos and scans to Google to be read"
+        />
+        <span>
+          <span className="font-medium text-ink">Send photos and scans to Google to be read</span>
+          <span className="block text-muted-foreground">Off means nothing leaves your browser, and you type in what each image shows.</span>
+        </span>
+      </label>
 
       {stored.documents.length === 0 ? (
         <div className="panel flex flex-col items-center gap-2 p-10 text-center">
