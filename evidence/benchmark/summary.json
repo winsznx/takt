@@ -1,8 +1,8 @@
 {
   "status": "NOT_COMPLETED_PROVIDER_UNAVAILABLE",
   "providerStatus": 503,
-  "ranAt": "2026-09-26T23:29:55.221Z",
-  "modelRequests": 5,
+  "ranAt": "2026-09-26T23:57:56.709Z",
+  "modelRequests": 7,
   "model": "gemini-3.8-flash",
   "note": "The model provider refused or failed a request before the benchmark finished. No partial results are published and no comparison is claimed."
 }
