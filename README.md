@@ -10,7 +10,7 @@ anyone can re-verify.
 - **Live:** https://takt-beige.vercel.app
 - **Proof:** https://takt-beige.vercel.app/proof
 - **Repository:** https://github.com/winsznx/takt
-- **Demo video:** _link added at submission_
+- **Demo video:** https://youtu.be/wSUVPrnWkmw
 
 ![Takt Diff: schedule, manager text, and worker say 7:40 AM; the employer clock says 8:00 AM](docs/screenshots/01-diff-desktop.png)
 
